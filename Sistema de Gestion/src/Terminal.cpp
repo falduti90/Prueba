@@ -53,7 +53,7 @@ int Terminal::getIdTerminal(){
 char *Terminal::getEmail(){
     return _Email;
 }
-
+//.
 float   Terminal::getGastosFijos(){
     return _GastosFijos;
 }
