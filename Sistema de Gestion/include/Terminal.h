@@ -12,6 +12,7 @@ class Terminal
         void setEmail(char * NuevoEmail);
         void setGastosFijos(float NuevoGasto);
         void setActivo(bool NuevoEstado);
+        int getIdTerminal();
         char * getNombreTerminal();
         Domicilio    getDireccion ();
         char * getEmail();

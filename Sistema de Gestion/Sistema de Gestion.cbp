@@ -35,14 +35,16 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Agencia.h" />
-		<Unit filename="include/Buques.h" />
+		<Unit filename="include/Buque.h" />
+		<Unit filename="include/Cronograma.h" />
 		<Unit filename="include/Domicilio.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Region.h" />
 		<Unit filename="include/Terminal.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Agencia.cpp" />
-		<Unit filename="src/Buques.cpp" />
+		<Unit filename="src/Buque.cpp" />
+		<Unit filename="src/Cronograma.cpp" />
 		<Unit filename="src/Domicilio.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Region.cpp" />

@@ -1,48 +1,74 @@
 # depslib dependency file v1.0
-1584205420 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\main.cpp
-	<iostream>
-
-1635075941 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\buques.cpp
-	<iostream>
-	<cstdlib>
-	<cstring>
-	<cstdio>
-	"Buques.h"
-	"Terminal.h"
-
-1635044832 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\region.cpp
-	<iostream>
-	<cstdlib>
-
-1635078192 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\terminal.cpp
-	<iostream>
-	<cstdlib>
-	<cstring>
-	<cstdio>
-	"Terminal.h"
-	"Domicilio.h"
-
-1635080198 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\agencia.cpp
+1635109634 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\agencia.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<cstdio>
 	"Agencia.h"
 
-1635050083 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\buques.h
+1635109159 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\agencia.h
+
+1635107640 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\buque.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Buque.h"
 	"Terminal.h"
 
-1635077877 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\terminal.h
+1635107551 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\buque.h
+	"Terminal.h"
+
+1635107219 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\terminal.h
 	"Domicilio.h"
 
-1635077554 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\domicilio.h
+1635101163 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\domicilio.h
 
-1635077697 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\domicilio.cpp
+1635103108 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\domicilio.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<cstdio>
 	"Domicilio.h"
 
-1635080142 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\agencia.h
+1635099606 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\fecha.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Fecha.h"
+
+1635098365 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\fecha.h
+
+1635098365 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\region.cpp
+	<iostream>
+	<cstdlib>
+
+1635107369 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\terminal.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Terminal.h"
+	"Domicilio.h"
+
+1635109112 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\main.cpp
+	<iostream>
+	"Buque.h"
+	"Agencia.h"
+	"Region.h"
+	"Terminal.h"
+	"Agencia.h"
+
+1635099596 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\region.h
+
+1635110589 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\cronograma.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Cronograma.h"
+
+1635111566 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\cronograma.h
+	"Fecha.h"
 

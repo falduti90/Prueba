@@ -3,21 +3,20 @@
 #include "Terminal.h"
 
 
-class Buques
-{
+class Buque{
     public:
-        Buques();
+        Buque();
         void setIdBuque(int NuevoId);
         void setnombreBuque(char* NuevoNombre);
         void setBanderaBuque(char *NuevaBandera);
-        void setNumeroViaje(int NuevoNro);
-        void setGiro(Terminal NuevoGiro);
+        //void setNumeroViaje(int NuevoNro);
+        void setGiro(int NuevoGiro);
         void setActivo(bool NuevoEstado);
         int getIdBuque();
         char* getnombreBuque();
         char* getBanderaBuque();
-        int getNumeroViaje();
-        Terminal getGiro();
+        //int getNumeroViaje();
+        int getGiro();
         bool getActivo();
         void cargar();
         void mostrar();
@@ -31,13 +30,14 @@ class Buques
     int         _idBuque;
     char        _nombreBuque[30];
     char        _banderaBuque [30];
-    int         _numeroViaje;
-    Terminal    _giro;
+   // int         _numeroViaje;
+    int         _giro;
     bool        _activo;
 };
 
 //FUNCIONES GLOBALES
 
 void ListadoBuques();
+void buscarTerminal(int giro);
 
 #endif // BUQUES_H

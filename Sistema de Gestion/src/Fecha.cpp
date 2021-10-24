@@ -11,37 +11,48 @@ Fecha::Fecha(){
     _Mes=0;
     _Anio=0;
 }
+
 void Fecha::setDia(int NuevoDia){
     _Dia=NuevoDia;
 }
+
 void Fecha::setMes(int NuevoMes){
     _Mes=NuevoMes;
 }
+
 void Fecha::setAnio(int NuevoAnio){
     _Anio=NuevoAnio;
 }
+
 void Fecha::setNumeroSemana(int NuevaSemana){
 // COMPLETAR
 }
+
 void Fecha::setActivo(bool NuevoEstado){
     _Activo;
 }
+
 int  Fecha::getDia(){
     return _Dia;
 }
+
 int  Fecha::getMes(){
     return _Mes;
 }
+
 int  Fecha::getAnio(){
    return  _Anio;
 }
+
 int  Fecha::getNumeroSemana(){
 // COMPLETAR
 
 }
+
 bool Fecha::getActivo(){
     return  _Activo;
 }
+
 void Fecha::Cargar(){
     int dia,mes,anio;
     int vec[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
@@ -58,11 +69,9 @@ void Fecha::Cargar(){
     cout<< "INGRESE EL ANIO :"<<endl;
     cin >> anio;
 
-    if(mes>0 && mes<=12)
-    {
+    if(mes>0 && mes<=12){
         MesOk=true;
-        if(dia>0 && dia <= vec[mes-1])
-        {
+        if(dia>0 && dia <= vec[mes-1]){
             DiaOk=true;
 
         }
@@ -82,17 +91,17 @@ void Fecha::Cargar(){
     cout<< "LA FECHA INGRESADA ES INCORRECTA"<<endl;
    }
 
-
-
-
 }
+
+
 void Fecha::Mostrar(){
     cout<< "FECHA  :"<<endl;
     cout<< _Dia<<"/"<<_Mes<< "/"<<_Anio<<endl;
 }
+
 bool Fecha::leerDeDisco(int pos){
         FILE *p;
-        p=fopen("Fecha.dat","rb");
+        p=fopen("Fechas.dat","rb");
         if(p==NULL){
         cout<< "No se pudo abrir el archivo docentes";
         return false;
@@ -104,9 +113,10 @@ bool Fecha::leerDeDisco(int pos){
         return leyo;
 
 }
+
 bool Fecha::grabarEnDisco(){
     FILE *p;
-    p=fopen("Fecha.dat","ab");
+    p=fopen("Fechas.dat","ab");
     if(p==NULL)
     {
         cout<< "No se pudo abrir el archivo docentes";
@@ -133,7 +143,7 @@ void ListadoDeFechas(){
 
     FILE *p;
     Fecha reg;
-    p=fopen("Fecha.dat","rb");
+    p=fopen("Fechas.dat","rb");
     if(p==NULL){
         cout<< "No se pudo abrir el archivo docentes";
     return ;
