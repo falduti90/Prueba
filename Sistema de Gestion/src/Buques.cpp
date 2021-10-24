@@ -12,6 +12,7 @@ Buques::Buques(){
     strcpy(_banderaBuque, "NO SE INGRESO BANDERA");
     _numeroViaje=0;
     _activo= true;
+    //cout<<
 
 
 
