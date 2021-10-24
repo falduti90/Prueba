@@ -34,6 +34,8 @@ class Fecha
 
 void ListadoDeFechas();
 
+//JUAN CRUZ
+
 #endif // FECHA_H
 
 
