@@ -13,62 +13,74 @@ Agencia::Agencia() {
     _Activo=true;
 
 }
+
 int     Agencia::setIdAgencia(int NuevoID) {
     _IdAgencia=NuevoID;
 }
+
 char    Agencia::setNombreAgencia(char * NuevoNombre) {
     strcpy(_NombreAgencia,NuevoNombre);
 }
+
 int     Agencia::setDisponibilidadMensual(int NuevoCupo) {
     _DisponibilidadMensual=NuevoCupo;
 }
+
 float   Agencia::setGastosLocales(float NuevoGasto) {
     _GastosLocales=NuevoGasto;
 }
+
 bool    Agencia::setActivo(bool NuevoEstado) {
     _Activo=NuevoEstado;
 }
 int     Agencia::getIdAgencia(){
     return _IdAgencia;
 }
+
 char *  Agencia::getNombreAgencia() {
     return _NombreAgencia;
 }
+
 int     Agencia::getDisponibilidadMensual() {
     return _DisponibilidadMensual;
 }
+
 float   Agencia::getGastosLocales() {
     return _GastosLocales;
 }
+
 bool    Agencia::getActivo() {
     return _Activo;
 }
+
 void    Agencia::Cargar() {
-    cout<< "INGRESE EL NUMERO DE ID DE LA AGENCIA :"<<endl;
+    cout<< "INGRESE EL NUMERO DE ID DE LA AGENCIA: ";
     cin>> _IdAgencia;
 
-    cout<< "INGRESE EL NOMBRE DE LA AGENCIA       :"<<endl;
-    cin>> _NombreAgencia;
+    cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
+    cin.ignore();
+    cin.getline(_NombreAgencia,29);
 
-    cout<< "INGRESE LA DISPONIBILIDAD MENSUAL     :"<<endl;
+    cout<< "INGRESE LA DISPONIBILIDAD MENSUAL: ";
     cin>> _DisponibilidadMensual;
 
-    cout<< "INGRESE LOS GASTOS LOCALES            :"<<endl;
+    cout<< "INGRESE LOS GASTOS LOCALES: ";
     cin>> _GastosLocales;
 
 }
+
 void    Agencia::Mostrar() {
-    cout<< "ID AGENCIA              :"<<"/"<< _IdAgencia<<endl ;
-    cout<< "NOMBRE AGENCIA          :"<<"/"<< _NombreAgencia<<endl;
-    cout<< "DISPONIBILIDAD MENSUAL  :"<<"/"<< _DisponibilidadMensual<<endl;
-    cout<< "GASTOS FIJOS            :"<<"/"<< _GastosLocales<<endl;
+    cout<< "ID AGENCIA            :"<<"\t"<< _IdAgencia<<endl ;
+    cout<< "NOMBRE AGENCIA        :"<<"\t"<< _NombreAgencia<<endl;
+    cout<< "DISPONIBILIDAD MENSUAL:"<<"\t"<< _DisponibilidadMensual<<endl;
+    cout<< "GASTOS FIJOS          :"<<"\t"<< _GastosLocales<<endl;
 
-
-
+   // cout<< "|  ID AGENCIA  |    NOMBRE     |  DISPONIBILIDAD  |  GASTOS  | "<<endl;
 }
+
 bool    Agencia::leerDeDisco(int pos) {
         FILE *p;
-        p=fopen("Agencia.dat","rb");
+        p=fopen("Agencias.dat","rb");
         if(p==NULL){
         cout<< "No se pudo abrir el archivo docentes";
         return false;
@@ -83,7 +95,7 @@ bool    Agencia::leerDeDisco(int pos) {
 bool    Agencia::grabarEnDisco() {
 
     FILE *p;
-    p=fopen("Agencia.dat","ab");
+    p=fopen("Agencias.dat","ab");
     if(p==NULL)
     {
         cout<< "No se pudo abrir el archivo docentes";
@@ -111,7 +123,7 @@ void ListadoDeAgencias(){
 
     FILE *p;
     Agencia reg;
-    p=fopen("Agencia.dat","rb");
+    p=fopen("Agencias.dat","rb");
     if(p==NULL){
         cout<< "No se pudo abrir el archivo docentes";
     return ;
@@ -119,7 +131,7 @@ void ListadoDeAgencias(){
 
     while(fread(&reg,sizeof(Agencia),1,p)==1){
         reg.Mostrar();
-
+        cout << endl;
     }
 
     fclose(p);

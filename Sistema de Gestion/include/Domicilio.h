@@ -8,8 +8,10 @@ class Domicilio
         Domicilio();
         void setCalle(char * NuevaCalle);
         void setAltura(int NuevaAltura);
+        void setLocalidad(char *NuevaLocalidad);
         char* getCalle();
         int getAltura();
+        char* getLocalidad();
         void Cargar();
         void Mostrar();
         bool leerDeDisco(int pos);
@@ -18,6 +20,7 @@ class Domicilio
     private:
     char _Calle[30];
     int  _Altura;
+    char _Localidad[30];
 };
 
 

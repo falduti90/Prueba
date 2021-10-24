@@ -2,8 +2,7 @@
 #define REGION_H
 
 
-class Region
-{
+class Region{
     public:
         Region();
 

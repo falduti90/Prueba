@@ -32,4 +32,9 @@ class Agencia
 
     };
 
+//------------------------------------------------------------------------------------------------
+//FUNCIONES GLOBALES
+
+void ListadoDeAgencias();
+
 #endif // AGENCIA_H
