@@ -22,7 +22,7 @@
 	"Terminal.h"
 	"Domicilio.h"
 
-1635079898 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\agencia.cpp
+1635080198 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\agencia.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -44,5 +44,5 @@
 	<cstdio>
 	"Domicilio.h"
 
-1635079647 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\agencia.h
+1635080142 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\agencia.h
 
