@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Buques.h" />
+		<Unit filename="include/Region.h" />
+		<Unit filename="include/Terminal.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Buques.cpp" />
+		<Unit filename="src/Region.cpp" />
+		<Unit filename="src/Terminal.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
