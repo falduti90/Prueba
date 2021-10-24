@@ -2,19 +2,47 @@
 1584205420 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\main.cpp
 	<iostream>
 
-1635044694 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\buques.cpp
+1635075941 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\buques.cpp
 	<iostream>
 	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Buques.h"
+	"Terminal.h"
 
 1635044832 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\region.cpp
 	<iostream>
 	<cstdlib>
 
-1635045041 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\terminal.cpp
+1635078192 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\terminal.cpp
 	<iostream>
 	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Terminal.h"
+	"Domicilio.h"
 
-1635045215 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\agencia.cpp
+1635079898 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\agencia.cpp
 	<iostream>
 	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Agencia.h"
+
+1635050083 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\buques.h
+	"Terminal.h"
+
+1635077877 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\terminal.h
+	"Domicilio.h"
+
+1635077554 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\domicilio.h
+
+1635077697 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\domicilio.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Domicilio.h"
+
+1635079647 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\agencia.h
 

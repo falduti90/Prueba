@@ -20,6 +20,12 @@ class Domicilio
     int  _Altura;
 };
 
+
+//-------------------------------------------------------------------------------------------------
+//FUNCIONES GLOBALES
+
+void ListadoDeDomicilios();
+
 #endif // DOMICILIO_H
 
 

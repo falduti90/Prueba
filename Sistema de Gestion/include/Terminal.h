@@ -1,6 +1,6 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
-
+#include "Domicilio.h"
 
 class Terminal
 {
@@ -13,7 +13,7 @@ class Terminal
         void setGastosFijos(float NuevoGasto);
         void setActivo(bool NuevoEstado);
         char * getNombreTerminal();
-        int  getDireccion ();
+        Domicilio    getDireccion ();
         char * getEmail();
         float getGastosFijos();
         void cargar();

@@ -6,11 +6,30 @@ class Agencia
 {
     public:
         Agencia();
-        ~Agencia();
+        int  setIdAgencia(int NuevoID);
+        char setNombreAgencia(char * NuevoNombre);
+        int setDisponibilidadMensual(int NuevoCupo);
+        float setGastosLocales(float NuevoGasto);
+        bool setActivo(bool NuevoEstado);
+        int getIdAgencia();
+        char * getNombreAgencia();
+        int  getDisponibilidadMensual();
+        float getGastosLocales();
+        bool getActivo();
+        void Cargar();
+        void Mostrar();
+        bool leerDeDisco(int pos);
+        bool grabarEnDisco();
 
-    protected:
+
 
     private:
-};
+    int     _IdAgencia;
+    int     _DisponibilidadMensual;
+    char    _NombreAgencia [30];
+    float   _GastosLocales;
+    bool    _Activo;
+
+    };
 
 #endif // AGENCIA_H

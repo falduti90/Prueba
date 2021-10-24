@@ -4,13 +4,14 @@ using namespace std;
 #include <cstring>
 #include <cstdio>
 #include "Terminal.h"
+#include "Domicilio.h"
 
 Terminal::Terminal(){
     _IdTerminal=0;
     strcpy(_NombreTerminal,"NO SE INGRESO NOMBRE DE TERMINAL");
     strcpy(_Email, "NO SE INGRESO UN E-MAIL");
     _GastosFijos=0;
-    activo= true;
+    _Activo=true;
 
 
 }
@@ -38,7 +39,7 @@ void    Terminal::setActivo(bool NuevoEstado){
 char *  Terminal::getNombreTerminal(){
     return _NombreTerminal;
 }
-int     Terminal::getDireccion (){
+Domicilio Terminal::getDireccion (){
     return _Direccion;
 }
 char *  Terminal::getEmail(){
@@ -54,21 +55,22 @@ void    Terminal::cargar(){
     cout<< "INGRESE EL NOMBRE DE LA TERMINAL:"<<endl;
     cin >> _NombreTerminal;
 
-    cout<< "INGRESE EL EMAIL DE LA TERMINAL :"<<endl
+    cout<< "INGRESE EL EMAIL DE LA TERMINAL :"<<endl;
     cin >> _Email;
 
     cout<< "INGRESE EL GASTO FIJO           :"<<endl;
     cin >> _GastosFijos;
 
-
+    _Direccion.Cargar();
 
 }
 void    Terminal::mostrar(){
 
     cout<< "ID TERMINAL     :"<<"/"<<_IdTerminal<<endl;
     cout<< "NOMBRE TERMINAL :"<<"/"<<_NombreTerminal<<endl;
-    cout<< "EMAIL           :"<<"/"<<_Email<<endl
+    cout<< "EMAIL           :"<<"/"<<_Email<<endl;
     cout<< "GASTOS FIJOS    "<<"/"<<_GastosFijos<<endl;
+    _Direccion.Mostrar();
 
 
 
