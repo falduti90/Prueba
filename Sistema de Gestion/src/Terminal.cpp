@@ -43,6 +43,9 @@ Domicilio Terminal::getDireccion (){
     return _Direccion;
 }
 
+int Terminal::getIdTerminal(){
+    return _IdTerminal;
+}
 char *  Terminal::getEmail(){
     return _Email;
 }
