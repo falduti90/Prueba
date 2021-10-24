@@ -156,7 +156,8 @@ void buscarTerminal(int giro){
     Terminal reg;
 
     while(reg.leerDeDisco(pos++)){
-        if (giro == reg.getIdTerminal())
+        if (giro == reg.getIdTerminal()){
         cout << reg.getNombreTerminal();
+        }
     }
 }
