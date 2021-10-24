@@ -2,3 +2,15 @@
 1584205420 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\main.cpp
 	<iostream>
 
+1635044694 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\buques.cpp
+	<iostream>
+	<cstdlib>
+
+1635044832 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\region.cpp
+	<iostream>
+	<cstdlib>
+
+1635045041 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\terminal.cpp
+	<iostream>
+	<cstdlib>
+
