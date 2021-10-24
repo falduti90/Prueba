@@ -21,9 +21,8 @@ class Buques
         bool getActivo();
         void cargar();
         void mostrar();
-        bool leerDeDisco(int);
+        bool leerDeDisco(int pos);
         bool grabarEnDisco();
-        bool grabarEnDisco(int);
 
 
 
@@ -36,5 +35,9 @@ class Buques
     Terminal    _giro;
     bool        _activo;
 };
+
+//FUNCIONES GLOBALES
+
+void ListadoBuques();
 
 #endif // BUQUES_H
