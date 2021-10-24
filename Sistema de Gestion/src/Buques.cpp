@@ -6,7 +6,16 @@ using namespace std;
 #include "Buques.h"
 #include "Terminal.h"
 
-//Buques::Buques(){}
+Buques::Buques(){
+    _idBuque=0;
+     strcpy(_nombreBuque,"NO SE INGRESO NOMBRE");
+    strcpy(_banderaBuque, "NO SE INGRESO BANDERA");
+    _numeroViaje=0;
+    _activo= true;
+
+
+
+}
 void Buques::setIdBuque(int NuevoId)
 {
     _idBuque=NuevoId;
@@ -50,7 +59,7 @@ int  Buques::getNumeroViaje()
 }
 Terminal  Buques::getGiro()
 {
-
+    return _giro;
 }
 bool Buques::getActivo()
 {
@@ -60,16 +69,19 @@ void Buques::cargar()
 {
     cout<< "INGRESE EL ID DEL BUQUE : "<<endl;
     cin >> _idBuque;
+
     cout<< "INGRESE EL NOMBRE DEL BUQUE :"<<endl;
     cin >> _nombreBuque;
+
     cout<< "INGRESE LA BANDERA DEL BUQUE :"<<endl;
     cin >> _banderaBuque;
+
     cout<< "INGRESE EL NUMERO DE VIAJE :"<<endl;
     cin >> _numeroViaje;
-    cout<< "INGRESE EL GIRO : "<<endl;
-    //cin >>  _giro;
 
-    _activo=true;
+    // SE CARGA INFO DE TERMINAL
+    _giro.cargar();
+
 
 
 }
@@ -79,7 +91,9 @@ void Buques::mostrar()
     cout<< "NOMBRE DEL BUQUE---:"<< "/"<< _nombreBuque<<endl;
     cout<< "BANDERA------------:"<< "/"<< _banderaBuque<<endl;
     cout<< "NUMERO DE VIAJE----:"<< "/"<< _numeroViaje<<endl;
-    //cout<< "GIRO---------------:"<< "/"<<_giro<<endl;
+
+    //SE MUESTRA INFO DE TERMINAL
+    _giro.mostrar();
 
 }
 bool Buques::grabarEnDisco()
@@ -118,6 +132,8 @@ bool Buques::leerDeDisco(int pos) {
         return leyo;
 
 }
+//---------------------------------------------------------------------------------------------------
+//FUNCIONES GLOBALES
 void ListadoBuques() {
 
 
