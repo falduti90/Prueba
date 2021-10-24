@@ -34,10 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Agencia.h" />
 		<Unit filename="include/Buques.h" />
 		<Unit filename="include/Region.h" />
 		<Unit filename="include/Terminal.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Agencia.cpp" />
 		<Unit filename="src/Buques.cpp" />
 		<Unit filename="src/Region.cpp" />
 		<Unit filename="src/Terminal.cpp" />
