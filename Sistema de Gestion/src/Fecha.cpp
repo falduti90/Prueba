@@ -1,145 +1,79 @@
 #include <iostream>
 using namespace std;
 #include <cstdlib>
-#include <cstring>
-#include <cstdio>
+#include <ctime>
+#include <string.h>
 #include "Fecha.h"
 
-
 Fecha::Fecha(){
-    _Dia=0;
-    _Mes=0;
-    _Anio=0;
-}
-
-void Fecha::setDia(int NuevoDia){
-    _Dia=NuevoDia;
-}
-
-void Fecha::setMes(int NuevoMes){
-    _Mes=NuevoMes;
-}
-
-void Fecha::setAnio(int NuevoAnio){
-    _Anio=NuevoAnio;
-}
-
-void Fecha::setNumeroSemana(int NuevaSemana){
-// COMPLETAR
-}
-
-void Fecha::setActivo(bool NuevoEstado){
-    _Activo;
-}
-
-int  Fecha::getDia(){
-    return _Dia;
-}
-
-int  Fecha::getMes(){
-    return _Mes;
-}
-
-int  Fecha::getAnio(){
-   return  _Anio;
-}
-
-int  Fecha::getNumeroSemana(){
-// COMPLETAR
 
 }
 
-bool Fecha::getActivo(){
-    return  _Activo;
+Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
+    setDia(dia);
+    setMes(mes);
+    setAnio(anio);
+    setNumeroSemana(numSemana);
+    setNumDia(numDia);
+
+
 }
 
-void Fecha::Cargar(){
-    int dia,mes,anio;
-    int vec[12]= {31,28,31,30,31,30,31,31,30,31,30,31};
-    bool DiaOk,MesOk,AnioOk;
-    DiaOk=MesOk=AnioOk=false;
+void Fecha::mostrar(){
 
-
-    cout<< "INGRESE EL DIA  :"<<endl;
-    cin >> dia;
-
-    cout<< "INGRESE EL MES  :"<<endl;
-    cin >> mes;
-
-    cout<< "INGRESE EL ANIO :"<<endl;
-    cin >> anio;
-
-    if(mes>0 && mes<=12){
-        MesOk=true;
-        if(dia>0 && dia <= vec[mes-1]){
-            DiaOk=true;
-
+    if (getDia()< 10){
+        if (getMes() < 10){
+            cout << "0" << getDia() << "/0" << getMes() << "/" << getAnio();
         }
-        if(anio>0){
-            AnioOk=true;
+        else {
+            cout << "0" << getDia() << "/" << getMes() << "/" << getAnio();
         }
-
     }
 
-   if(DiaOk && MesOk && AnioOk ){
-     _Dia=dia;
-     _Mes= mes;
-     _Anio=anio;
-
-   }
-   else{
-    cout<< "LA FECHA INGRESADA ES INCORRECTA"<<endl;
-   }
-
-}
-
-
-void Fecha::Mostrar(){
-    cout<< "FECHA  :"<<endl;
-    cout<< _Dia<<"/"<<_Mes<< "/"<<_Anio<<endl;
-}
-
-bool Fecha::leerDeDisco(int pos){
-        FILE *p;
-        p=fopen("Fechas.dat","rb");
-        if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
-        return false;
+    else {
+        if (getMes() < 10){
+            cout << getDia() << "/0" << getMes() << "/" << getAnio();
+        }
+        else{
+            cout << getDia() << "/" << getMes() << "/" << getAnio();
+        }
     }
-
-        fseek(p,sizeof(Fecha)*pos,0);
-        bool leyo=fread(this, sizeof(Fecha), 1, p);
-        fclose(p);
-        return leyo;
 
 }
 
 bool Fecha::grabarEnDisco(){
-    FILE *p;
-    p=fopen("Fechas.dat","ab");
-    if(p==NULL)
-    {
-        cout<< "No se pudo abrir el archivo docentes";
-        return false;
+    bool escribio;
+    FILE *p = fopen("calendario2021.dat", "ab");
+    if (p == NULL){
+        cout << endl << " >>No se pudo abrir el archivo";
     }
-    bool ok=  fwrite(this,sizeof(Fecha),1,p);
-    if (ok==true)
-    {
-        cout<< "Registro guardado"<<endl;
-    }
-    else
-    {
-        cout<< "No se guardo el registro"<<endl;
-    }
+    escribio = fwrite(this, sizeof(Fecha), 1, p);
     fclose(p);
-
+    return escribio;
 }
+bool Fecha::leerDeDisco(int pos){
+    bool leyo;
+    FILE *p = fopen("calendario2021.dat", "rb");
+    if (p == NULL){
+        cout << endl << " >>No se pudo abrir el archivo";
+    }
+    fseek(p, sizeof(Fecha)* pos, SEEK_SET);
+    leyo = fread(this, sizeof(Fecha), 1, p);
+    fclose(p);
+    return leyo;
+}
+
+
+
+
+
+
 
 
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeFechas(){
+/*void ListadoDeFechas(){
 
     FILE *p;
     Fecha reg;
@@ -155,4 +89,4 @@ void ListadoDeFechas(){
     }
 
     fclose(p);
-}
+}*/

@@ -76,3 +76,81 @@
 	<iostream>
 	<cstdlib>
 
+1635028763 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<string.h>
+	"Fecha.h"
+	"Buque.h"
+	"Agencia.h"
+	"Region.h"
+	"Terminal.h"
+	"Agencia.h"
+	"Fecha.h"
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\buque.h
+	"Terminal.h"
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\terminal.h
+	"Domicilio.h"
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\domicilio.h
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\agencia.h
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\region.h
+
+1635028763 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\fecha.h
+
+1635027916 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\terminal.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Terminal.h"
+	"Domicilio.h"
+
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\agencia.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Agencia.h"
+
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\buque.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Buque.h"
+	"Terminal.h"
+
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\cronograma.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Cronograma.h"
+
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\cronograma.h
+	"Fecha.h"
+
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\domicilio.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Domicilio.h"
+
+1635028763 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\fecha.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<string.h>
+	"Fecha.h"
+
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\region.cpp
+	<iostream>
+	<cstdlib>
+

@@ -6,27 +6,28 @@ class Fecha
 {
     public:
         Fecha();
-        void setDia(int NuevoDia);
-        void setMes(int NuevoMes);
-        void setAnio(int NuevoAnio);
-        void setNumeroSemana(int NuevaSemana);
-        void setActivo(bool NuevoEstado);
-        int getDia();
-        int getMes();
-        int getAnio();
-        int getNumeroSemana();
-        bool getActivo();
-        void Cargar();
-        void Mostrar();
-        bool leerDeDisco(int pos );
+        Fecha(int, int, int, int, int);
+        void setDia(int dia){_dia = dia;}
+        void setMes (int mes){_mes = mes;}
+        void setAnio (int anio){_anio = anio;}
+        void setNumeroSemana (int numSemana) { _numeroSemana = numSemana;}
+        void setNumDia (int numDia){_numDia = numDia;}
+        int getDia (){return _dia;}
+        int getMes (){return _mes;}
+        int getAnio () {return _anio;}
+        int getNumeroSemana () {return _numeroSemana;}
+        int getNumDia(){return _numDia;}
+        void mostrar();
         bool grabarEnDisco();
-
-
+        bool leerDeDisco(int);
 
     private:
-        int  _Dia, _Mes, _Anio;
-        int  _NumeroSemana;
-        bool _Activo;
+        int _dia;
+        int _mes;
+        int _anio;
+        int _numeroSemana;
+        int _numDia;
+
 };
 
 //---------------------------------------------------------------------------------------------------
@@ -34,7 +35,6 @@ class Fecha
 
 void ListadoDeFechas();
 
-//JUAN CRUZ
 
 #endif // FECHA_H
 
