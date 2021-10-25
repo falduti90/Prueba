@@ -49,10 +49,7 @@ int Terminal::getIdTerminal(){
 char *  Terminal::getEmail(){
     return _Email;
 }
-<<<<<<< HEAD
-=======
-//.
->>>>>>> 3b78b668c1ef6e9104d530084286aacfcd659532
+
 float   Terminal::getGastosFijos(){
     return _GastosFijos;
 }
