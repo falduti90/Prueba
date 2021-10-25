@@ -84,7 +84,7 @@ bool    Terminal::leerDeDisco(int pos){
         FILE *p;
         p=fopen("Terminal.dat","rb");
         if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
 
@@ -98,7 +98,7 @@ bool    Terminal::grabarEnDisco(){
     p=fopen("Terminal.dat","ab");
     if(p==NULL)
     {
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
     bool ok=  fwrite(this,sizeof(Terminal),1,p);
@@ -122,7 +122,7 @@ void ListadoDeTerminales(){
     Terminal reg;
     p=fopen("Terminal.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return ;
     }
 
