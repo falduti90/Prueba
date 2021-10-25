@@ -13,6 +13,8 @@ class Region{
         bool    getActivo();
         void    Cargar();
         void    Mostrar();
+        bool    leerDeDisco(int pos);
+        bool    grabarEnDisco();
 
 
 
