@@ -70,6 +70,7 @@ int listarCalendario(){
 
     int contDias = 0;
     int a = 2021;
+    int diasDelAnio = 0;
 
     string m[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -86,6 +87,8 @@ int listarCalendario(){
         int dias_mes_actual = CalcularDias (mes, a);
         int numero_de_semana = 1;
         for (int dia = 1; dia <= dias_mes_actual; dia ++){
+            diasDelAnio ++;
+            numero_de_semana = (diasDelAnio/7) + 1;
             Fecha f;//(dia, mes, a, numero_de_semana, z);
             f.leerDeDisco(contDias);
             //f.grabarEnDisco();
@@ -104,7 +107,6 @@ int listarCalendario(){
             z++;
             if (z % 7 == 0) {
                 cout << endl;
-                numero_de_semana ++;
             }
 
             //Fecha f(dia, mes, a);
@@ -113,6 +115,7 @@ int listarCalendario(){
 
         cout << endl;
     }
+
     return 0;
 }
 
