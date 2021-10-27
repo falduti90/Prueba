@@ -18,8 +18,19 @@ bool Bisiesto (int);
 int zeller (int, int, int);
 //-----------------------------------
 
+//--Funcion Buscar Fecha en calendario--
+
+Fecha buscarEnCalendario(int, int, int);
+
+//-------------------------------------
+
 int main(){
-    listarCalendario();
+    //listarCalendario();
+    Fecha f;
+    f = buscarEnCalendario(27,10,2021);
+    f.mostrar();
+    cout << endl <<  "Numero de semana: " << f.getNumeroSemana();
+
 
     /*Buque reg;
 
@@ -77,6 +88,7 @@ int listarCalendario(){
         for (int dia = 1; dia <= dias_mes_actual; dia ++){
             Fecha f;//(dia, mes, a, numero_de_semana, z);
             f.leerDeDisco(contDias);
+            //f.grabarEnDisco();
             f.mostrar();
             cout << "  ";
             /*if (dia < 10){
@@ -92,6 +104,7 @@ int listarCalendario(){
             z++;
             if (z % 7 == 0) {
                 cout << endl;
+                numero_de_semana ++;
             }
 
             //Fecha f(dia, mes, a);
@@ -143,3 +156,15 @@ int zeller(int ano,int mes, int dia){
 }
 
 //-----------------------------------------
+
+Fecha buscarEnCalendario(int dia, int mes, int anio){
+    Fecha f;
+    int i = 0;
+    while (f.leerDeDisco(i)){
+        if (f.getDia() == dia && f.getMes() == mes && f.getAnio() == anio){
+            return f;
+        }
+        i++;
+    }
+
+}
