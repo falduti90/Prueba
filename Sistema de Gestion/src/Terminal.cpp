@@ -49,10 +49,7 @@ int Terminal::getIdTerminal(){
 char *  Terminal::getEmail(){
     return _Email;
 }
-<<<<<<< HEAD
-=======
-//.
->>>>>>> 3b78b668c1ef6e9104d530084286aacfcd659532
+
 float   Terminal::getGastosFijos(){
     return _GastosFijos;
 }
@@ -87,7 +84,7 @@ bool    Terminal::leerDeDisco(int pos){
         FILE *p;
         p=fopen("Terminal.dat","rb");
         if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
 
@@ -101,7 +98,7 @@ bool    Terminal::grabarEnDisco(){
     p=fopen("Terminal.dat","ab");
     if(p==NULL)
     {
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
     bool ok=  fwrite(this,sizeof(Terminal),1,p);
@@ -125,7 +122,7 @@ void ListadoDeTerminales(){
     Terminal reg;
     p=fopen("Terminal.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return ;
     }
 
