@@ -32,6 +32,7 @@
 	"Domicilio.h"
 
 1635099606 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\fecha.cpp
+<<<<<<< HEAD
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -43,6 +44,46 @@
 1635098365 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\region.cpp
 	<iostream>
 	<cstdlib>
+
+1635107369 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\terminal.cpp
+=======
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+<<<<<<< HEAD
+	"Terminal.h"
+	"Domicilio.h"
+
+1635109112 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\main.cpp
+	<iostream>
+	"Buque.h"
+	"Agencia.h"
+	"Region.h"
+	"Terminal.h"
+	"Agencia.h"
+
+1635099596 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\region.h
+
+1635110589 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\cronograma.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Cronograma.h"
+
+1635111566 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\cronograma.h
+	"Fecha.h"
+=======
+	"Fecha.h"
+
+1635098365 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\fecha.h
+
+1635098365 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\region.cpp
+	<iostream>
+	<cstdlib>
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 
 1635107369 source:c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\src\terminal.cpp
 	<iostream>
@@ -72,16 +113,31 @@
 1635111566 c:\users\ceci\desktop\segundo parcial labii\sistema_gestion\sistema de gestion\include\cronograma.h
 	"Fecha.h"
 
+<<<<<<< HEAD
+1635115743 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\domicilio.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<cstdio>
+	"Domicilio.h"
+
+1635158460 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\fecha.cpp
+=======
 1635044832 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\region.cpp
 	<iostream>
 	<cstdlib>
 
-1635348356 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\main.cpp
+1635346872 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\main.cpp
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<string.h>
 	"Fecha.h"
+<<<<<<< HEAD
+
+1635120359 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\terminal.cpp
+=======
 	"Buque.h"
 	"Agencia.h"
 	"Region.h"
@@ -99,11 +155,12 @@
 
 1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\agencia.h
 
-1635347573 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\region.h
+1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\region.h
 
 1635028763 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\fecha.h
 
-1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\terminal.cpp
+1635347686 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\terminal.cpp
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -111,14 +168,17 @@
 	"Terminal.h"
 	"Domicilio.h"
 
-1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\agencia.cpp
+<<<<<<< HEAD
+1635193561 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\src\horario.cpp
+=======
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\agencia.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<cstdio>
 	"Agencia.h"
 
-1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\buque.cpp
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\buque.cpp
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -127,20 +187,34 @@
 	"Terminal.h"
 
 1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\cronograma.cpp
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<cstdio>
+<<<<<<< HEAD
+	"Horario.h"
+
+1635193605 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\horario.h
+
+1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\horario.cpp
+=======
 	"Cronograma.h"
 
 1635028073 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\cronograma.h
 	"Fecha.h"
 
-1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\domicilio.cpp
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\domicilio.cpp
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 	<iostream>
 	<cstdlib>
 	<cstring>
 	<cstdio>
+<<<<<<< HEAD
+	"Horario.h"
+
+1635347251 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\horario.h
+=======
 	"Domicilio.h"
 
 1635028763 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\fecha.cpp
@@ -150,12 +224,9 @@
 	<string.h>
 	"Fecha.h"
 
-1635348306 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\region.cpp
+1635028073 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\region.cpp
 	<iostream>
 	<cstdlib>
-	<cstring>
-	<cstdio>
-	"Region.h"
 
 1635193783 source:c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\main.cpp
 	<iostream>
@@ -239,13 +310,5 @@
 	"Horario.h"
 
 1635193605 c:\users\matias\desktop\github\sistema de gestion\prueba\sistema de gestion\include\horario.h
-
-1635347251 source:c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\src\horario.cpp
-	<iostream>
-	<cstdlib>
-	<cstring>
-	<cstdio>
-	"Horario.h"
-
-1635347251 c:\users\catal\onedrive\documents\github\sistema_gestion\sistema de gestion\include\horario.h
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 
