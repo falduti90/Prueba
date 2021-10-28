@@ -20,10 +20,15 @@ class Region{
 
     private:
         int _IdRegion;
-        char _NombreRegion;
+        char _NombreRegion[30];
         bool _Activo;
 
 };
 
+
+//---------------------------------------------------------------------------------------------------
+//FUNCIONES GLOBALES
+
+void ListadoDeRegiones();
 #endif // REGION_H
 
