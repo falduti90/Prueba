@@ -5,12 +5,12 @@
 #include "Fecha.h"
 using namespace std;
 #include "Buque.h"
-#include "Cronograma.h"
 #include "Agencia.h"
 #include "Region.h"
 #include "Terminal.h"
 #include "Agencia.h"
 #include "Fecha.h"
+<<<<<<< HEAD
 #include "Menu.h"
 
 
@@ -34,23 +34,61 @@ int main(){
 
 
 
+=======
+>>>>>>> 130169afea94318db870295f4f524410aeb2355d
+
+//--------Calendario---------------
+int listarCalendario();
+int CalcularDias (int, int);
+bool Bisiesto (int);
+int zeller (int, int, int);
+//-----------------------------------
+
+//--Funcion Buscar Fecha en calendario--
+
+Fecha buscarEnCalendario(int, int, int);
+
+//-------------------------------------
+
+int main(){
+    //listarCalendario();
+    Fecha f;
+    f = buscarEnCalendario(27,10,2021);
+    f.mostrar();
+    cout << endl <<  "Numero de semana: " << f.getNumeroSemana();
 
 
+    /*Buque reg;
+
+    for (int i = 0; i<=20 ; i++){
+    reg.cargar();
+    cout << endl << endl;
+    reg.grabarEnDisco();
+
+    reg.mostrar();
+    cout << endl << endl;
+    }
 
 
+   // ListadoBuques();
 
 
+  Agencia obj;
 
+   /* for (int i = 0; i<10 ; i++){
+    obj.Cargar();
+    cout << endl << endl;
+    obj.grabarEnDisco();
 
+    obj.Mostrar();
+    cout << endl << endl;
+    }
 
+    ListadoDeTerminales();
 
-
-
-
-
-
-
-
+    */
+      return 0;
+}
 
 //---------Calendario----------------
 
@@ -58,7 +96,10 @@ int listarCalendario(){
 
     int contDias = 0;
     int a = 2021;
+<<<<<<< HEAD
     int diasDelAnio = 0;
+=======
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
 
     string m[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
@@ -75,8 +116,11 @@ int listarCalendario(){
         int dias_mes_actual = CalcularDias (mes, a);
         int numero_de_semana = 1;
         for (int dia = 1; dia <= dias_mes_actual; dia ++){
+<<<<<<< HEAD
             diasDelAnio ++;
             numero_de_semana = (diasDelAnio/7) + 1;
+=======
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
             Fecha f;//(dia, mes, a, numero_de_semana, z);
             f.leerDeDisco(contDias);
             //f.grabarEnDisco();
@@ -95,6 +139,10 @@ int listarCalendario(){
             z++;
             if (z % 7 == 0) {
                 cout << endl;
+<<<<<<< HEAD
+=======
+                numero_de_semana ++;
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
             }
 
             //Fecha f(dia, mes, a);
@@ -103,7 +151,10 @@ int listarCalendario(){
 
         cout << endl;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb89e69792e650e435e5fd7f077ce24547516a3a
     return 0;
 }
 
@@ -148,4 +199,14 @@ int zeller(int ano,int mes, int dia){
 
 //-----------------------------------------
 
+Fecha buscarEnCalendario(int dia, int mes, int anio){
+    Fecha f;
+    int i = 0;
+    while (f.leerDeDisco(i)){
+        if (f.getDia() == dia && f.getMes() == mes && f.getAnio() == anio){
+            return f;
+        }
+        i++;
+    }
 
+}

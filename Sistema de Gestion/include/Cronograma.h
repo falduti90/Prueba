@@ -18,7 +18,7 @@ class Cronograma {
 
 
     public:
-        Cronograma();
+       // Cronograma();
         void setIdCronograma(char *);
         void setFechaRecepcionCnt(Fecha);
         void setFechaETA(Fecha);

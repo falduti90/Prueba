@@ -10,10 +10,10 @@ using namespace std;
 
 
 
-Cronograma::Cronograma(){
-        strcpy(_idCronograma,"ID CRONOGRAMA");
+/*Cronograma::Cronograma(){
+        strcpy(_idCronograma,"IDCRONOGRAMA");
         _activo = true;
-}
+}*/
 
 
 void Cronograma::setIdCronograma(char *){
