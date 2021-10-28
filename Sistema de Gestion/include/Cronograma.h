@@ -45,10 +45,20 @@ class Cronograma {
 
 //FUNCIONES GLOBALES
 
+void ListadoCronograma();
+
 Fecha buscarEnCalendario(int, int, int);
 
 void buscarBuque(int);
 void buscarAgencia(int);
+
+//--------Calendario---------------
+int listarCalendario();
+int CalcularDias (int, int);
+bool Bisiesto (int);
+int zeller (int, int, int);
+//-----------------------------------
+
 
 
 

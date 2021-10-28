@@ -12,60 +12,45 @@ using namespace std;
 #include "Agencia.h"
 #include "Fecha.h"
 
-//--------Calendario---------------
-int listarCalendario();
-int CalcularDias (int, int);
-bool Bisiesto (int);
-int zeller (int, int, int);
-//-----------------------------------
-
 
 
 int main(){
     Cronograma reg;
 
-    reg.cargar();
+    /*reg.cargar();
     cout << endl;
-    reg.mostrar();
+    reg.mostrar();*/
 
-    //listarCalendario();
-    /*Fecha f;
-    f = buscarEnCalendario(27,10,2021);
-    f.mostrar();
-    cout << endl <<  "Numero de semana: " << f.getNumeroSemana();*/
+    ListadoCronograma();
 
 
-    /*Buque reg;
-
-    for (int i = 0; i<=20 ; i++){
-    reg.cargar();
-    cout << endl << endl;
-    reg.grabarEnDisco();
-
-    reg.mostrar();
-    cout << endl << endl;
-    }
-
-
-   // ListadoBuques();
-
-
-  Agencia obj;
-
-   /* for (int i = 0; i<10 ; i++){
-    obj.Cargar();
-    cout << endl << endl;
-    obj.grabarEnDisco();
-
-    obj.Mostrar();
-    cout << endl << endl;
-    }
-
-    ListadoDeTerminales();
-
-    */
       return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //---------Calendario----------------
 
