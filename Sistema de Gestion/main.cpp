@@ -20,6 +20,10 @@ int main(){
     Menu();
 
 
+    ListadoBuques();
+    ListadoCronograma();
+
+
       return 0;
 }
 
