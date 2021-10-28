@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Menu.cpp" />
 		<Unit filename="include/Agencia.h" />
 		<Unit filename="include/Buque.h" />
 		<Unit filename="include/Cronograma.h" />
