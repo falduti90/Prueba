@@ -70,10 +70,10 @@ void    Agencia::Cargar() {
 }
 
 void    Agencia::Mostrar() {
-    cout<< "ID AGENCIA            :"<<"\t"<< _IdAgencia<<endl ;
-    cout<< "NOMBRE AGENCIA        :"<<"\t"<< _NombreAgencia<<endl;
-    cout<< "DISPONIBILIDAD MENSUAL:"<<"\t"<< _DisponibilidadMensual<<endl;
-    cout<< "GASTOS FIJOS          :"<<"\t"<< _GastosLocales<<endl;
+    cout<< "ID AGENCIA            :"<<"t"<< _IdAgencia<<endl ;
+    cout<< "NOMBRE AGENCIA        :"<<"t"<< _NombreAgencia<<endl;
+    cout<< "DISPONIBILIDAD MENSUAL:"<<"t"<< _DisponibilidadMensual<<endl;
+    cout<< "GASTOS FIJOS          :"<<"t"<< _GastosLocales<<endl;
 
    // cout<< "|  ID AGENCIA  |    NOMBRE     |  DISPONIBILIDAD  |  GASTOS  | "<<endl;
 }
@@ -82,7 +82,7 @@ bool    Agencia::leerDeDisco(int pos) {
         FILE *p;
         p=fopen("Agencias.dat","rb");
         if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
 
@@ -98,7 +98,7 @@ bool    Agencia::grabarEnDisco() {
     p=fopen("Agencias.dat","ab");
     if(p==NULL)
     {
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo ";
         return false;
     }
     bool ok=  fwrite(this,sizeof(Agencia),1,p);
@@ -125,7 +125,7 @@ void ListadoDeAgencias(){
     Agencia reg;
     p=fopen("Agencias.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return ;
     }
 

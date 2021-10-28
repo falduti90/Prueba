@@ -57,7 +57,7 @@ bool  Domicilio::leerDeDisco(int pos) {
         FILE *p;
         p=fopen("Domicilios.dat","rb");
         if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
         }
 
@@ -72,7 +72,7 @@ bool  Domicilio::grabarEnDisco() {
     p=fopen("Domicilios.dat","ab");
     if(p==NULL)
     {
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
     bool ok=  fwrite(this,sizeof(Domicilio),1,p);
@@ -96,7 +96,7 @@ void ListadoDeDomicilios(){
     Domicilio reg;
     p=fopen("Domicilios.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return ;
     }
 

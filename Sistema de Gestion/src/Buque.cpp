@@ -100,7 +100,7 @@ bool Buque::grabarEnDisco(){
     p=fopen("Buques.dat","ab");
     if(p==NULL)
     {
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
         return false;
     }
     bool ok =  fwrite(this,sizeof(Buque),1,p);
@@ -120,7 +120,7 @@ bool Buque::leerDeDisco(int pos) {
     FILE *p;
     p=fopen("Buques.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return false;
     }
 
@@ -139,7 +139,7 @@ void ListadoBuques() {
     Buque reg;
     p=fopen("Buques.dat","rb");
     if(p==NULL){
-        cout<< "No se pudo abrir el archivo docentes";
+        cout<< "No se pudo abrir el archivo";
     return ;
     }
 
@@ -156,7 +156,8 @@ void buscarTerminal(int giro){
     Terminal reg;
 
     while(reg.leerDeDisco(pos++)){
-        if (giro == reg.getIdTerminal())
+        if (giro == reg.getIdTerminal()){
         cout << reg.getNombreTerminal();
+        }
     }
 }
