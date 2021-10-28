@@ -26,15 +26,4 @@ class Region{
 };
 
 #endif // REGION_H
-	>>>Region
--idRegion: int
--nombreRegion: char[30]
--activo: bool
-________________
 
-
-+cargar(): void
-+mostrar(): void
-+leerDeDisco(int): bool
-+grabarEnDisco(): bool
-+grabarEnDisco(int): bool
