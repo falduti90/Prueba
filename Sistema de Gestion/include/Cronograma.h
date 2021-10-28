@@ -3,16 +3,22 @@
 #include "Fecha.h"
 
 class Cronograma {
-    public:
+    private:
         char _idCronograma[50];
         Fecha _FechaRecepcionCnt;
         Fecha _FechaETA;
         Fecha _FechaETD;
         Fecha _FechacutoffFisico;
         Fecha _FechacutoffDoc;
+        int _numSemana;
+        int _idAgencia;
+        int _idBuque;
+        int _numeroViaje;
         bool _activo;
 
-    private:
+
+    public:
+       // Cronograma();
         void setIdCronograma(char *);
         void setFechaRecepcionCnt(Fecha);
         void setFechaETA(Fecha);
@@ -20,6 +26,7 @@ class Cronograma {
         void setFechaCutoffFisico(Fecha);
         void setFechaCutoffDoc(Fecha);
         void setActivo(bool);
+        void setNumSemana(int);
         char *getIdCronograma();
         Fecha getFechaRecepcionCnt();
         Fecha getFechaETA();
@@ -35,3 +42,23 @@ class Cronograma {
 };
 
 #endif // CRONOGRAMA_H
+
+//FUNCIONES GLOBALES
+
+void ListadoCronograma();
+
+Fecha buscarEnCalendario(int, int, int);
+
+void buscarBuque(int);
+void buscarAgencia(int);
+
+//--------Calendario---------------
+int listarCalendario();
+int CalcularDias (int, int);
+bool Bisiesto (int);
+int zeller (int, int, int);
+//-----------------------------------
+
+
+
+
