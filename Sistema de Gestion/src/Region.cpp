@@ -33,8 +33,10 @@ void    Region::Cargar(){
 
     cout<< "INGRESE EL NUMERO DE ID REGION:"<<endl;
     cin >> _IdRegion;
+
     cout<< "INGRESE  EL NOMBRE DE LA REGION : "<<endl;
-    cin >> _NombreRegion;
+    cin.ignore();
+    cin.getline(_NombreRegion,30);
 
 
 
