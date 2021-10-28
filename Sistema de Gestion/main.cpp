@@ -11,17 +11,13 @@ using namespace std;
 #include "Terminal.h"
 #include "Agencia.h"
 #include "Fecha.h"
+#include "Menu.h"
 
 
 
 int main(){
-    Cronograma reg;
 
-    /*reg.cargar();
-    cout << endl;
-    reg.mostrar();*/
-
-    ListadoCronograma();
+    Menu();
 
 
       return 0;
