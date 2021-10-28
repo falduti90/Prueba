@@ -13,7 +13,7 @@ Region::Region(){
 }
 void    Region::setIdRegion(int NuevoID){
     _IdRegion=NuevoID;
-    strin
+
 }
 void    Region::setNombreRegion(char *NuevoNombre){
     strcpy(_NombreRegion,NuevoNombre);
