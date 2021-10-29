@@ -22,6 +22,7 @@ int main(){
     reg.mostrar();*/
 
     ListadoCronograma();
+    ListadoCronograma();
 
 
       return 0;
