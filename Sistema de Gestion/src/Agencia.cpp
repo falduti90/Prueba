@@ -6,112 +6,110 @@ using namespace std;
 #include "Agencia.h"
 
 Agencia::Agencia() {
-    _IdAgencia=0;
-    strcpy(_NombreAgencia,"NO SE INGRESO EL NOMBRE DE LA AGENCIA");
-    _DisponibilidadMensual=0;
-    _GastosLocales=0;
-    _Activo=true;
+    _idAgencia = 0;
+    strcpy( _nombreAgencia , "NO SE INGRESO EL NOMBRE DE LA AGENCIA");
+    _disponibilidadMensual = 0;
+    _gastosLocales = 0;
+    _activo = true;
 
 }
 
-int     Agencia::setIdAgencia(int NuevoID) {
-    _IdAgencia=NuevoID;
+int  Agencia::setIdAgencia(int nuevoID) {
+    _idAgencia = nuevoID;
 }
 
-char    Agencia::setNombreAgencia(char * NuevoNombre) {
-    strcpy(_NombreAgencia,NuevoNombre);
+char Agencia::setNombreAgencia(char *nuevoNombre) {
+    strcpy( _nombreAgencia , nuevoNombre );
 }
 
-int     Agencia::setDisponibilidadMensual(int NuevoCupo) {
-    _DisponibilidadMensual=NuevoCupo;
+int  Agencia::setDisponibilidadMensual(int nuevoCupo) {
+    _disponibilidadMensual = nuevoCupo;
 }
 
-float   Agencia::setGastosLocales(float NuevoGasto) {
-    _GastosLocales=NuevoGasto;
+float Agencia::setGastosLocales(float nuevoGasto) {
+    _gastosLocales = nuevoGasto;
 }
 
-bool    Agencia::setActivo(bool NuevoEstado) {
-    _Activo=NuevoEstado;
-}
-int     Agencia::getIdAgencia(){
-    return _IdAgencia;
+bool Agencia::setActivo(bool nuevoEstado) {
+    _activo = nuevoEstado;
 }
 
-char *  Agencia::getNombreAgencia() {
-    return _NombreAgencia;
+int Agencia::getIdAgencia(){
+    return _idAgencia;
 }
 
-int     Agencia::getDisponibilidadMensual() {
-    return _DisponibilidadMensual;
+char *Agencia::getNombreAgencia() {
+    return _nombreAgencia;
 }
 
-float   Agencia::getGastosLocales() {
-    return _GastosLocales;
+int Agencia::getDisponibilidadMensual() {
+    return _disponibilidadMensual;
 }
 
-bool    Agencia::getActivo() {
-    return _Activo;
+float Agencia::getGastosLocales() {
+    return _gastosLocales;
 }
 
-void    Agencia::Cargar() {
+bool Agencia::getActivo() {
+    return _activo;
+}
+
+void Agencia::cargar() {
     cout<< "INGRESE EL NUMERO DE ID DE LA AGENCIA: ";
-    cin>> _IdAgencia;
+    cin>> _idAgencia;
 
     cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
     cin.ignore();
-    cin.getline(_NombreAgencia,29);
+    cin.getline( _nombreAgencia , 99 );
 
     cout<< "INGRESE LA DISPONIBILIDAD MENSUAL: ";
-    cin>> _DisponibilidadMensual;
+    cin>> _disponibilidadMensual;
 
     cout<< "INGRESE LOS GASTOS LOCALES: ";
-    cin>> _GastosLocales;
+    cin>> _gastosLocales;
 
 }
 
-void    Agencia::Mostrar() {
-    cout<< "ID AGENCIA            :"<<"t"<< _IdAgencia<<endl ;
-    cout<< "NOMBRE AGENCIA        :"<<"t"<< _NombreAgencia<<endl;
-    cout<< "DISPONIBILIDAD MENSUAL:"<<"t"<< _DisponibilidadMensual<<endl;
-    cout<< "GASTOS FIJOS          :"<<"t"<< _GastosLocales<<endl;
+void Agencia::mostrar() {
+    cout<< "ID AGENCIA            : "<< _idAgencia << endl ;
+    cout<< "NOMBRE AGENCIA        : "<< _nombreAgencia << endl;
+    cout<< "DISPONIBILIDAD MENSUAL: "<< _disponibilidadMensual << endl;
+    cout<< "GASTOS FIJOS          : "<< _gastosLocales << endl;
 
-   // cout<< "|  ID AGENCIA  |    NOMBRE     |  DISPONIBILIDAD  |  GASTOS  | "<<endl;
 }
 
-bool    Agencia::leerDeDisco(int pos) {
-        FILE *p;
-        p=fopen("Agencias.dat","rb");
-        if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
-        return false;
+bool Agencia::leerDeDisco(int pos) {
+    FILE *p;
+    p = fopen("Agencias.dat","rb");
+    if ( p == NULL ){
+    cout << "No se pudo abrir el archivo";
+    return false;
     }
 
-        fseek(p,sizeof(Agencia)*pos,0);
-        bool leyo=fread(this, sizeof(Agencia), 1, p);
-        fclose(p);
-        return leyo;
+    fseek ( p , sizeof(Agencia)*pos , 0 );
+    bool leyo = fread( this , sizeof(Agencia) , 1 , p);
+    fclose(p);
+    return leyo;
 
 }
-bool    Agencia::grabarEnDisco() {
+bool Agencia::grabarEnDisco() {
 
     FILE *p;
-    p=fopen("Agencias.dat","ab");
-    if(p==NULL)
-    {
+    p = fopen("Agencias.dat","ab");
+    if ( p == NULL ){
         cout<< "No se pudo abrir el archivo ";
         return false;
     }
-    bool ok=  fwrite(this,sizeof(Agencia),1,p);
-    if (ok==true)
-    {
-        cout<< "Registro guardado"<<endl;
+
+    bool ok =  fwrite( this , sizeof(Agencia) , 1 , p);
+    if ( ok == true){
+        cout << "Registro guardado"<<endl;
     }
-    else
-    {
-        cout<< "No se guardo el registro"<<endl;
+    else {
+        cout << "No se guardo el registro"<<endl;
     }
     fclose(p);
-
+    return ok;
 
 }
 
@@ -123,14 +121,14 @@ void ListadoDeAgencias(){
 
     FILE *p;
     Agencia reg;
-    p=fopen("Agencias.dat","rb");
-    if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
+    p = fopen("Agencias.dat","rb");
+    if( p == NULL ){
+        cout << "No se pudo abrir el archivo";
     return ;
     }
 
-    while(fread(&reg,sizeof(Agencia),1,p)==1){
-        reg.Mostrar();
+    while ( fread( &reg , sizeof(Agencia) , 1 , p ) == 1 ){
+        reg.mostrar();
         cout << endl;
     }
 

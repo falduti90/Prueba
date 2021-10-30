@@ -9,44 +9,38 @@ using namespace std;
 #include <cstdio>
 
 
-
-/*Cronograma::Cronograma(){
-        strcpy(_idCronograma,"IDCRONOGRAMA");
-        _activo = true;
-}*/
-
-
-void Cronograma::setIdCronograma(char *){
-
+void Cronograma::setIdCronograma(char *idCronograma){
+    strcpy( _idCronograma , idCronograma );
 }
 
-void Cronograma::setNumSemana(int n){
-    _numSemana = n;
+void Cronograma::setNumSemana(int num){
+    _numSemana = num;
 
 }
 
 void Cronograma::setFechaRecepcionCnt(Fecha f){
-    _FechaRecepcionCnt = f;
+    _fechaRecepcionCnt = f;
 }
 
 void Cronograma::setFechaETA(Fecha f){
-    _FechaETA = f;
+    _fechaETA = f;
 
 }
 
 void Cronograma::setFechaETD(Fecha f){
-        _FechaETD = f;
+        _fechaETD = f;
 }
 
 void Cronograma::setFechaCutoffFisico(Fecha f){
-        _FechacutoffFisico = f;
+        _fechacutoffFisico = f;
 }
 
 void Cronograma::setFechaCutoffDoc(Fecha f){
-        _FechacutoffDoc = f;
+        _fechacutoffDoc = f;
 }
 
-void Cronograma::setActivo(bool){
+void Cronograma::setActivo(bool nuevoEstado){
+    _activo = nuevoEstado;
 
 }
 
@@ -55,23 +49,27 @@ char *Cronograma::getIdCronograma(){
 }
 
 Fecha Cronograma::getFechaRecepcionCnt(){
-    return _FechaRecepcionCnt;
+    return _fechaRecepcionCnt;
 }
 
 Fecha Cronograma::getFechaETA(){
-    return _FechaETA;
+    return _fechaETA;
 }
 
 Fecha Cronograma::getFechaETD(){
-    return _FechaETD;
+    return _fechaETD;
 }
 
 Fecha Cronograma::getFechaCutoffFisico(){
-    return _FechacutoffFisico;
+    return _fechacutoffFisico;
 }
 
 Fecha Cronograma::getFechaCutoffDoc(){
-    return _FechacutoffDoc;
+    return _fechacutoffDoc;
+}
+
+int Cronograma::getNumSemana(){
+    return _numSemana;
 }
 
 bool Cronograma::getActivo(){
@@ -83,9 +81,9 @@ void Cronograma::cargar(){
     int dia, mes, anio;
     Fecha obj;
 
-    cout<< "INGRESE ID CRONOGRAMA: ";  //armar que se concatene agencia + terminal
+    cout<< "INGRESE ID CRONOGRAMA: ";  //TODO armar que se concatene agencia + terminal
     cin.ignore();
-    cin.getline(_idCronograma,49);
+    cin.getline( _idCronograma , 99 );
 
     cout << "INGRESE ID AGENCIA: ";
     cin >> _idAgencia;
@@ -97,26 +95,31 @@ void Cronograma::cargar(){
     cin >> _numeroViaje;
 
     cout << "INGRESE FECHAS: " << endl;
+    cout << "-------------- " << endl;
     cout << "ETA: ";
     cin >> dia >> mes >> anio;
-    obj = buscarEnCalendario(dia, mes, anio);
+    obj = BuscarEnCalendario(dia, mes, anio);
     setFechaETA(obj);
     setNumSemana(obj.getNumeroSemana());
+
     cout << "ETD: ";
     cin >> dia >> mes >> anio;
-    obj = buscarEnCalendario(dia, mes, anio);
+    obj = BuscarEnCalendario(dia, mes, anio);
     setFechaETD(obj);
+
     cout << "CUT OFF FISICO: ";
     cin >> dia >> mes >> anio;
-    obj = buscarEnCalendario(dia, mes, anio);
+    obj = BuscarEnCalendario(dia, mes, anio);
     setFechaCutoffFisico(obj);
+
     cout << "CUT OFF DOCUMENTAL: ";
     cin >> dia >> mes >> anio;
-    obj = buscarEnCalendario(dia, mes, anio);
+    obj = BuscarEnCalendario(dia, mes, anio);
     setFechaCutoffDoc(obj);
+
     cout << "INICIO DE RECEPCION: ";
     cin >> dia >> mes >> anio;
-    obj = buscarEnCalendario(dia, mes, anio);
+    obj = BuscarEnCalendario(dia, mes, anio);
     setFechaRecepcionCnt(obj);
 
 }
@@ -124,9 +127,9 @@ void Cronograma::cargar(){
 void Cronograma::mostrar(){
 
     cout << _idCronograma << ", ";
-    buscarAgencia(_idAgencia);
+    BuscarAgencia(_idAgencia);
     cout << ", ";
-    buscarBuque(_idBuque);
+    BuscarBuque(_idBuque);
     cout << ", ";
     cout << _numeroViaje << ", ";
     getFechaETD().mostrar();
@@ -142,35 +145,36 @@ void Cronograma::mostrar(){
 
 bool Cronograma::leerDeDisco(int pos){
     FILE *p;
-    p=fopen("Cronograma.dat","rb");
-    if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
+    p = fopen("Cronograma.dat","rb");
+    if ( p == NULL ){
+        cout << "No se pudo abrir el archivo";
     return false;
     }
 
-        fseek(p,sizeof(Cronograma)*pos,0);
-        bool leyo=fread(this, sizeof(Cronograma), 1, p);
-        fclose(p);
-        return leyo;
+    fseek ( p , sizeof(Cronograma)*pos , 0);
+    bool leyo = fread( this , sizeof(Cronograma) , 1 , p );
+    fclose(p);
+    return leyo;
 
 }
 
 bool Cronograma::grabarEnDisco(){
     FILE *p;
-    p=fopen("Cronograma.dat","ab");
-    if(p==NULL)
-    {
-        cout<< "No se pudo abrir el archivo";
+    p = fopen("Cronograma.dat","ab");
+    if ( p == NULL ) {
+        cout << "No se pudo abrir el archivo";
         return false;
     }
-    bool ok =  fwrite(this,sizeof(Cronograma),1,p);
-    if (ok==true)  {
-        cout<< "Registro guardado"<<endl;
+
+    bool ok =  fwrite( this , sizeof(Cronograma) , 1 , p );
+    if ( ok == true ) {
+        cout << "Registro guardado"<<endl;
     }
     else{
-        cout<< "No se guardo el registro"<<endl;
+        cout << "No se guardo el registro"<<endl;
     }
     fclose(p);
+    return ok;
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -194,7 +198,7 @@ void ListadoCronograma() {
 }
 
 
-Fecha buscarEnCalendario(int dia, int mes, int anio){
+Fecha BuscarEnCalendario(int dia, int mes, int anio){
     Fecha f;
     int i = 0;
     while (f.leerDeDisco(i)){
@@ -206,7 +210,7 @@ Fecha buscarEnCalendario(int dia, int mes, int anio){
 
 }
 
-void buscarBuque(int idBuque){
+void BuscarBuque(int idBuque){
     int pos = 0;
     Buque reg;
 
@@ -217,7 +221,7 @@ void buscarBuque(int idBuque){
     }
 }
 
-void buscarAgencia(int idAgencia){
+void BuscarAgencia(int idAgencia){
     int pos = 0;
     Agencia reg;
 

@@ -6,31 +6,29 @@
 class Buque{
     public:
         Buque();
-        void setIdBuque(int NuevoId);
-        void setnombreBuque(char* NuevoNombre);
-        void setBanderaBuque(char *NuevaBandera);
-        //void setNumeroViaje(int NuevoNro);
-        void setGiro(int NuevoGiro);
-        void setActivo(bool NuevoEstado);
+        void setIdBuque(int nuevoId);
+        void setnombreBuque(char* nuevoNombre);
+        void setBanderaBuque(char* nuevaBandera);
+        void setGiro(int nuevoGiro);
+        void setActivo(bool nuevoEstado);
         int getIdBuque();
         char* getnombreBuque();
         char* getBanderaBuque();
-        //int getNumeroViaje();
         int getGiro();
         bool getActivo();
         void cargar();
         void mostrar();
         bool leerDeDisco(int pos);
         bool grabarEnDisco();
+//TODO  bool grabarEnDisco(int);
 
 
 
     private:
 
     int         _idBuque;
-    char        _nombreBuque[30];
-    char        _banderaBuque [30];
-   // int         _numeroViaje;
+    char        _nombreBuque[100];
+    char        _banderaBuque [100];
     int         _giro;
     bool        _activo;
 };

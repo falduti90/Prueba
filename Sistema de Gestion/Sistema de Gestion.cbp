@@ -35,6 +35,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Agencia.h" />
+		<Unit filename="include/BaseCalculo.h" />
 		<Unit filename="include/Buque.h" />
 		<Unit filename="include/Cronograma.h" />
 		<Unit filename="include/Domicilio.h" />
@@ -44,6 +45,7 @@
 		<Unit filename="include/Terminal.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Agencia.cpp" />
+		<Unit filename="src/BaseCalculo.cpp" />
 		<Unit filename="src/Buque.cpp" />
 		<Unit filename="src/Cronograma.cpp" />
 		<Unit filename="src/Domicilio.cpp" />

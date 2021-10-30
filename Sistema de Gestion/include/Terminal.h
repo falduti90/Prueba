@@ -6,29 +6,30 @@ class Terminal
 {
     public:
         Terminal();
-        void setIdTerminal(int NuevoID) ;
-        void setNombreTerminal(char * NuevoNombre);
-        void setDireccion (Domicilio NuevaDir);
-        void setEmail(char * NuevoEmail);
-        void setGastosFijos(float NuevoGasto);
-        void setActivo(bool NuevoEstado);
+        void setIdTerminal(int nuevoID) ;
+        void setNombreTerminal(char* nuevoNombre);
+        void setDireccion (Domicilio nuevaDir);
+        void setEmail(char *nuevoEmail);
+        void setGastosFijos(float nuevoGasto);
+        void setActivo(bool nuevoEstado);
         int getIdTerminal();
-        char * getNombreTerminal();
-        Domicilio    getDireccion ();
-        char * getEmail();
+        char *getNombreTerminal();
+        Domicilio getDireccion ();
+        char *getEmail();
         float getGastosFijos();
+        bool getActivo();
         void cargar();
         void mostrar();
         bool leerDeDisco(int pos);
         bool grabarEnDisco();
-
+//TODO  bool grabarEnDisco(int);
 
     private:
-        int _IdTerminal;
-        char _NombreTerminal [30], _Email[30];
-        float _GastosFijos;
-        Domicilio _Direccion;
-        bool _Activo;
+        int _idTerminal;
+        char _nombreTerminal[100], _email[100];
+        float _gastosFijos;
+        Domicilio _direccion;
+        bool _activo;
 
 
 
@@ -37,4 +38,6 @@ class Terminal
 //FUNCIONES GLOBALES
 
 void ListadoDeTerminales();
+
+
 #endif // TERMINAL_H

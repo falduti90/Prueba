@@ -2,25 +2,25 @@
 #define DOMICILIO_H
 
 
-class Domicilio
-{
+class Domicilio{
     public:
         Domicilio();
-        void setCalle(char * NuevaCalle);
-        void setAltura(int NuevaAltura);
-        void setLocalidad(char *NuevaLocalidad);
+        void setCalle(char* nuevaCalle);
+        void setAltura(int nuevaAltura);
+        void setLocalidad(char* nuevaLocalidad);
         char* getCalle();
         int getAltura();
         char* getLocalidad();
-        void Cargar();
-        void Mostrar();
+        void cargar();
+        void mostrar();
         bool leerDeDisco(int pos);
         bool grabarEnDisco();
+//TODO  bool grabarEnDisco(int);
 
     private:
-    char _Calle[30];
-    int  _Altura;
-    char _Localidad[30];
+    char _calle[100];
+    int  _altura;
+    char _localidad[100];
 };
 
 

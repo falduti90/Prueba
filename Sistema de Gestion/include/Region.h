@@ -5,23 +5,23 @@
 class Region{
     public:
         Region();
-        void    setIdRegion(int NuevoID);
-        void    setNombreRegion(char *NuevoNombre);
-        void    setActivo(bool NuevoEstado);
+        void    setIdRegion(int nuevoID);
+        void    setNombreRegion(char *nuevoNombre);
+        void    setActivo(bool nuevoEstado);
         int     getIdRegion();
         char   *getNombreRegion();
         bool    getActivo();
-        void    Cargar();
-        void    Mostrar();
+        void    cargar();
+        void    mostrar();
         bool    leerDeDisco(int pos);
         bool    grabarEnDisco();
-
+//TODO  bool grabarEnDisco(int);
 
 
     private:
-        int _IdRegion;
-        char _NombreRegion[30];
-        bool _Activo;
+        int  _idRegion;
+        char _nombreRegion[100];
+        bool _activo;
 
 };
 
@@ -30,5 +30,6 @@ class Region{
 //FUNCIONES GLOBALES
 
 void ListadoDeRegiones();
+
 #endif // REGION_H
 

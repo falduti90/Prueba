@@ -2,22 +2,20 @@
 #define HORARIO_H
 
 
-class Horario
-{
+class Horario{
 public:
     Horario();
-    void setHora(int NuevaHora);
-    void setMinutos(int NuevosMin);
+    void setHora(int nuevaHora);
+    void setMinutos(int nuevosMin);
     int  getHora();
     int  getMinutos();
-    void Cargar();
-    void Mostrar();
-    bool LeerDeDisco(int pos);
-    bool GrabarEnDisco();
-
+    void cargar();
+    void mostrar();
+    bool leerDeDisco(int pos);
+    bool grabarEnDisco();
 
 private:
-    int _Hora,_Minutos;
+    int _hora,_minutos;
 };
 
 #endif // HORARIO_H

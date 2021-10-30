@@ -7,16 +7,16 @@ class Fecha
     public:
         Fecha();
         Fecha(int, int, int, int, int);
-        void setDia(int dia){_dia = dia;}
-        void setMes (int mes){_mes = mes;}
-        void setAnio (int anio){_anio = anio;}
-        void setNumeroSemana (int numSemana) { _numeroSemana = numSemana;}
-        void setNumDia (int numDia){_numDia = numDia;}
-        int getDia (){return _dia;}
-        int getMes (){return _mes;}
-        int getAnio () {return _anio;}
-        int getNumeroSemana () {return _numeroSemana;}
-        int getNumDia(){return _numDia;}
+        void setDia(int dia);
+        void setMes(int mes);
+        void setAnio(int anio);
+        void setNumeroSemana(int numSemana);
+        void setNumDia (int numDia);
+        int getDia();
+        int getMes();
+        int getAnio();
+        int getNumeroSemana();
+        int getNumDia();
         void mostrar();
         bool grabarEnDisco();
         bool leerDeDisco(int);
@@ -26,7 +26,7 @@ class Fecha
         int _mes;
         int _anio;
         int _numeroSemana;
-        int _numDia;
+        int _numDia;  // TODO: VER
 
 };
 
@@ -34,6 +34,17 @@ class Fecha
 //FUNCIONES GLOBALES
 
 void ListadoDeFechas();
+
+//--------Calendario---------------
+int listarCalendario();
+int CalcularDias (int, int);
+bool Bisiesto (int);
+int zeller (int, int, int);
+//-----------------------------------
+
+
+
+
 
 
 #endif // FECHA_H

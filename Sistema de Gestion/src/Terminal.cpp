@@ -7,110 +7,123 @@ using namespace std;
 #include "Domicilio.h"
 
 Terminal::Terminal(){
-    _IdTerminal=0;
-    strcpy(_NombreTerminal,"NO SE INGRESO NOMBRE DE TERMINAL");
-    strcpy(_Email, "NO SE INGRESO UN E-MAIL");
-    _GastosFijos=0;
-    _Activo=true;
-
-
-}
-void    Terminal::setIdTerminal(int NuevoID )  {
-    _IdTerminal=NuevoID;
+    _idTerminal = 0;
+    strcpy( _nombreTerminal , "NO SE INGRESO NOMBRE DE TERMINAL" );
+    strcpy( _email , "NO SE INGRESO UN E-MAIL" );
+    _gastosFijos = 0;
+    _activo = true;
 
 }
-void    Terminal::setNombreTerminal(char *NuevoNombre){
-    strcpy(_NombreTerminal,NuevoNombre);
+
+void Terminal::setIdTerminal(int nuevoID){
+    _idTerminal = nuevoID;
 
 }
-void    Terminal::setDireccion (Domicilio NuevaDir){
-    _Direccion=NuevaDir;
-}
-void    Terminal::setEmail(char * NuevoEMail){
 
-   strcpy (_Email,NuevoEMail);
+void Terminal::setNombreTerminal(char *nuevoNombre){
+    strcpy( _nombreTerminal , nuevoNombre );
+
 }
-void    Terminal::setGastosFijos(float NuevoGasto){
-    _GastosFijos=NuevoGasto;
+
+void Terminal::setDireccion (Domicilio nuevaDir){
+    _direccion = nuevaDir;
 }
-void    Terminal::setActivo(bool NuevoEstado){
-    _Activo=NuevoEstado;
+
+void Terminal::setEmail(char* nuevoEMail){
+   strcpy( _email , nuevoEMail );
 }
-char *  Terminal::getNombreTerminal(){
-    return _NombreTerminal;
+
+void Terminal::setGastosFijos(float nuevoGasto){
+    _gastosFijos = nuevoGasto;
 }
-Domicilio Terminal::getDireccion (){
-    return _Direccion;
+
+void Terminal::setActivo(bool nuevoEstado){
+    _activo = nuevoEstado;
+}
+
+char *Terminal::getNombreTerminal(){
+    return _nombreTerminal;
+}
+
+Domicilio Terminal::getDireccion(){
+    return _direccion;
 }
 
 int Terminal::getIdTerminal(){
-    return _IdTerminal;
-}
-char *  Terminal::getEmail(){
-    return _Email;
+    return _idTerminal;
 }
 
-float   Terminal::getGastosFijos(){
-    return _GastosFijos;
+char *Terminal::getEmail(){
+    return _email;
 }
-void    Terminal::cargar(){
-    cout<< "INGRESE EL ID DE LA TERMINAL    :"<<endl;
-    cin >> _IdTerminal;
 
-    cout<< "INGRESE EL NOMBRE DE LA TERMINAL:"<<endl;
-    cin >> _NombreTerminal;
-
-    cout<< "INGRESE EL EMAIL DE LA TERMINAL :"<<endl;
-    cin >> _Email;
-
-    cout<< "INGRESE EL GASTO FIJO           :"<<endl;
-    cin >> _GastosFijos;
-
-    _Direccion.Cargar();
-
+float Terminal::getGastosFijos(){
+    return _gastosFijos;
 }
-void    Terminal::mostrar(){
 
-    cout<< "ID TERMINAL     :"<<"/"<<_IdTerminal<<endl;
-    cout<< "NOMBRE TERMINAL :"<<"/"<<_NombreTerminal<<endl;
-    cout<< "EMAIL           :"<<"/"<<_Email<<endl;
-    cout<< "GASTOS FIJOS    "<<"/"<<_GastosFijos<<endl;
-    _Direccion.Mostrar();
+void Terminal::cargar(){
+    cout<< "INGRESE EL ID DE LA TERMINAL    : ";
+    cin >> _idTerminal;
 
+    cout<< "INGRESE EL NOMBRE DE LA TERMINAL: ";
+    cin.ignore();
+    cin.getline( _nombreTerminal , 99 );
 
+    cout<< "INGRESE EL EMAIL DE LA TERMINAL : ";
+    cin.ignore();
+    cin.getline( _email , 99 );
+
+    cout<< "INGRESE EL GASTO FIJO           : ";
+    cin >> _gastosFijos;
+
+    _direccion.cargar();
 
 }
-bool    Terminal::leerDeDisco(int pos){
-        FILE *p;
-        p=fopen("Terminal.dat","rb");
-        if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
-        return false;
-    }
 
-        fseek(p,sizeof(Terminal)*pos,0);
-        bool leyo=fread(this, sizeof(Terminal), 1, p);
-        fclose(p);
-        return leyo;
+void Terminal::mostrar(){
+
+    cout<< "ID TERMINAL     : "<< _idTerminal << endl;
+    cout<< "NOMBRE TERMINAL : "<< _nombreTerminal << endl;
+    cout<< "EMAIL           : "<< _email << endl;
+    cout<< "GASTOS FIJOS    : "<< _gastosFijos << endl;
+    _direccion.mostrar();
+
+
+
 }
-bool    Terminal::grabarEnDisco(){
+
+bool Terminal::leerDeDisco(int pos){
     FILE *p;
-    p=fopen("Terminal.dat","ab");
-    if(p==NULL)
-    {
-        cout<< "No se pudo abrir el archivo";
+    p = fopen("Terminal.dat","rb");
+    if ( p == NULL ){
+    cout << "No se pudo abrir el archivo";
+    return false;
+    }
+
+    fseek ( p , sizeof(Terminal)*pos , 0 );
+    bool leyo = fread (this , sizeof(Terminal) , 1, p );
+    fclose(p);
+    return leyo;
+}
+
+bool Terminal::grabarEnDisco(){
+    FILE *p;
+    p = fopen("Terminal.dat","ab");
+    if ( p == NULL ){
+        cout << "No se pudo abrir el archivo";
         return false;
     }
-    bool ok=  fwrite(this,sizeof(Terminal),1,p);
-    if (ok==true)
-    {
-        cout<< "Registro guardado"<<endl;
+
+    bool ok =  fwrite(this,sizeof(Terminal),1,p);
+
+    if ( ok == true ) {
+        cout << "Registro guardado"<<endl;
     }
-    else
-    {
-        cout<< "No se guardo el registro"<<endl;
+    else{
+        cout << "No se guardo el registro"<<endl;
     }
     fclose(p);
+    return ok;
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -120,13 +133,13 @@ void ListadoDeTerminales(){
 
     FILE *p;
     Terminal reg;
-    p=fopen("Terminal.dat","rb");
-    if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
+    p = fopen("Terminal.dat","rb");
+    if ( p == NULL ){
+        cout << "No se pudo abrir el archivo";
     return ;
     }
 
-    while(fread(&reg,sizeof(Terminal),1,p)==1){
+    while( fread ( &reg , sizeof(Terminal) , 1 ,  p) == 1){
         reg.mostrar();
 
     }

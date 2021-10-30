@@ -7,66 +7,68 @@ using namespace std;
 
 
 Horario::Horario(){
-    _Hora=0;
-    _Minutos=0;
+    _hora = 0;
+    _minutos = 0;
 
 }
-void    Horario::setHora(int NuevaHora){
-    _Hora=NuevaHora;
+void Horario::setHora(int nuevaHora){
+    _hora = nuevaHora;
 
 }
-void    Horario::setMinutos(int NuevosMin){
-    _Minutos=NuevosMin;
+
+void Horario::setMinutos(int nuevosMin){
+    _minutos = nuevosMin;
 }
-int     Horario::getHora(){
-    return _Hora;
+
+int Horario::getHora(){
+    return _hora;
 }
-int     Horario::getMinutos(){
-    return _Minutos;
+
+int Horario::getMinutos(){
+    return _minutos;
 }
-void    Horario::Cargar(){
-    cout<< "INGRESE LA HORA :"<<endl;
-    cin >> _Hora;
-    cout<< "INGRESE LOS MINUTOS :"<<endl;
-    cin >> _Minutos;
+
+void Horario::cargar(){
+    cout << "INGRESE LA HORA : ";
+    cin >> _hora;
+    cout << "INGRESE LOS MINUTOS : " ;
+    cin >> _minutos;
 
 }
-void    Horario::Mostrar(){
-    cout<<"HORA :"<< " "<< _Hora<< " " << "MINUTOS :"<< "/" << _Minutos;
+
+void Horario::mostrar(){
+    cout << "HORA: " << _hora << " - " << "MINUTOS: " << _minutos;
 }
-bool    Horario::LeerDeDisco(int pos){
-     FILE *p;
-        p=fopen("Horario.dat","rb");
-        if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
+
+bool Horario::leerDeDisco(int pos){
+    FILE *p;
+    p = fopen("Horario.dat","rb");
+    if ( p == NULL ){
+    cout << "No se pudo abrir el archivo";
+    return false;
+    }
+
+    fseek ( p , sizeof(Horario)*pos , 0 );
+    bool leyo = fread( this, sizeof(Horario) , 1 , p );
+    fclose(p);
+    return leyo;
+}
+
+bool Horario::grabarEnDisco(){
+    FILE *p;
+    p = fopen("Horario.dat","ab");
+    if( p == NULL ) {
+        cout << "No se pudo abrir el archivo";
         return false;
     }
-
-        fseek(p,sizeof(Horario)*pos,0);
-        bool leyo=fread(this, sizeof(Horario), 1, p);
-        fclose(p);
-        return leyo;
-
-
-}
-bool    Horario::GrabarEnDisco(){
-        FILE *p;
-    p=fopen("Horario.dat","ab");
-    if(p==NULL)
-    {
-        cout<< "No se pudo abrir el archivo";
-        return false;
+    bool ok =  fwrite(this,sizeof(Horario),1,p);
+    if ( ok == true) {
+        cout << "Registro guardado"<<endl;
     }
-    bool ok=  fwrite(this,sizeof(Horario),1,p);
-    if (ok==true)
-    {
-        cout<< "Registro guardado"<<endl;
-    }
-    else
-    {
-        cout<< "No se guardo el registro"<<endl;
+    else {
+        cout << "No se guardo el registro"<<endl;
     }
     fclose(p);
-
+    return ok;
 
 }

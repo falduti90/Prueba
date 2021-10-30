@@ -6,29 +6,29 @@ class Agencia
 {
     public:
         Agencia();
-        int  setIdAgencia(int NuevoID);
-        char setNombreAgencia(char * NuevoNombre);
-        int setDisponibilidadMensual(int NuevoCupo);
-        float setGastosLocales(float NuevoGasto);
-        bool setActivo(bool NuevoEstado);
+        int  setIdAgencia(int nuevoID);
+        char setNombreAgencia(char *nuevoNombre);
+        int setDisponibilidadMensual(int nuevoCupo);
+        float setGastosLocales(float nuevoGasto);
+        bool setActivo(bool nuevoEstado);
         int getIdAgencia();
-        char * getNombreAgencia();
+        char *getNombreAgencia();
         int  getDisponibilidadMensual();
         float getGastosLocales();
         bool getActivo();
-        void Cargar();
-        void Mostrar();
+        void cargar();
+        void mostrar();
         bool leerDeDisco(int pos);
         bool grabarEnDisco();
-
+//TODO  bool grabarEnDisco(int);
 
 
     private:
-    int     _IdAgencia;
-    int     _DisponibilidadMensual;
-    char    _NombreAgencia [30];
-    float   _GastosLocales;
-    bool    _Activo;
+    int     _idAgencia;
+    char    _nombreAgencia [100];
+    int     _disponibilidadMensual;
+    float   _gastosLocales;
+    bool    _activo;
 
     };
 
