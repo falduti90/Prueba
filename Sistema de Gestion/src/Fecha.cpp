@@ -9,6 +9,12 @@ Fecha::Fecha(){
 // TODO
 }
 
+Fecha::Fecha(int dia, int mes, int anio){
+    setDia(dia);
+    setMes(mes);
+    setAnio(anio);
+}
+
 Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
     setDia(dia);
     setMes(mes);

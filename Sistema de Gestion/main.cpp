@@ -22,12 +22,12 @@ void exportar();
 
 
 int main(){
-    //Cronograma reg;
+    /*Cronograma reg;
 
-    /*reg.cargar();
+    reg.cargar();
     cout << endl;
-    reg.mostrar();*/
-    /*
+    reg.mostrar();
+
 
     ListadoCronograma();
 
@@ -45,7 +45,7 @@ int main(){
     //importar();
     exportar();
 
-      return 0;
+    return 0;
 }
 
 
@@ -61,7 +61,15 @@ void importar(){
         getline(stream, dia, delimitador);
         getline(stream, mes, delimitador);
         getline(stream, anio, delimitador);
-        cout << endl << dia << "/" << mes << "/" << anio;
+        int d, m, a;
+        istringstream(dia) >> d;
+        istringstream(mes) >> m;
+        istringstream(anio) >> a;
+        Fecha f(d,m,a);
+        f.mostrar();
+        cout << endl;
+        //cout << endl << dia << "/" << mes << "/" << anio;
+
 	}
 
 }
@@ -69,8 +77,11 @@ void importar(){
 void exportar(){
     ofstream myFile;
 	myFile.open("test.csv");
-	for (int i = 0; i<20; i++){
-        myFile << i << ',' << i*i << endl;
+	Fecha f;
+	int i = 0;
+	while (f.leerDeDisco(i)){
+        myFile << f.getDia() << ',' << f.getMes() << ',' << f.getAnio() << endl;
+        i++;
 
 	}
 

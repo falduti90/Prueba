@@ -7,6 +7,7 @@ class Fecha
     public:
         Fecha();
         Fecha(int, int, int, int, int);
+        Fecha(int, int, int);
         void setDia(int dia);
         void setMes(int mes);
         void setAnio(int anio);
