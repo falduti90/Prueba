@@ -11,6 +11,8 @@
 #include "Terminal.h"
 #include "Agencia.h"
 #include "Fecha.h"
+#include "MenuPrincipal.h"
+#include "rlutil.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba Importador.csv" // Archivo para importador
@@ -43,8 +45,8 @@ int main(){
     */
 
     //importar();
-    exportar();
-
+    //exportar();
+    MenuPrincipal();
     return 0;
 }
 
