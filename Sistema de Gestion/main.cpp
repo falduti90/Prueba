@@ -46,7 +46,14 @@ int main(){
 
     //importar();
     //exportar();
-    MenuPrincipal();
+    //MenuPrincipal();
+    Fecha f1(1,1,2022), f2(1,1,2021);
+    if (f1 < f2){
+        cout << endl << "F1 es menor a F2" << endl;
+    }
+    else {
+        cout << endl << "F1 no es menor a F2" << endl;
+    }
     return 0;
 }
 

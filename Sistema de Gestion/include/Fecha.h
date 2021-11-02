@@ -21,6 +21,11 @@ class Fecha
         void mostrar();
         bool grabarEnDisco();
         bool leerDeDisco(int);
+        //----
+        bool operator ==(Fecha);
+        bool operator!=(Fecha);
+        bool operator >(Fecha);
+        bool operator <(Fecha);
 
     private:
         int _dia;

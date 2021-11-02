@@ -112,6 +112,40 @@ bool Fecha::leerDeDisco(int pos){
     return leyo;
 }
 
+//-------------Sobrecarga de operadores-------------------------
+
+bool Fecha::operator ==(Fecha aux){
+ if(_dia!=aux._dia)return false;
+ if(_mes!=aux._mes)return false;
+ if(_anio!=aux._anio)return false;
+ return true;
+ }
+
+bool Fecha::operator!=(Fecha aux){
+ if(_dia==aux._dia && _mes==aux._mes && _anio== aux._anio) return false;
+ return true;
+ }
+
+bool Fecha::operator >(Fecha aux){
+ if (_anio > aux._anio) return true;
+ if (_anio < aux._anio) return false;
+ if (_mes > aux._mes) return true;
+ if (_mes < aux._mes) return false;
+ if (_dia > aux._dia) return true;
+ return false;
+
+ }
+
+ bool Fecha::operator <(Fecha aux){
+ if (_anio < aux._anio) return true;
+ if (_anio > aux._anio) return false;
+ if (_mes < aux._mes) return true;
+ if (_mes > aux._mes) return false;
+ if (_dia < aux._dia) return true;
+ return false;
+
+ }
+
 
 
 
