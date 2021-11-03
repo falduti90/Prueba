@@ -24,6 +24,8 @@ void exportar();
 
 
 int main(){
+    Buque obj;
+    int pos = 0;
     /*Cronograma reg;
 
     reg.cargar();
@@ -47,12 +49,15 @@ int main(){
     //importar();
     //exportar();
     //MenuPrincipal();
-    Fecha f1(1,1,2022), f2(1,1,2021);
-    if (f1 < f2){
-        cout << endl << "F1 es menor a F2" << endl;
-    }
-    else {
-        cout << endl << "F1 no es menor a F2" << endl;
+    //Fecha f1(1,1,2022), f2(1,1,2021);
+    //if (f1 < f2){
+    //    cout << endl << "F1 es menor a F2" << endl;
+    //}
+    //else {
+    //    cout << endl << "F1 no es menor a F2" << endl;
+    //}
+    while(obj.leerDeDisco(pos++)){
+        obj.mostrar();
     }
     return 0;
 }

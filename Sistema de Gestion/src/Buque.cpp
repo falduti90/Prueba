@@ -12,8 +12,6 @@ Buque::Buque(){
     strcpy( _banderaBuque , "NO SE INGRESO BANDERA" );
     _activo = true;
 
-
-
 }
 void Buque::setIdBuque(int nuevoId){
     _idBuque = nuevoId;
@@ -57,18 +55,20 @@ bool Buque::getActivo(){
 
 void Buque::cargar(){
 
-    cout<< "INGRESE EL ID DEL BUQUE: ";
+    cout<< "INGRESE EL ID DEL BUQUE     : ";
     cin >> _idBuque;
 
-    cout<< "INGRESE EL NOMBRE DEL BUQUE: ";
+    cout<< "INGRESE EL NOMBRE DEL BUQUE : ";
     cin.ignore();
     cin.getline(_nombreBuque,99);
 
     cout<< "INGRESE LA BANDERA DEL BUQUE: ";
     cin.getline(_banderaBuque,99);
 
-    cout<< "INGRESE ID TERMINAL: ";
+    cout<< "INGRESE ID TERMINAL         : ";
     cin >> _giro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
+    cout << endl;
+    grabarEnDisco();
 
 }
 
@@ -76,9 +76,8 @@ void Buque::mostrar(){
     cout<< "NUMERO DE ID BUQUE-: "<< _idBuque << endl;
     cout<< "NOMBRE DEL BUQUE---: "<< _nombreBuque << endl;
     cout<< "BANDERA------------: "<< _banderaBuque << endl;
-    cout<< "GIRO---------------: ";
-    buscarTerminal(_giro); ///  TODO: (borrar) Acá busca con el ID y trae (muestra) el nombre de la terminal...
-    cout << endl;
+    cout<< "GIRO---------------: "<< _giro << endl << endl;
+    //buscarTerminal(_giro); ///  TODO: (borrar) Acá busca con el ID y trae (muestra) el nombre de la terminal...
 }
 
 bool Buque::grabarEnDisco(){
@@ -91,7 +90,7 @@ bool Buque::grabarEnDisco(){
 
     bool ok =  fwrite( this , sizeof(Buque) , 1 , p );
     if ( ok == true )  {
-        cout << "Registro guardado"<<endl;
+        cout << endl << "Registro guardado" << endl << endl;
     }
     else {
         cout << "No se guardo el registro"<<endl;
