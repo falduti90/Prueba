@@ -12,6 +12,7 @@
 #include "Agencia.h"
 #include "Fecha.h"
 #include "MenuPrincipal.h"
+#include "Usuario.h"
 #include "rlutil.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
@@ -54,9 +55,9 @@ int main(){
     cout << prueba1;
 
     */
+    listarCalendario();
 
-    MenuPrincipal();
-
+    //InicioSesion();
     return 0;
 }
 
@@ -98,6 +99,7 @@ void exportar(){
 	}
 
 }
+
 int buscarPosicionPorUsuario(char *usuario){
 
     Usuario u;
@@ -110,6 +112,7 @@ int buscarPosicionPorUsuario(char *usuario){
         pos++;
     }
 }
+
 void InicioSesion(){
 
     int  intentos = 0, pos = 0;
@@ -124,14 +127,16 @@ void InicioSesion(){
         cargarCadena(usuario,30);
         cout << endl;
         cout << "\t\t\t\t\t - PASSWORD: ";
+        rlutil::setColor(rlutil::BLACK);
         cargarCadena(contrasenia,30);
+        rlutil::setColor(rlutil::WHITE);
 
         pos = buscarPosicionPorUsuario(usuario);
         obj.leerDeDisco(pos);
             intentos++;
             if(strcmp(obj.getContrasenia(), contrasenia) == 0){
                 cout << endl << "\t\t\t\t\t   BIENVENIDO!! " << endl << endl;
-                system("pause > null");
+                system("pause > nul");
                 system("cls");
                 switch(obj.getCategoria()){
                     case 1 : Consultas();
@@ -144,7 +149,7 @@ void InicioSesion(){
             }
             else{
                 cout << endl << "\t\t\t\t\tUSUARIO NO ENCONTRADO." << endl << endl;
-                system("pause > null");
+                system("pause > nul");
                 system("cls");
                 cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
                 cout << "\t\t\t\t*******************************************" << endl << endl;
@@ -167,6 +172,7 @@ void InicioSesion(){
     }while(intentos < 2);
 
 }
+
 void cargarCadena(char *pal, int tam){
   int i;
   fflush(stdin);

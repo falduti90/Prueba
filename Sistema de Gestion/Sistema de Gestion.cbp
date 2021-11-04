@@ -44,7 +44,9 @@
 		<Unit filename="include/MenuPrincipal.h" />
 		<Unit filename="include/Region.h" />
 		<Unit filename="include/Terminal.h" />
+		<Unit filename="include/Usuario.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="rlutil.h" />
 		<Unit filename="src/Agencia.cpp" />
 		<Unit filename="src/BaseCalculo.cpp" />
 		<Unit filename="src/Buque.cpp" />
@@ -55,6 +57,7 @@
 		<Unit filename="src/MenuPrincipal.cpp" />
 		<Unit filename="src/Region.cpp" />
 		<Unit filename="src/Terminal.cpp" />
+		<Unit filename="src/Usuario.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

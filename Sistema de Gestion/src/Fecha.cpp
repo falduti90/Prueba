@@ -163,6 +163,7 @@ bool Fecha::operator >(Fecha aux){
     setDia(aux.getDia());
     setMes(aux.getMes());
     setAnio(aux.getAnio());
+    cout << "Sobrecarga";
     return true;
 
  }
