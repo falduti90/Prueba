@@ -15,7 +15,7 @@
 #include "rlutil.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
-#define NOMBRE_ARCHIVO "Prueba Importador.csv" // Archivo para importador
+#define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
 using namespace std;
 
 void importar();
@@ -24,8 +24,9 @@ void exportar();
 
 
 int main(){
-    Buque obj;
-    int pos = 0;
+    importar();
+    //Buque obj;
+    //int pos = 0;
     /*Cronograma reg;
 
     reg.cargar();
@@ -56,9 +57,9 @@ int main(){
     //else {
     //    cout << endl << "F1 no es menor a F2" << endl;
     //}
-    while(obj.leerDeDisco(pos++)){
+   /* while(obj.leerDeDisco(pos++)){
         obj.mostrar();
-    }
+    }*/
     return 0;
 }
 

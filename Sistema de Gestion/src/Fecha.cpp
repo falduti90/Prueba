@@ -121,7 +121,7 @@ bool Fecha::operator ==(Fecha aux){
  return true;
  }
 
-bool Fecha::operator!=(Fecha aux){
+bool Fecha::operator !=(Fecha aux){
  if(_dia==aux._dia && _mes==aux._mes && _anio== aux._anio) return false;
  return true;
  }
@@ -147,6 +147,25 @@ bool Fecha::operator >(Fecha aux){
  }
 
 
+ bool Fecha::operator + (int aux){
+    _dia = _dia + aux;
+    return true;
+
+ }
+
+ bool Fecha::operator - (int aux){
+    _dia = _dia - aux;
+    return true;
+
+ }
+
+ bool Fecha::operator = (Fecha aux){
+    setDia(aux.getDia());
+    setMes(aux.getMes());
+    setAnio(aux.getAnio());
+    return true;
+
+ }
 
 
 

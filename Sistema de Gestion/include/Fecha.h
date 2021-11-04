@@ -26,6 +26,9 @@ class Fecha
         bool operator!=(Fecha);
         bool operator >(Fecha);
         bool operator <(Fecha);
+        bool operator + (int);
+        bool operator - (int);
+        bool operator =(Fecha);
 
     private:
         int _dia;
