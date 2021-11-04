@@ -20,13 +20,21 @@ using namespace std;
 
 void importar();
 void exportar();
-
-
+void mostrar();
+int  buscarPosicionPorUsuario(char *usuario);
+void cargarCadena(char *pal, int tam);
 
 int main(){
-    importar();
+
+    //Usuario reg;
+
+    //reg.leerDeDisco(0);
+    //cout << reg.getUsuario() << endl;
+    //cout << reg.getContrasenia() << endl;
+    //cout << reg.getCategoria() << endl;
+
     //Buque obj;
-    //int pos = 0;
+
     /*Cronograma reg;
 
     reg.cargar();
@@ -47,19 +55,8 @@ int main(){
 
     */
 
-    //importar();
-    //exportar();
-    //MenuPrincipal();
-    //Fecha f1(1,1,2022), f2(1,1,2021);
-    //if (f1 < f2){
-    //    cout << endl << "F1 es menor a F2" << endl;
-    //}
-    //else {
-    //    cout << endl << "F1 no es menor a F2" << endl;
-    //}
-   /* while(obj.leerDeDisco(pos++)){
-        obj.mostrar();
-    }*/
+    MenuPrincipal();
+
     return 0;
 }
 
@@ -101,9 +98,85 @@ void exportar(){
 	}
 
 }
+int buscarPosicionPorUsuario(char *usuario){
 
+    Usuario u;
+    int pos = 0;
 
+    while(u.leerDeDisco(pos)){
+        if(strcmp(usuario,u.getUsuario())== 0){
+            return pos;
+        }
+        pos++;
+    }
+}
+void InicioSesion(){
 
+    int  intentos = 0, pos = 0;
+    char usuario[30] = " ";
+    char contrasenia [30] = " ";
+    Usuario obj;
+
+    do{
+        cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
+        cout << "\t\t\t\t*******************************************" << endl << endl;
+        cout << "\t\t\t\t\t - USUARIO : ";
+        cargarCadena(usuario,30);
+        cout << endl;
+        cout << "\t\t\t\t\t - PASSWORD: ";
+        cargarCadena(contrasenia,30);
+
+        pos = buscarPosicionPorUsuario(usuario);
+        obj.leerDeDisco(pos);
+            intentos++;
+            if(strcmp(obj.getContrasenia(), contrasenia) == 0){
+                cout << endl << "\t\t\t\t\t   BIENVENIDO!! " << endl << endl;
+                system("pause > null");
+                system("cls");
+                switch(obj.getCategoria()){
+                    case 1 : Consultas();
+                        break;
+                    case 2 : DataEntry();
+                        break;
+                    case 3 : Admin();
+                        break;
+                }
+            }
+            else{
+                cout << endl << "\t\t\t\t\tUSUARIO NO ENCONTRADO." << endl << endl;
+                system("pause > null");
+                system("cls");
+                cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
+                cout << "\t\t\t\t*******************************************" << endl << endl;
+                cout << "\t\t\t\t\t - USUARIO : ";
+                cin.ignore();
+                cin.getline(usuario,30);
+                cout << "\t\t\t\t\t - PASSWORD: ";
+                cin.getline(contrasenia,30);
+                if(intentos == 2){
+                    system("color 4F");
+                    cout << endl << endl << "\t\t\t\t\tDEMASIADOS INTENTOS FALLIDOS." << endl << endl;
+                    cout << "\t\t\t\t\t" << system("pause");
+                    system("color 9F");
+                    system("cls");
+                    main();
+                }
+            }
+
+        main();
+    }while(intentos < 2);
+
+}
+void cargarCadena(char *pal, int tam){
+  int i;
+  fflush(stdin);
+  for(i=0;i<tam;i++){
+      pal[i]=cin.get();
+	  if(pal[i]=='\n') break;
+	  }
+  pal[i]='\0';
+  fflush(stdin);
+}
 
 
 

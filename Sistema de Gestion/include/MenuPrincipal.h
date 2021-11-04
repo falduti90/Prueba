@@ -30,5 +30,7 @@ int  main();
 void Consultas();
 void DataEntry();
 void Admin();
+void mostrar();
+
 
 #endif // MENUPRINCIPAL_H

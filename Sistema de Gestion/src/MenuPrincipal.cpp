@@ -45,62 +45,7 @@ Usuario::Usuario(){
     _contrasenia [30] = {};
 
 }
-void InicioSesion(){
 
-    int  intentos = 0, pos = 0;
-    char usuario[30] = " ";
-    char contrasenia [30] = " ";
-    Usuario obj;
-
-    do{
-        cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
-        cout << "\t\t\t\t*******************************************" << endl << endl;
-        cout << "\t\t\t\t\t - USUARIO : ";
-        cin.ignore();
-        cin.getline(usuario,30);
-        cout << "\t\t\t\t\t - PASSWORD: ";
-        cin.getline(contrasenia,30);
-
-        while(obj.leerDeDisco(pos++)){
-            intentos++;
-            if(strcmp(obj.getUsuario(), usuario) == 0 && strcmp(obj.getContrasenia(), contrasenia) == 0){
-                cout << endl << "\t\t\t\t\t   BIENVENIDO!! " << endl << endl;
-                system("pause > null");
-                system("cls");
-                switch(obj.getCategoria()){
-                    case 1 : Consultas();
-                        break;
-                    case 2 : DataEntry();
-                        break;
-                    case 3 : Admin();
-                        break;
-                }
-            }
-            else{
-                cout << endl << "\t\t\t\t\tUSUARIO NO ENCONTRADO." << endl << endl;
-                system("pause > null");
-                system("cls");
-                cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
-                cout << "\t\t\t\t*******************************************" << endl << endl;
-                cout << "\t\t\t\t\t - USUARIO : ";
-                cin.ignore();
-                cin.getline(usuario,30);
-                cout << "\t\t\t\t\t - PASSWORD: ";
-                cin.getline(contrasenia,30);
-                if(intentos == 2){
-                    system("color 4F");
-                    cout << endl << endl << "\t\t\t\t\tDEMASIADOS INTENTOS FALLIDOS." << endl << endl;
-                    cout << "\t\t\t\t\t" << system("pause");
-                    system("color 9F");
-                    system("cls");
-                    main();
-                }
-            }
-        }
-        main();
-    }while(intentos < 2);
-
-}
 void CrearUsuario(){
 
         char usuario[30] = {};
@@ -156,8 +101,9 @@ bool Usuario::grabarEnDisco(){
          cout << endl << "\t\t\t\t\tNO SE PUDO GUARDAR EL REGISTRO."<< endl << endl;
      }
      fclose(p);
+     return ok;
 }
-bool Usuario::leerDeDisco(int pos = 0){
+bool Usuario::leerDeDisco(int pos){
         FILE *p;
         p = fopen("Usuarios.dat","rb");
         if(p == NULL){
@@ -167,6 +113,7 @@ bool Usuario::leerDeDisco(int pos = 0){
         return false;
         }
         else{
+            fseek(p,sizeof(Usuario)* pos,SEEK_SET);
             bool ok = fread(this, sizeof(Usuario), 1, p);
             fclose(p);
             return ok;
@@ -293,3 +240,4 @@ void Admin(){
     cout << "\t\t\t\t\t" << system("pause");
     system("cls");
 }
+
