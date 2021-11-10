@@ -13,11 +13,13 @@ class Fecha
         void setAnio(int anio);
         void setNumeroSemana(int numSemana);
         void setNumDia (int numDia);
+        void setDiasDelmes ();
         int getDia();
         int getMes();
         int getAnio();
         int getNumeroSemana();
         int getNumDia();
+        int *getDiasDelmes ();
         void mostrar();
         bool grabarEnDisco();
         bool leerDeDisco(int);
@@ -36,6 +38,7 @@ class Fecha
         int _anio;
         int _numeroSemana;
         int _numDia;  // TODO: VER
+        int _diasDelMes [12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
 };
 

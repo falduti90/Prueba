@@ -50,7 +50,13 @@ int main(){
 
     */
 
-    MenuPrincipal();
+    Fecha f(28,12,2021);
+    f.mostrar();
+    cout << endl << "Numero de semana: " <<  f.getNumeroSemana();
+    cout << endl << "Numero de dia   :" << f.getNumDia();
+    cout << endl;
+
+    //MenuPrincipal();
     return 0;
 }
 

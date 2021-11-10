@@ -13,6 +13,17 @@ Fecha::Fecha(int dia, int mes, int anio){
     setDia(dia);
     setMes(mes);
     setAnio(anio);
+    setDiasDelmes();
+    int numDia = dia;
+    cout << endl << "Num dia antes: " << numDia;
+    for (int i=0; i<mes-1;i++){
+        numDia += _diasDelMes [i];
+        cout << endl << "Num dia adentro: " << numDia;
+    }
+    cout << endl << "Num dia despues: " << numDia;
+    setNumDia(numDia);
+    int numSemana = (numDia / 7) + 1;
+    setNumeroSemana(numSemana);
 }
 
 Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
@@ -21,6 +32,13 @@ Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
     setAnio(anio);
     setNumeroSemana(numSemana);
     setNumDia(numDia);
+
+}
+
+void Fecha::setDiasDelmes(){
+    if (Bisiesto(_anio)){
+        _diasDelMes[1] = 29;
+    }
 
 }
 
@@ -42,6 +60,10 @@ void Fecha::setNumeroSemana (int numSemana) {
 
 void Fecha::setNumDia (int numDia){
     _numDia = numDia;
+}
+
+int *Fecha::getDiasDelmes(){
+    return _diasDelMes;
 }
 
 int Fecha::getDia(){
@@ -148,13 +170,17 @@ bool Fecha::operator >(Fecha aux){
 
 
  bool Fecha::operator + (int aux){
+    if (_diasDelMes[_mes]<_dia){
     _dia = _dia + aux;
+    }
     return true;
 
  }
 
  bool Fecha::operator - (int aux){
+    if (_dia > 1){
     _dia = _dia - aux;
+    }
     return true;
 
  }
@@ -251,6 +277,7 @@ int listarCalendario(){
 }
 
 int CalcularDias (int mes, int a){
+    //int diasDelMes [12] = {31,28,31,30,31,30,31,31,30,31,30,31};
     if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
         return 31;
     }
