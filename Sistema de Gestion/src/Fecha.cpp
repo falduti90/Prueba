@@ -15,12 +15,12 @@ Fecha::Fecha(int dia, int mes, int anio){
     setAnio(anio);
     setDiasDelmes();
     int numDia = dia;
-    cout << endl << "Num dia antes: " << numDia;
+    //cout << endl << "Num dia antes: " << numDia;
     for (int i=0; i<mes-1;i++){
         numDia += _diasDelMes [i];
-        cout << endl << "Num dia adentro: " << numDia;
+        //cout << endl << "Num dia adentro: " << numDia;
     }
-    cout << endl << "Num dia despues: " << numDia;
+    //cout << endl << "Num dia despues: " << numDia;
     setNumDia(numDia);
     int numSemana = (numDia / 7) + 1;
     setNumeroSemana(numSemana);
