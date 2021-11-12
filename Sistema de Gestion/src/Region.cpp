@@ -7,6 +7,7 @@ using namespace std;
 
 Region::Region(){
     _idRegion = 0;
+    strcpy( _codRegion , "VACIO" );
     strcpy( _nombreRegion , "NO SE INGRESO EL NOMBRE" );
     _activo = true;
 
@@ -18,6 +19,10 @@ void Region::setIdRegion(int nuevoID){
 
 void Region::setNombreRegion(char *nuevoNombre){
     strcpy( _nombreRegion , nuevoNombre );
+}
+
+void Region::setCodRegion(char *codRegion){
+    strcpy( _codRegion , codRegion );
 }
 
 void Region::setActivo(bool nuevoEstado){
@@ -32,6 +37,10 @@ char *Region::getNombreRegion(){
     return _nombreRegion;
 }
 
+char *Region::getCodRegion(){
+    return _codRegion;
+}
+
 bool Region::getActivo(){
     return _activo;
 }
@@ -41,15 +50,18 @@ void Region::cargar(){
     cout<< "INGRESE EL NUMERO DE ID REGION: ";
     cin >> _idRegion;
 
-    cout<< "INGRESE  EL NOMBRE DE LA REGION: ";
+    cout<< "INGRESE EL CODIGO DE LA REGION: ";  //TODO : Validación para que no igrese mas de 9 letras
     cin.ignore();
-    cin.getline( _nombreRegion , 99 );
+    cin.getline( _codRegion , 9 );
 
+    cout<< "INGRESE  EL NOMBRE DE LA REGION: ";
+    cin.getline( _nombreRegion , 99 );
 }
 
 
 void Region::mostrar(){
     cout<< "NUMERO DE ID     : "<< _idRegion << endl;
+    cout<< "CODIGO DE REGION : "<< _codRegion << endl;
     cout<< "NOMBRE DE REGION : "<< _nombreRegion << endl;
 
 }
@@ -104,8 +116,20 @@ void ListadoDeRegiones(){
 
     while ( fread ( &reg , sizeof(Region) , 1 , p ) == 1 ){
         reg.mostrar();
-
+        cout << endl;
     }
 
     fclose(p);
 }
+
+void BuscarRegion(int idRegion){
+    int pos = 0;
+    Region reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idRegion == reg.getIdRegion()){
+        cout << reg.getNombreRegion();
+        }
+    }
+}
+

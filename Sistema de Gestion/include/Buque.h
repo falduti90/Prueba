@@ -36,6 +36,8 @@ class Buque{
 //FUNCIONES GLOBALES
 
 void ListadoBuques();
-void buscarTerminal(int giro);
+void BuscarBuque(int);
+void buscarTerminal(int );
+int BuscarIdTerminal(int );
 
 #endif // BUQUES_H

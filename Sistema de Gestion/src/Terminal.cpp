@@ -6,6 +6,7 @@ using namespace std;
 #include "Terminal.h"
 #include "Domicilio.h"
 
+
 Terminal::Terminal(){
     _idTerminal = 0;
     strcpy( _nombreTerminal , "NO SE INGRESO NOMBRE DE TERMINAL" );
@@ -70,7 +71,6 @@ void Terminal::cargar(){
     cin.getline( _nombreTerminal , 99 );
 
     cout<< "INGRESE EL EMAIL DE LA TERMINAL : ";
-    cin.ignore();
     cin.getline( _email , 99 );
 
     cout<< "INGRESE EL GASTO FIJO           : ";
@@ -141,8 +141,22 @@ void ListadoDeTerminales(){
 
     while( fread ( &reg , sizeof(Terminal) , 1 ,  p) == 1){
         reg.mostrar();
-
+        cout << endl;
     }
 
     fclose(p);
 }
+
+void BuscarTerminal(int idTerminal){
+    int pos = 0;
+    Terminal reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idTerminal == reg.getIdTerminal()){
+        cout << reg.getNombreTerminal();
+        }
+    }
+}
+
+
+

@@ -13,6 +13,7 @@ Buque::Buque(){
     _activo = true;
 
 }
+
 void Buque::setIdBuque(int nuevoId){
     _idBuque = nuevoId;
 }
@@ -76,8 +77,10 @@ void Buque::mostrar(){
     cout<< "NUMERO DE ID BUQUE-: "<< _idBuque << endl;
     cout<< "NOMBRE DEL BUQUE---: "<< _nombreBuque << endl;
     cout<< "BANDERA------------: "<< _banderaBuque << endl;
-    cout<< "GIRO---------------: "<< _giro << endl << endl;
-    //buscarTerminal(_giro); ///  TODO: (borrar) Acá busca con el ID y trae (muestra) el nombre de la terminal...
+    // cout<< "GIRO---------------: "<< _giro << endl << endl;
+    cout<< "GIRO---------------: ";
+    buscarTerminal(_giro);
+    cout << endl;
 }
 
 bool Buque::grabarEnDisco(){
@@ -139,10 +142,34 @@ void ListadoBuques() {
 void buscarTerminal(int giro){
     int pos = 0;
     Terminal reg;
-
     while(reg.leerDeDisco(pos++)){
         if (giro == reg.getIdTerminal()){
         cout << reg.getNombreTerminal();
+        }
+    }
+}
+
+void BuscarBuque(int idBuque){
+    int pos = 0;
+    Buque reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idBuque == reg.getIdBuque()){
+        cout << reg.getnombreBuque();
+        cout << ", ";
+        BuscarTerminal(reg.getGiro());
+        return;
+        }
+    }
+}
+
+int BuscarIdTerminal(int idBuque){
+    int pos = 0;
+    Buque reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idBuque == reg.getIdBuque()){
+        return reg.getGiro();
         }
     }
 }

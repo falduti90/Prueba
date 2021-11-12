@@ -11,6 +11,7 @@ Horario::Horario(){
     _minutos = 0;
 
 }
+
 void Horario::setHora(int nuevaHora){
     _hora = nuevaHora;
 
@@ -72,3 +73,8 @@ bool Horario::grabarEnDisco(){
     return ok;
 
 }
+
+
+
+
+

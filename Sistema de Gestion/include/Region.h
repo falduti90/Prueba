@@ -7,9 +7,11 @@ class Region{
         Region();
         void    setIdRegion(int nuevoID);
         void    setNombreRegion(char *nuevoNombre);
+        void    setCodRegion(char *codRegion);
         void    setActivo(bool nuevoEstado);
         int     getIdRegion();
         char   *getNombreRegion();
+        char   *getCodRegion();
         bool    getActivo();
         void    cargar();
         void    mostrar();
@@ -20,6 +22,7 @@ class Region{
 
     private:
         int  _idRegion;
+        char _codRegion[10];
         char _nombreRegion[100];
         bool _activo;
 
@@ -30,6 +33,8 @@ class Region{
 //FUNCIONES GLOBALES
 
 void ListadoDeRegiones();
+void BuscarRegion(int);
 
 #endif // REGION_H
+
 

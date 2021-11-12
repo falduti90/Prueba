@@ -2,8 +2,7 @@
 #define TERMINAL_H
 #include "Domicilio.h"
 
-class Terminal
-{
+class Terminal {
     public:
         Terminal();
         void setIdTerminal(int nuevoID) ;
@@ -38,6 +37,6 @@ class Terminal
 //FUNCIONES GLOBALES
 
 void ListadoDeTerminales();
-
+void BuscarTerminal(int);
 
 #endif // TERMINAL_H

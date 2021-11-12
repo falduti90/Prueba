@@ -36,5 +36,7 @@ class Agencia
 //FUNCIONES GLOBALES
 
 void ListadoDeAgencias();
+void BuscarAgencia(int);
+
 
 #endif // AGENCIA_H

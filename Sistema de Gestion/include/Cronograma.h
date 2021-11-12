@@ -1,11 +1,12 @@
-#ifndef CRONOGRAMA_H
-#define CRONOGRAMA_H
-#include "Fecha.h"
+#ifndef CRONOGRAMA_H_INCLUDED
+#define CRONOGRAMA_H_INCLUDED
 #include <string.h>
+#include "Fecha.h"
+#include "BaseCalculo.h"
 
 class Cronograma {
     private:
-        char _idCronograma[100];
+        int _idCronograma[2];
         Fecha _fechaRecepcionCnt;
         Fecha _fechaETA;
         Fecha _fechaETD;
@@ -16,10 +17,12 @@ class Cronograma {
         int _idBuque;
         int _numeroViaje;
         bool _activo;
+        int _idRegion;
+        int _idGiro;
 
 
     public:
-        void setIdCronograma(char *idCronograma);
+        void setIdCronograma( int idAgencia , int idRegion , int idGiro );
         void setFechaRecepcionCnt(Fecha f);
         void setFechaETA(Fecha f);
         void setFechaETD(Fecha f);
@@ -27,12 +30,13 @@ class Cronograma {
         void setFechaCutoffDoc(Fecha f);
         void setNumSemana(int num);
         void setActivo(bool);
-        char *getIdCronograma();
+        int* getIdCronograma();
         Fecha getFechaRecepcionCnt();
         Fecha getFechaETA();
         Fecha getFechaETD();
         Fecha getFechaCutoffFisico();
         Fecha getFechaCutoffDoc();
+        bool operator ==(int *);
         int getNumSemana();
         bool getActivo();
         void cargar();
@@ -48,6 +52,7 @@ class Cronograma {
 
 void ListadoCronograma();
 Fecha BuscarEnCalendario(int, int, int);
-void BuscarBuque(int);
-void BuscarAgencia(int);
+int BuscarDiaSemana(Cronograma);
+int BuscarIdTerminal(int);
+
 

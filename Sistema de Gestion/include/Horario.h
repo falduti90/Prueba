@@ -3,18 +3,18 @@
 
 
 class Horario{
-public:
-    Horario();
-    void setHora(int nuevaHora);
-    void setMinutos(int nuevosMin);
-    int  getHora();
-    int  getMinutos();
-    void cargar();
-    void mostrar();
-    bool leerDeDisco(int pos);
-    bool grabarEnDisco();
+    public:
+        Horario();
+        void setHora(int nuevaHora);
+        void setMinutos(int nuevosMin);
+        int  getHora();
+        int  getMinutos();
+        void cargar();
+        void mostrar();
+        bool leerDeDisco(int pos);
+        bool grabarEnDisco();
 
-private:
+    private:
     int _hora,_minutos;
 };
 

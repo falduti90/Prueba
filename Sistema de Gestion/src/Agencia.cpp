@@ -11,7 +11,6 @@ Agencia::Agencia() {
     _disponibilidadMensual = 0;
     _gastosLocales = 0;
     _activo = true;
-
 }
 
 int  Agencia::setIdAgencia(int nuevoID) {
@@ -55,7 +54,7 @@ bool Agencia::getActivo() {
 }
 
 void Agencia::cargar() {
-    cout<< "INGRESE EL NUMERO DE ID DE LA AGENCIA: ";
+    cout<< "INGRESE EL ID DE LA AGENCIA: ";
     cin>> _idAgencia;
 
     cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
@@ -75,7 +74,6 @@ void Agencia::mostrar() {
     cout<< "NOMBRE AGENCIA        : "<< _nombreAgencia << endl;
     cout<< "DISPONIBILIDAD MENSUAL: "<< _disponibilidadMensual << endl;
     cout<< "GASTOS FIJOS          : "<< _gastosLocales << endl;
-
 }
 
 bool Agencia::leerDeDisco(int pos) {
@@ -92,6 +90,7 @@ bool Agencia::leerDeDisco(int pos) {
     return leyo;
 
 }
+
 bool Agencia::grabarEnDisco() {
 
     FILE *p;
@@ -134,3 +133,19 @@ void ListadoDeAgencias(){
 
     fclose(p);
 }
+
+
+void BuscarAgencia(int idAgencia){
+    int pos = 0;
+    Agencia reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idAgencia == reg.getIdAgencia()){
+        cout << reg.getNombreAgencia();
+        }
+    }
+}
+
+
+
+

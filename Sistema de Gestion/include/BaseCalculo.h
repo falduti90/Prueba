@@ -1,32 +1,33 @@
-#ifndef BASECALCULO_H                   ////NOSE SI PARA EL CASO DE ALGUNO TIENE QUE SER TIPO FECHA...
-#define BASECALCULO_H
-
-//Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6};
+#ifndef BASECALCULO_H_INCLUDED
+#define BASECALCULO_H_INCLUDED
 
 class BaseCalculo{
     public:
-        BaseCalculo();
-        //void setIdReferencia( );  ME PARECE QUE EN EL PROGRAMA NO ES NECESARIO
         void setidAgencia ( int idAgencia );
         void setidRegion ( int idRegion );
         void setidGiro ( int idGiro );
-        void setCalculoETA ( int diaSem );
+        void setDiaETA ( int diaSem );
         void setCalculoETD ( int sumaDias );
-        void setCalculoCTF ( int diaSem );
+        void setDiaCTF ( int diaSem );
         void setHoraCTF ( int hora );
-        void setCalculoCTD ( int diaSem );
+        void setDiaCTD ( int diaSem );
         void setHoraCTD ( int hora );
         void setCalculoRecepcionCnt ( int restaDias );
+        void setMismaSemana ( bool misma );
+        void setIdReferencia( int idAgencia , int idRegion , int idGiro );
         int getidAgencia ();
         int getidRegion ();
         int getidGiro ();
-        int getCalculoETA ();
+        int getDiaETA ();
         int getCalculoETD ();
-        int getCalculoCTF ();
+        int getDiaCTF ();
         int getHoraCTF ();
-        int getCalculoCTD ();
+        int getDiaCTD ();
         int getHoraCTD ();
         int getCalculoRecepcionCnt ();
+        bool getMismaSemana();
+        int *getIdReferencia();
+        void mostrarIdReferencia();
         void cargar();
         void mostrar();
         bool leerDeDisco(int pos);
@@ -34,18 +35,24 @@ class BaseCalculo{
         bool grabarEnDisco(int);
 
     private:
-        //char _idReferencia[100];   // TODO: se arma de la concat de  agencia region y giro. Hay q dejar el atributo?
+        int _idReferencia[2];
         int _idAgencia;
         int _idRegion;
-        int _idGiro;           // TODO : ¿Sale  DE agencia?
-        int _calculoETA;  // Día de la semana que es la ETA. Ejemplo: miercoles (INT Xq usa número de día)
-        int _calculoETD;       // Cantidad de días que se le suma a la ETA. Ejemplo: ETD = ETA + 2
-        int _calculoCTF;       // Cut off físico. Suele ser un día de la semana anterior a la ETA/ETD. Ejemplo: miercoles
-        int _horaCTF;
-        int _calculoCTD;       // Cut off documental. Suele ser un día de la semana anterior a la ETA/ETD, previo CTF. Ejemplo: miercoles
-        int _horaCTD;
-        int _calculoRecepcionCnt;       // Suele ser 5 a 7 días antes de la ETA o del COF, según agencia
-
+        int _idGiro;
+        int _diaETA;                         // Día de la semana que es la ETA. Ejemplo: miercoles = día número 3
+        int _calculoETD;                    // Cantidad de días que se le suma a la ETA. Ejemplo: ETD = ETA + 2
+        int _diaCTF;                       // Cut off físico. Es un día de la misma semana o semana anterior a la ETA/ETD. Ejemplo: miercoles (3)
+        int _horaCTF;                     // Valor fijo! (varia según día _idReferencia)
+        int _diaCTD;                     // Cut off documental. Es un día de la misma semana o semana anterior a la ETA/ETD, previo CTF o igual a CTF. Ejemplo: martes (2)
+        int _horaCTD;                   // Valor fijo! (varia según día _idReferencia)
+        int _calculoRecepcionCnt;      // Suelen ser 5/7 días antes de la ETA o del COF, según agencia.
+        bool _mismaSemana;            // Para verificar si cuenta los CTF/CTD en la misma semana o la semana anterior
+        bool _activo;
 };
 
-#endif // BASECALCULO_H
+#endif // BASECALCULO_H_INCLUDED
+
+
+//FUNCIONES GLOBALES
+void ListadoBaseCalculo() ;
+

@@ -6,7 +6,9 @@ using namespace std;
 #include "Fecha.h"
 
 Fecha::Fecha(){
-// TODO
+    setDia(1);
+    setMes(1);
+    setAnio(1111);
 }
 
 Fecha::Fecha(int dia, int mes, int anio){
@@ -89,6 +91,11 @@ int Fecha::getNumDia(){
 
 void Fecha::mostrar(){
 
+    if (getAnio() ==(1111)){
+    cout << "   ---   ";
+    return;
+    }
+
     if (getDia()< 10){
         if (getMes() < 10){
             cout << "0" << getDia() << "/0" << getMes() << "/" << getAnio();
@@ -136,7 +143,13 @@ bool Fecha::leerDeDisco(int pos){
 
 //-------------Sobrecarga de operadores-------------------------
 
-bool Fecha::operator ==(Fecha aux){
+bool Fecha::operator ==(int anio){
+ if(_anio!=anio)return false;
+ return true;
+ }
+
+
+ bool Fecha::operator ==(Fecha aux){
  if(_dia!=aux._dia)return false;
  if(_mes!=aux._mes)return false;
  if(_anio!=aux._anio)return false;
@@ -189,7 +202,6 @@ bool Fecha::operator >(Fecha aux){
     setDia(aux.getDia());
     setMes(aux.getMes());
     setAnio(aux.getAnio());
-    cout << "Sobrecarga";
     return true;
 
  }

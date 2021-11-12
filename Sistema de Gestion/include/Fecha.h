@@ -2,8 +2,7 @@
 #define FECHA_H
 
 
-class Fecha
-{
+class Fecha {
     public:
         Fecha();
         Fecha(int, int, int, int, int);
@@ -13,7 +12,7 @@ class Fecha
         void setAnio(int anio);
         void setNumeroSemana(int numSemana);
         void setNumDia (int numDia);
-        void setDiasDelmes ();
+        void setDiasDelmes();
         int getDia();
         int getMes();
         int getAnio();
@@ -25,6 +24,7 @@ class Fecha
         bool leerDeDisco(int);
         //----
         bool operator ==(Fecha);
+        bool operator ==(int);
         bool operator!=(Fecha);
         bool operator >(Fecha);
         bool operator <(Fecha);
