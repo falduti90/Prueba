@@ -22,6 +22,8 @@ class Cronograma {
 
 
     public:
+        Cronograma();
+        Cronograma(int,int,int);
         void setIdCronograma( int idAgencia , int idRegion , int idGiro );
         void setFechaRecepcionCnt(Fecha f);
         void setFechaETA(Fecha f);
@@ -52,7 +54,25 @@ class Cronograma {
 
 void ListadoCronograma();
 Fecha BuscarEnCalendario(int, int, int);
-int BuscarDiaSemana(Cronograma);
 int BuscarIdTerminal(int);
+/*int BuscarDiaETA(Cronograma);
+int BuscarCalculoETD(Cronograma);
+int BuscarDiaCTF(Cronograma);
+int BuscarDiaCTF(Cronograma);
+int BuscarCalculoRecepcionCnt(Cronograma);
+bool BuscarMismaSemana(Cronograma*/
+void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , bool *);
+
+
+//------------------------------------------------
+
+int CalcularDiasMes (int mes, int anio);
+int diaSemana(int ano,int mes);
+int DiasAnio (int a);
+void calendarioVacio(int m[][8], int tam);
+void mostrarCalendario(Fecha m[][8], int tam);
+void cargarCalendario();
+
+Fecha Calendario(int ns, int ds);   // Hay que pasarle nro de semana y dia de semana
 
 

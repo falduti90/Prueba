@@ -94,7 +94,7 @@ void Terminal::mostrar(){
 
 bool Terminal::leerDeDisco(int pos){
     FILE *p;
-    p = fopen("Terminal.dat","rb");
+    p = fopen("Terminales.dat","rb");
     if ( p == NULL ){
     cout << "No se pudo abrir el archivo";
     return false;
@@ -108,7 +108,7 @@ bool Terminal::leerDeDisco(int pos){
 
 bool Terminal::grabarEnDisco(){
     FILE *p;
-    p = fopen("Terminal.dat","ab");
+    p = fopen("Terminales.dat","ab");
     if ( p == NULL ){
         cout << "No se pudo abrir el archivo";
         return false;
@@ -133,7 +133,7 @@ void ListadoDeTerminales(){
 
     FILE *p;
     Terminal reg;
-    p = fopen("Terminal.dat","rb");
+    p = fopen("Terminales.dat","rb");
     if ( p == NULL ){
         cout << "No se pudo abrir el archivo";
     return ;
@@ -153,7 +153,8 @@ void BuscarTerminal(int idTerminal){
 
     while(reg.leerDeDisco(pos++)){
         if (idTerminal == reg.getIdTerminal()){
-        cout << reg.getNombreTerminal();
+        printf("%12.23s",reg.getNombreTerminal());
+        //cout << reg.getNombreTerminal();
         }
     }
 }

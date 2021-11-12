@@ -69,7 +69,7 @@ void Region::mostrar(){
 
 bool Region::leerDeDisco(int pos){
     FILE *p;
-    p = fopen("Region.dat","rb");
+    p = fopen("Regiones.dat","rb");
     if ( p == NULL ){
     cout << "No se pudo abrir el archivo";
     return false;
@@ -83,7 +83,7 @@ bool Region::leerDeDisco(int pos){
 
 bool Region::grabarEnDisco(){
     FILE *p;
-    p = fopen("Region.dat","ab");
+    p = fopen("Regiones.dat","ab");
     if ( p == NULL ) {
         cout << "No se pudo abrir el archivo";
         return false;
@@ -108,7 +108,7 @@ void ListadoDeRegiones(){
 
     FILE *p;
     Region reg;
-    p = fopen("Region.dat","rb");
+    p = fopen("Regiones.dat","rb");
     if ( p == NULL ){
         cout << "No se pudo abrir el archivo";
     return ;
@@ -128,7 +128,7 @@ void BuscarRegion(int idRegion){
 
     while(reg.leerDeDisco(pos++)){
         if (idRegion == reg.getIdRegion()){
-        cout << reg.getNombreRegion();
+        cout << reg.getCodRegion();
         }
     }
 }

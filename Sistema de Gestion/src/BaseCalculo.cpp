@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #include<clocale>
+#include <string.h>
 #include "BaseCalculo.h"
 #include "Cronograma.h"
 #include "Region.h"
@@ -126,13 +127,17 @@ void BaseCalculo::cargar(){
     cout << "ID TERMINAL DE GIRO: ";
     cin >> _idGiro;
 
-    cout << "SELECCIONE DIA DE SEMANA (Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6) DE: " << endl;
-    cout << "ETA: ";
+    cout << "DIAS DE SEMANA (Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6) " << endl;
+    cout << "DIA ETA: ";
     cin >> _diaETA;
-    cout << "CUT OFF FISICO: ";
+    cout << "DIA CUT OFF FISICO: ";
     cin >> _diaCTF;
-    cout << "CUT OFF DOCUMENTAL: ";
+    cout << "HORA CUT OFF FISICO: ";
+    cin >> _horaCTF;
+    cout << "DIA CUT OFF DOCUMENTAL: ";
     cin >> _diaCTD;
+    cout << "HORA CUT OFF DOCUMENTAL: ";
+    cin >> _horaCTD;
 
     cout << "CUANTOS DIAS SE SUMAN PARA EL CALCULO DE LA ETD: ";
     cin >> _calculoETD;
@@ -161,21 +166,20 @@ void BaseCalculo::mostrar(){
     cout << endl;
 
     cout << "DIA ETA: ";   //TODO: HACER UNA FUNCION PARA Q MUESTRE SEMANA
-    cout << _diaETA << endl;
+    diaSemana(_diaETA);
+    cout << endl;
     cout << "DIA CUT OFF FIS: ";
-    cout << _diaCTF << endl;
+    diaSemana(_diaCTF);
+    cout << " " << _horaCTF << " HRS" << endl;
     cout << "DIA CUT OFF DOC: ";
-    cout << _diaCTD << endl;
+    diaSemana(_diaCTD);
+    cout << " " << _horaCTD << " HRS" << endl;
 
     cout << "DIAS QUE SE SUMAN A ETD: " << _calculoETD << endl;
     cout << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoETD << endl;
 
     cout << "CUT OFF EN MISMA SEMANA QUE ETA: ";
     if ( _mismaSemana ) cout << "SI" << endl;
-    else cout << "NO" << endl;
-
-    cout << "REGISTRO ACTIVO : ";
-    if ( _activo ) cout << "SI" << endl;
     else cout << "NO" << endl;
 
 }
@@ -247,13 +251,16 @@ void ListadoBaseCalculo() {
     fclose(p);
 }
 
-/*
-enum diaSemana{
 
-Domingo  = 0,  Lunes = 1, Martes = 2, Miercoles = 3, Jueves  =4, Viernes = 5, Sabado = 6
+void diaSemana(int dia){
+
+//Domingo  = 0,  Lunes = 1, Martes = 2, Miercoles = 3, Jueves  =4, Viernes = 5, Sabado = 6
+ string d[] = {"Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"};
+
+ cout << d[dia];
 
 
-};*/
+}
 
 
 

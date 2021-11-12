@@ -7,6 +7,7 @@ class Fecha {
         Fecha();
         Fecha(int, int, int, int, int);
         Fecha(int, int, int);
+        void setCalendario(int dia, int mes, int anio);
         void setDia(int dia);
         void setMes(int mes);
         void setAnio(int anio);
@@ -28,8 +29,10 @@ class Fecha {
         bool operator!=(Fecha);
         bool operator >(Fecha);
         bool operator <(Fecha);
-        bool operator + (int);
-        bool operator - (int);
+        //bool operator + (int);
+        Fecha operator += (int aux);
+        Fecha operator -= (int aux);
+        //bool operator = (int);
         bool operator =(Fecha);
 
     private:

@@ -155,7 +155,8 @@ void BuscarBuque(int idBuque){
 
     while(reg.leerDeDisco(pos++)){
         if (idBuque == reg.getIdBuque()){
-        cout << reg.getnombreBuque();
+        printf("%-4.28s",reg.getnombreBuque());
+//        cout << reg.getnombreBuque();
         cout << ", ";
         BuscarTerminal(reg.getGiro());
         return;

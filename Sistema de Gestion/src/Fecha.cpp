@@ -28,6 +28,12 @@ Fecha::Fecha(int dia, int mes, int anio){
     setNumeroSemana(numSemana);
 }
 
+void Fecha::setCalendario(int dia, int mes, int anio){
+    setDia(dia);
+    setMes(mes);
+    setAnio(anio);
+}
+
 Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
     setDia(dia);
     setMes(mes);
@@ -181,22 +187,34 @@ bool Fecha::operator >(Fecha aux){
 
  }
 
+/*
+bool Fecha::operator + (int aux){
+    Fecha f(_dia+aux,_mes , _anio);
+    return f;
 
- bool Fecha::operator + (int aux){
-    if (_diasDelMes[_mes]<_dia){
-    _dia = _dia + aux;
-    }
-    return true;
+ }*/
+
+ Fecha Fecha::operator += (int aux){
+    Fecha f(_dia+aux,_mes , _anio);
+    return f;
 
  }
 
- bool Fecha::operator - (int aux){
+ Fecha Fecha::operator -= (int aux){
+    Fecha f(_dia-aux,_mes , _anio);
+    return f;
+
+ }
+
+
+ /*
+ bool Fecha::operator -= (int aux){
     if (_dia > 1){
     _dia = _dia - aux;
     }
     return true;
 
- }
+ }*/
 
  bool Fecha::operator = (Fecha aux){
     setDia(aux.getDia());
@@ -205,6 +223,29 @@ bool Fecha::operator >(Fecha aux){
     return true;
 
  }
+
+
+bool Bisiesto(int a){
+    if(a%4 != 0) return false;
+    else if(a%100 != 0) return true;
+    else if(a%400 != 0) return false;
+    return true;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -230,8 +271,7 @@ bool Fecha::operator >(Fecha aux){
     }
 
     fclose(p);
-}*/
-
+}
 
 //---------Calendario----------------
 
@@ -263,16 +303,16 @@ int listarCalendario(){
             //f.grabarEnDisco();
             f.mostrar();
             cout << "  ";
-            /*if (dia < 10){
-                f.mostrar();
-                cout << "   ";
-                //cout << dia << "   ";
-            }
-            else {
-                f.mostrar();
-                cout << "  ";
-                //cout << dia << "  ";
-            }*/
+//            if (dia < 10){
+//                f.mostrar();
+//                cout << "   ";
+//                //cout << dia << "   ";
+//            }
+//            else {
+//                f.mostrar();
+//                cout << "  ";
+//                //cout << dia << "  ";
+//            }
             z++;
             if (z % 7 == 0) {
                 cout << endl;
@@ -306,14 +346,7 @@ int CalcularDias (int mes, int a){
 
 }
 
-bool Bisiesto(int a){
-    if(a%4 != 0) return false;
-    else if(a%100 != 0) return true;
-    else if(a%400 != 0) return false;
-    return true;
 
-
-}
 
 int zeller(int ano,int mes, int dia){
     //Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6
@@ -330,7 +363,7 @@ int zeller(int ano,int mes, int dia){
 
 //-----------------------------------------
 
-
+*/
 
 
 

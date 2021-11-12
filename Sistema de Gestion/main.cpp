@@ -21,36 +21,54 @@
 using namespace std;
 
 
+
 int main(){
 
+/*
+for (int i = 0; i<2;i++){
+Cronograma r;
+r.cargar();
+r.grabarEnDisco();
+cout << endl;
+*/
 
-   //ListadoBuques();
-     cout << endl;
-    // ListadoCronograma();      -> rEVISAR
-      cout << endl;
-     //ListadoDeAgencias();
-     cout << endl;
-    // ListadoDeRegiones();
-      cout << endl;
-    // ListadoDeTerminales();
-    ListadoBaseCalculo();
+//ListadoDeRegiones();
+    ListadoCronograma();
+    //ListadoBaseCalculo();
+    cout << endl;
 
-      cout << endl;
-      cout << endl;
-
+    /*
     Cronograma c;
+    c.cargar();
+    cout << endl;
+    c.mostrar();*/
 
-    c.setIdCronograma ( 6 ,3 ,2 );
-
-    cout << BuscarDiaSemana(c);
-
+   // c.setIdCronograma ( 6 ,3 ,2 );
+    //cout << BuscarDiaSemana(c);
 
 
+   /* Fecha ETD, ETA, AUX;
+    int v = 0;
 
+    ETA = Calendario( 2 , 2);
+    //ETA.mostrar();
+
+    ETD = ETA-=2;
+
+    ETA.mostrar();
+    cout << endl;
+    ETD.mostrar();*/
 
     cout << endl << endl;
 
-    /*char prueba1[30] = "HOLA ";
+
+    cout << endl << endl;
+    cout << endl;
+
+    //MenuPrincipal();
+    return 0;
+}
+/*char prueba1[30] = "HOLA ";
     char prueba2[30] = "QUE ";
     char prueba3[30] = "TAL ";
     strcat(prueba1,(strcat(prueba2, prueba3)));
@@ -58,17 +76,6 @@ int main(){
     cout << prueba1;
 
     */
-
-
-    cout << endl;
-
-    //MenuPrincipal();
-    return 0;
-}
-
-
-
-
 
 
 
