@@ -38,6 +38,7 @@ class Buque{
 void ListadoBuques();
 void BuscarBuque(int);
 void buscarTerminal(int );
-int BuscarIdTerminal(int );
+int  BuscarIdTerminal(int );
+void ListarPorBuque();
 
 #endif // BUQUES_H

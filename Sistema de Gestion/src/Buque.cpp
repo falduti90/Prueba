@@ -56,6 +56,7 @@ bool Buque::getActivo(){
 
 void Buque::cargar(){
 
+    for(int x = 0; x < 76; x++){
     cout<< "INGRESE EL ID DEL BUQUE     : ";
     cin >> _idBuque;
 
@@ -70,6 +71,7 @@ void Buque::cargar(){
     cin >> _giro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
     cout << endl;
     grabarEnDisco();
+    }
 
 }
 

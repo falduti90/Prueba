@@ -4,6 +4,7 @@
 #include "FuncionesGlobales.h"
 #include "Usuario.h"
 #include "Fecha.h"
+#include "Buque.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
@@ -324,4 +325,21 @@ void cargarCadena(char *pal, int tam){
 	  }
   pal[i]='\0';
   fflush(stdin);
+}
+void ListarPorBuque(){
+    system("color 9F");
+    Buque reg;
+    int pos = 0, opc;
+    cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    while(reg.leerDeDisco(pos++)){
+        if(pos < 10){
+         cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
+        }
+        else{
+         cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
+        }
+    }
+    rlutil::locate(60,1);
+    cin >> opc;
 }
