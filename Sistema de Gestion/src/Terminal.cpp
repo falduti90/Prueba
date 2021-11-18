@@ -81,13 +81,13 @@ void Terminal::cargar(){
 }
 
 void Terminal::mostrar(){
-
-    cout << "\t\t\t\t" << "ID TERMINAL     : "<< _idTerminal << endl;
-    cout << "\t\t\t\t" << "NOMBRE TERMINAL : "<< _nombreTerminal << endl;
-    cout << "\t\t\t\t" << "EMAIL           : "<< _email << endl;
-    cout << "\t\t\t\t" << "GASTOS FIJOS    : "<< _gastosFijos << endl;
-    _direccion.mostrar();
-
+    if(_activo){
+        cout << "\t\t\t\t" << "ID TERMINAL     : "<< _idTerminal << endl;
+        cout << "\t\t\t\t" << "NOMBRE TERMINAL : "<< _nombreTerminal << endl;
+        cout << "\t\t\t\t" << "EMAIL           : "<< _email << endl;
+        cout << "\t\t\t\t" << "GASTOS FIJOS    : "<< _gastosFijos << endl;
+        _direccion.mostrar();
+    }
 }
 
 bool Terminal::leerDeDisco(int pos){
@@ -161,7 +161,7 @@ bool BorrarRegistroTerminal(){
     reg.leerDeDisco(pos);
     reg.setActivo(false);
 
-    if(ModificarEnDiscoTerminal(pos)){
+    if(reg. ModificarEnDiscoTerminal(pos)){
         cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
         cout << endl << endl,
         cout << "\t\t\t\t\t" << system("pause");
@@ -191,7 +191,7 @@ int TerminalAborrar(int idTerminal){
     return -1;
 }
 
-int ModificarEnDiscoTerminal(int pos){
+bool Terminal::ModificarEnDiscoTerminal(int pos){
 
     FILE *p;
     p = fopen("Terminales.dat","rb+");
@@ -199,7 +199,7 @@ int ModificarEnDiscoTerminal(int pos){
         return false;
     }
     fseek(p , sizeof(Terminal)*pos , 0 );
-    bool ok = fwrite(p, sizeof(Terminal), 1, p);
+    bool ok = fwrite(this, sizeof(Terminal), 1, p);
     fclose(p);
     return ok;
 }

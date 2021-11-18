@@ -79,7 +79,7 @@ void Buque::cargar(){
 
 void Buque::mostrar(){
     system("color 9F");
-    if(_activo == true){
+    if(_activo){
         cout << "\t\t\t\t\t" << "NUMERO DE ID BUQUE: "<< _idBuque << endl;
         cout << "\t\t\t\t\t" << "NOMBRE DEL BUQUE  : "<< _nombreBuque << endl;
         cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;

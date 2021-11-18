@@ -17,6 +17,7 @@ class Region{
         void    mostrar();
         bool    leerDeDisco(int pos);
         bool    grabarEnDisco();
+        bool ModificarEnDiscoRegion(int pos);
 //TODO  bool grabarEnDisco(int);
     private:
         int  _idRegion;
@@ -33,7 +34,6 @@ class Region{
 void BuscarRegion(int);
 bool BorrarRegistroRegion();
 int  RegionAborrar(int idRegion);
-int  ModificarEnDiscoRegion(int pos);
 
 #endif // REGION_H
 

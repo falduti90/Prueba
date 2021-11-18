@@ -74,10 +74,12 @@ void Agencia::cargar() {
 }
 
 void Agencia::mostrar() {
-    cout << "\t\t\t\t" << "ID AGENCIA            : " << _idAgencia << endl ;
-    cout << "\t\t\t\t" << "NOMBRE AGENCIA        : " << _nombreAgencia << endl;
-    cout << "\t\t\t\t" << "DISPONIBILIDAD MENSUAL: " << _disponibilidadMensual << endl;
-    cout << "\t\t\t\t" << "GASTOS FIJOS          : " << _gastosLocales << endl;
+    if(_activo == true){
+        cout << "\t\t\t\t" << "ID AGENCIA            : " << _idAgencia << endl ;
+        cout << "\t\t\t\t" << "NOMBRE AGENCIA        : " << _nombreAgencia << endl;
+        cout << "\t\t\t\t" << "DISPONIBILIDAD MENSUAL: " << _disponibilidadMensual << endl;
+        cout << "\t\t\t\t" << "GASTOS FIJOS          : " << _gastosLocales << endl;
+    }
 }
 
 bool Agencia::leerDeDisco(int pos) {
@@ -167,7 +169,7 @@ bool BorrarRegistroAgencia(){
     reg.leerDeDisco(pos);
     reg.setActivo(false);
 
-    if(ModificarEnDiscoAgencia(pos)){
+    if(reg.ModificarEnDiscoAgencia(pos)){
         cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
         cout << endl << endl,
         cout << "\t\t\t\t\t" << system("pause");
@@ -197,15 +199,15 @@ int AgenciaAborrar(int idAgencia){
     return -1;
 }
 
-int ModificarEnDiscoAgencia(int pos){
+bool Agencia::ModificarEnDiscoAgencia(int pos){
 
     FILE *p;
     p = fopen("Agencias.dat","rb+");
-    if ( p == NULL ){
+    if ( p == NULL){
         return false;
     }
     fseek(p , sizeof(Agencia)*pos , 0 );
-    bool ok = fwrite(p, sizeof(Agencia), 1, p);
+    bool ok = fwrite(this, sizeof(Agencia), 1, p);
     fclose(p);
     return ok;
 }

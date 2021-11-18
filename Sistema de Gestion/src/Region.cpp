@@ -62,14 +62,13 @@ void Region::cargar(){
     system("cls");
 }
 
-
 void Region::mostrar(){
-    cout<<  "\t\t\t\t\t" << "NUMERO DE ID     : "<< _idRegion << endl;
-    cout<<  "\t\t\t\t\t" << "CODIGO DE REGION : "<< _codRegion << endl;
-    cout<<  "\t\t\t\t\t" << "NOMBRE DE REGION : "<< _nombreRegion << endl;
-
+    if(_activo){
+        cout<<  "\t\t\t\t\t" << "NUMERO DE ID     : "<< _idRegion << endl;
+        cout<<  "\t\t\t\t\t" << "CODIGO DE REGION : "<< _codRegion << endl;
+        cout<<  "\t\t\t\t\t" << "NOMBRE DE REGION : "<< _nombreRegion << endl;
+    }
 }
-
 
 bool Region::leerDeDisco(int pos){
     FILE *p;
@@ -141,7 +140,7 @@ bool BorrarRegistroRegion(){
     reg.leerDeDisco(pos);
     reg.setActivo(false);
 
-    if(ModificarEnDiscoRegion(pos)){
+    if(reg.ModificarEnDiscoRegion(pos)){
         cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
         cout << endl << endl,
         cout << "\t\t\t\t\t" << system("pause");
@@ -171,7 +170,7 @@ int RegionAborrar(int idRegion){
     return -1;
 }
 
-int ModificarEnDiscoRegion(int pos){
+bool Region::ModificarEnDiscoRegion(int pos){
 
     FILE *p;
     p = fopen("Regiones.dat","rb+");
@@ -179,7 +178,7 @@ int ModificarEnDiscoRegion(int pos){
         return false;
     }
     fseek(p , sizeof(Region)*pos , 0 );
-    bool ok = fwrite(p, sizeof(Region), 1, p);
+    bool ok = fwrite(this, sizeof(Region), 1, p);
     fclose(p);
     return ok;
 }

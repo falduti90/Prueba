@@ -20,6 +20,7 @@ class Agencia
         void  mostrar();
         bool  leerDeDisco(int pos);
         bool  grabarEnDisco();
+        bool  ModificarEnDiscoAgencia(int pos);
 //TODO  bool  grabarEnDisco(int);
 
     private:
@@ -38,6 +39,5 @@ void BuscarAgencia(int);
 char *BuscarAgencia(int, bool);
 bool BorrarRegistroAgencia();
 int  AgenciaAborrar(int idAgencia);
-int  ModificarEnDiscoAgencia(int pos);
 
 #endif // AGENCIA_H

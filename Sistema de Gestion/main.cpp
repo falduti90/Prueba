@@ -64,8 +64,8 @@ cout << endl;
     ETA.mostrar();
     cout << endl;
     ETD.mostrar();*/
-    Consultas();
-    //MenuPrincipal();
+
+    MenuPrincipal();
 
     //ListarPorBuque();
     //EliminarRegistro();

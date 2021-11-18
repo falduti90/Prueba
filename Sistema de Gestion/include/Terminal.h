@@ -21,6 +21,7 @@ class Terminal {
         void mostrar();
         bool leerDeDisco(int pos);
         bool grabarEnDisco();
+        bool ModificarEnDiscoTerminal(int pos);
 //TODO  bool grabarEnDisco(int);
 
     private:
@@ -36,6 +37,5 @@ class Terminal {
 void BuscarTerminal(int);
 bool BorrarRegistroTerminal();
 int  TerminalAborrar(int idTerminal);
-int  ModificarEnDiscoTerminal(int pos);
 
 #endif // TERMINAL_H
