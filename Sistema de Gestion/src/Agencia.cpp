@@ -67,13 +67,17 @@ void Agencia::cargar() {
     cout<< "INGRESE LOS GASTOS LOCALES: ";
     cin>> _gastosLocales;
 
+    cout << endl << endl;
+    system("pause");
+    system("cls");
+
 }
 
 void Agencia::mostrar() {
-    cout << "\t\t\t\t\t" << "ID AGENCIA            : " << _idAgencia << endl ;
-    cout << "\t\t\t\t\t" << "NOMBRE AGENCIA        : " << _nombreAgencia << endl;
-    cout << "\t\t\t\t\t" << "DISPONIBILIDAD MENSUAL: " << _disponibilidadMensual << endl;
-    cout << "\t\t\t\t\t" << "GASTOS FIJOS          : " << _gastosLocales << endl;
+    cout << "\t\t\t\t" << "ID AGENCIA            : " << _idAgencia << endl ;
+    cout << "\t\t\t\t" << "NOMBRE AGENCIA        : " << _nombreAgencia << endl;
+    cout << "\t\t\t\t" << "DISPONIBILIDAD MENSUAL: " << _disponibilidadMensual << endl;
+    cout << "\t\t\t\t" << "GASTOS FIJOS          : " << _gastosLocales << endl;
 }
 
 bool Agencia::leerDeDisco(int pos) {
@@ -116,28 +120,6 @@ bool Agencia::grabarEnDisco() {
 //-------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeAgencias(){
-
-    FILE *p;
-    Agencia reg;
-    p = fopen("Agencias.dat","rb");
-    if( p == NULL ){
-        cout << "No se pudo abrir el archivo";
-    return ;
-    }
-    cout << "\t\t\t\t\t\t\tLISTADO DE AGENCIAS: " << endl << endl;
-    cout << "\t\t\t\t\t*******************************************" << endl << endl;
-    while ( fread( &reg , sizeof(Agencia) , 1 , p ) == 1 ){
-        reg.mostrar();
-        cout << "\t\t\t\t\t*******************************************" << endl;
-    }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-    fclose(p);
-}
-
-
 void BuscarAgencia(int idAgencia){
     int pos = 0;
     Agencia reg;
@@ -150,17 +132,82 @@ void BuscarAgencia(int idAgencia){
     }
 }
 
-char  *BuscarAgencia(int idAgencia, bool i){
+char *BuscarAgencia(int idAgencia, bool i){
     int pos = 0;
     Agencia reg;
 
     while(reg.leerDeDisco(pos++)){
         if (idAgencia == reg.getIdAgencia()){
-        return reg.getNombreAgencia();
+         return reg.getNombreAgencia();
 
         }
     }
 }
 
+
+bool BorrarRegistroAgencia(){
+
+    Agencia reg;
+    int IdAgencia, pos;
+
+    cout << "\t\t\t\t\t\t***ELIMINAR REGISTRO***" << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    cout << "\t\t\t\t\tINGRESE ID DE AGENCIA: ";
+    cin  >> IdAgencia;
+
+    pos = AgenciaAborrar(IdAgencia);
+
+    if(pos == -1){
+        cout << endl << endl,
+        cout << "\t\t\t\t\tNO EXISTE EL ID INGRESADO." << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return false;
+    }
+    reg.leerDeDisco(pos);
+    reg.setActivo(false);
+
+    if(ModificarEnDiscoAgencia(pos)){
+        cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
+        cout << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return true;
+    }
+    else{
+        cout << endl << endl;
+        cout << "\t\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO." << endl;
+        return false;
+    }
+    cout << endl << endl,
+    cout << "\t\t\t\t\t" << system("pause");
+}
+
+int AgenciaAborrar(int idAgencia){
+
+    Agencia reg;
+    int pos = 0;
+
+    while(reg.leerDeDisco(pos)){
+        if (idAgencia == reg.getIdAgencia()){
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+}
+
+int ModificarEnDiscoAgencia(int pos){
+
+    FILE *p;
+    p = fopen("Agencias.dat","rb+");
+    if ( p == NULL ){
+        return false;
+    }
+    fseek(p , sizeof(Agencia)*pos , 0 );
+    bool ok = fwrite(p, sizeof(Agencia), 1, p);
+    fclose(p);
+    return ok;
+}
 
 

@@ -56,6 +56,10 @@ void Region::cargar(){
 
     cout<< "INGRESE  EL NOMBRE DE LA REGION: ";
     cin.getline( _nombreRegion , 99 );
+
+    cout << endl << endl;
+    system("pause");
+    system("cls");
 }
 
 
@@ -104,27 +108,6 @@ bool Region::grabarEnDisco(){
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeRegiones(){
-
-    FILE *p;
-    Region reg;
-    p = fopen("Regiones.dat","rb");
-    if ( p == NULL ){
-        cout << "No se pudo abrir el archivo";
-    return ;
-    }
-    cout << "\t\t\t\t\t\t\tLISTADO DE REGIONES: " << endl << endl;
-    cout << "\t\t\t\t\t*******************************************" << endl << endl;
-    while ( fread ( &reg , sizeof(Region) , 1 , p ) == 1 ){
-        reg.mostrar();
-        cout << "\t\t\t\t\t*******************************************" << endl;
-    }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-    fclose(p);
-}
-
 void BuscarRegion(int idRegion){
     int pos = 0;
     Region reg;
@@ -134,5 +117,70 @@ void BuscarRegion(int idRegion){
         cout << reg.getCodRegion();
         }
     }
+}
+
+bool BorrarRegistroRegion(){
+
+    Region reg;
+    int IdRegion, pos;
+
+    cout << "\t\t\t\t\t\t***ELIMINAR REGISTRO***" << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    cout << "\t\t\t\t\tINGRESE ID DE REGION: ";
+    cin  >> IdRegion;
+
+    pos = RegionAborrar(IdRegion);
+
+    if(pos == -1){
+        cout << endl << endl,
+        cout << "\t\t\t\t\tNO EXISTE EL ID INGRESADO." << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return false;
+    }
+    reg.leerDeDisco(pos);
+    reg.setActivo(false);
+
+    if(ModificarEnDiscoRegion(pos)){
+        cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
+        cout << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return true;
+    }
+    else{
+        cout << endl << endl;
+        cout << "\t\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO." << endl;
+        return false;
+    }
+    cout << endl << endl,
+    cout << "\t\t\t\t\t" << system("pause");
+}
+
+int RegionAborrar(int idRegion){
+
+    Region reg;
+    int pos = 0;
+
+    while(reg.leerDeDisco(pos)){
+        if (idRegion == reg.getIdRegion()){
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+}
+
+int ModificarEnDiscoRegion(int pos){
+
+    FILE *p;
+    p = fopen("Regiones.dat","rb+");
+    if ( p == NULL ){
+        return false;
+    }
+    fseek(p , sizeof(Region)*pos , 0 );
+    bool ok = fwrite(p, sizeof(Region), 1, p);
+    fclose(p);
+    return ok;
 }
 

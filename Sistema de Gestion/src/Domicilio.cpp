@@ -48,9 +48,9 @@ void  Domicilio::cargar() {
 }
 
 void  Domicilio::mostrar() {
-    cout<< "DOMICILIO       : " << _calle << endl;
-    cout<< "ALTURA          : " << _altura << endl;
-    cout<< "LOCALIDAD       : " << _localidad << endl;
+    cout << "\t\t\t\t" << "DOMICILIO       : " << _calle << endl;
+    cout << "\t\t\t\t" << "ALTURA          : " << _altura << endl;
+    cout << "\t\t\t\t" << "LOCALIDAD       : " << _localidad << endl;
 }
 
 

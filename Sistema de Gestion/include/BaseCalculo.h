@@ -54,5 +54,4 @@ class BaseCalculo{
 
 
 //FUNCIONES GLOBALES
-void ListadoBaseCalculo() ;
 void diaSemana(int);

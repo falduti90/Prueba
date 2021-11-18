@@ -150,6 +150,9 @@ void BaseCalculo::cargar(){
     setIdReferencia( _idAgencia , _idRegion , _idGiro );
     _activo = true;
 
+    cout << endl << endl;
+    system("pause");
+    system("cls");
 }
 
 void BaseCalculo::mostrar(){
@@ -191,7 +194,6 @@ void BaseCalculo::mostrarIdReferencia(){
     cout << endl;
 }
 
-
 bool BaseCalculo::leerDeDisco(int pos){
     FILE *p;
     p = fopen("BasesCalculos.dat","rb");
@@ -229,31 +231,8 @@ bool BaseCalculo::grabarEnDisco(){
 bool BaseCalculo::grabarEnDisco(int){
     //TODO
 }
-
-
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
-void ListadoBaseCalculo() {
-
-    FILE *p;
-    BaseCalculo reg;
-    p=fopen("BasesCalculos.dat","rb");
-    if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
-    return ;
-    }
-    cout << "\t\t\t\t\t\t\tLISTADO DE BASE DE CALCULO: " << endl << endl;
-    cout << "\t\t\t\t\t*******************************************" << endl << endl;
-    while( fread ( &reg , sizeof(BaseCalculo) , 1 , p ) ){
-        reg.mostrar();
-        cout << "\t\t\t\t\t*******************************************" << endl;
-    }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-    fclose(p);
-}
-
 
 void diaSemana(int dia){
 
@@ -261,8 +240,6 @@ void diaSemana(int dia){
  string d[] = {"Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"};
 
  cout << d[dia];
-
-
 }
 
 

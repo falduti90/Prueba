@@ -157,7 +157,6 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
     cout << "NO SE ENCONTRO DATOS PARA CALCULAR ESA AGENCIA/REGION/TERMINAL" << endl << endl;
 }
 
-
 void Cronograma::mostrar(){
     printf("%3d",_numSemana);
     cout << ", ";
@@ -215,7 +214,7 @@ bool Cronograma::grabarEnDisco(){
 
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
-void ListadoCronograma() {
+void ListadoCronograma(){
 
 FILE *p;
    Cronograma reg;
@@ -232,6 +231,9 @@ FILE *p;
         reg.mostrar();
         cout << endl;
     }
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
 
     fclose(p);
 }

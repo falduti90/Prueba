@@ -30,8 +30,10 @@ class Region{
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeRegiones();
 void BuscarRegion(int);
+bool BorrarRegistroRegion();
+int  RegionAborrar(int idRegion);
+int  ModificarEnDiscoRegion(int pos);
 
 #endif // REGION_H
 

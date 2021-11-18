@@ -13,5 +13,7 @@ void exportar();
 int  buscarPosicionPorUsuario(char *usuario);
 void cargarCadena(char *pal, int tam);
 void ListarPorSemana();
+void pedirOpcionesDeFiltrado();
+void Listado(int buque, int numsemana , int idagencia , int idterminal);
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED

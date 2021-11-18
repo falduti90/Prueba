@@ -20,7 +20,7 @@ class Buque{
         void  mostrar();
         bool  leerDeDisco(int pos);
         bool  grabarEnDisco();
-//TODO  bool  grabarEnDisco(int);
+        bool  ModificarEnDiscoBuques(int pos);
     private:
         int   _idBuque;
         char  _nombreBuque[100];
@@ -31,11 +31,13 @@ class Buque{
 
 //FUNCIONES GLOBALES
 
-void ListadoBuques();
 void BuscarBuque(int);
 void buscarTerminal(int );
 void ListarPorBuque();
 void BuqueSeleccionado(int opc);
+bool BorrarRegistroBuque();
+int  BuqueAborrar(int idBuque);
+
 
 
 #endif // BUQUES_H

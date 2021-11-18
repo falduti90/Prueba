@@ -14,14 +14,16 @@
 #include "Usuario.h"
 #include "rlutil.h"
 #include "BaseCalculo.h"
+#include "EliminarRegistro.h"
 #include "Cronograma.h"
+#include "Listados.h"
 #include <sstream> //LibreRias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
 using namespace std;
 
-void Listado(int buque, int numsemana , int idagencia , int idterminal);
-void pedirOpcionesDeFiltrado();
+//void Listado(int buque, int numsemana , int idagencia , int idterminal);
+//void pedirOpcionesDeFiltrado();
 
 int main(){
 
@@ -36,7 +38,7 @@ cout << endl;
 //ListadoDeRegiones();
     //ListadoCronograma();
     //ListadoBaseCalculo();
-    pedirOpcionesDeFiltrado();
+    //pedirOpcionesDeFiltrado();
     /*
     Cronograma c;
     c.cargar();
@@ -62,8 +64,11 @@ cout << endl;
     ETA.mostrar();
     cout << endl;
     ETD.mostrar();*/
-
+    Consultas();
     //MenuPrincipal();
+
+    //ListarPorBuque();
+    //EliminarRegistro();
     return 0;
 }
 /*char prueba1[30] = "HOLA ";
@@ -78,14 +83,14 @@ cout << endl;
 
 
 //-------------Prueba-----------------
-
+/*
 void pedirOpcionesDeFiltrado(){
     int buque, semana, agencia, terminal;
     buque = semana = agencia = terminal = -1;
     bool op;
     cout << endl << "Seleccione opciones de filtrado: ";
     cout << endl << "-Buque";
-    cout << endl << "1- Filtrar 0-No filtrar";
+    cout << endl << "1- Filtrar 0-No filtrar: ";
     cin >> op;
     if (op){
 
@@ -221,7 +226,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
 
 }
-
+*/
 
 
 

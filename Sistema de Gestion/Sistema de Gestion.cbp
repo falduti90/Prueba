@@ -34,8 +34,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="CargarDatos.cpp" />
+		<Unit filename="CargarDatos.h" />
+		<Unit filename="EliminarRegistro.cpp" />
+		<Unit filename="EliminarRegistro.h" />
 		<Unit filename="FuncionesGlobales.cpp" />
 		<Unit filename="FuncionesGlobales.h" />
+		<Unit filename="Listados.cpp" />
+		<Unit filename="Listados.h" />
 		<Unit filename="include/Agencia.h" />
 		<Unit filename="include/BaseCalculo.h" />
 		<Unit filename="include/Buque.h" />

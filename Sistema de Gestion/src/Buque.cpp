@@ -57,7 +57,6 @@ bool Buque::getActivo(){
 
 void Buque::cargar(){
 
-    for(int x = 0; x < 76; x++){
     cout<< "INGRESE EL ID DEL BUQUE     : ";
     cin >> _idBuque;
 
@@ -72,19 +71,23 @@ void Buque::cargar(){
     cin >> _giro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
     cout << endl;
     grabarEnDisco();
-    }
+    cout << endl << endl;
+    system("pause");
+    system("cls");
 
 }
 
 void Buque::mostrar(){
     system("color 9F");
-    cout << "\t\t\t\t\t" << "NUMERO DE ID BUQUE: "<< _idBuque << endl;
-    cout << "\t\t\t\t\t" << "NOMBRE DEL BUQUE  : "<< _nombreBuque << endl;
-    cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;
-    // cout<< "GIRO---------------: "<< _giro << endl << endl;
-    cout << "\t\t\t\t\t" << "GIRO              : ";
-    buscarTerminal(_giro);
-    cout << endl;
+    if(_activo == true){
+        cout << "\t\t\t\t\t" << "NUMERO DE ID BUQUE: "<< _idBuque << endl;
+        cout << "\t\t\t\t\t" << "NOMBRE DEL BUQUE  : "<< _nombreBuque << endl;
+        cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;
+        // cout<< "GIRO---------------: "<< _giro << endl << endl;
+        cout << "\t\t\t\t\t" << "GIRO              : ";
+        buscarTerminal(_giro);
+        cout << endl;
+    }
 }
 
 bool Buque::grabarEnDisco(){
@@ -103,7 +106,6 @@ bool Buque::grabarEnDisco(){
         cout << "No se guardo el registro"<<endl;
     }
     fclose(p);
-
 }
 
 
@@ -125,27 +127,7 @@ bool Buque::leerDeDisco(int pos) {
 
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
-void ListadoBuques() {
 
-    FILE *p;
-    Buque reg;
-    p = fopen("Buques.dat","rb");
-    if ( p == NULL ){
-        cout << "No se pudo abrir el archivo";
-    return ;
-    }
-
-    cout << "\t\t\t\t\t\t\tLISTADO DE BUQUES: " << endl << endl;
-    cout << "\t\t\t\t*******************************************" << endl << endl;
-    while ( fread ( &reg , sizeof(Buque) , 1 , p ) == 1 ){
-        reg.mostrar();
-        cout << "\t\t\t\t\t*******************************************" << endl;
-    }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-    fclose(p);
-}
 
 void buscarTerminal(int giro){
     int pos = 0;
@@ -192,11 +174,13 @@ void ListarPorBuque(){
     cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
     cout << "\t\t\t\t*******************************************" << endl << endl;
     while(reg.leerDeDisco(pos++)){
-        if(pos < 10){
-         cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
-        }
-        else{
-         cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
+        if(reg.getActivo()){
+            if(pos < 10){
+            cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
+            }
+            else{
+            cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
+            }
         }
     }
     rlutil::locate(60,1);
@@ -217,4 +201,71 @@ void BuqueSeleccionado(int opc){
     cout << endl << endl;
     cout << "\t\t\t\t\t" << system("pause");
     system("cls");
+}
+
+bool BorrarRegistroBuque(){
+
+    Buque reg;
+    int IdBuque, pos;
+
+    cout << "\t\t\t\t\t\t***ELIMINAR REGISTRO***" << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    cout << "\t\t\t\t\tINGRESE ID DE BUQUE: ";
+    cin  >> IdBuque;
+
+    //ListadoBuques();
+
+    pos = BuqueAborrar(IdBuque);
+
+    if(pos == -1){
+        cout << endl << endl,
+        cout << "\t\t\t\t\tNO EXISTE EL ID INGRESADO." << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return false;
+    }
+    reg.leerDeDisco(pos);
+    reg.setActivo(false);
+
+    if(reg.ModificarEnDiscoBuques(pos)){
+        cout << "\t\t\t\t\t" << "REGISTRO BORRADO.";
+        cout << endl << endl,
+        cout << "\t\t\t\t\t" << system("pause");
+        system("cls");
+        return true;
+    }
+    else{
+        cout << endl << endl;
+        cout << "\t\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO." << endl;
+        return false;
+    }
+    cout << endl << endl,
+    cout << "\t\t\t\t\t" << system("pause");
+}
+
+int BuqueAborrar(int idBuque){
+
+    Buque reg;
+    int pos = 0;
+
+    while(reg.leerDeDisco(pos)){
+        if (idBuque == reg.getIdBuque()){
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+}
+
+bool Buque::ModificarEnDiscoBuques(int pos){
+
+    FILE *p;
+    p = fopen("Buques.dat","rb+");
+    if ( p == NULL ){
+        return false;
+    }
+    fseek(p, sizeof(Buque)*pos , 0 );
+    bool ok = fwrite(this, sizeof(Buque), 1, p);
+    fclose(p);
+    return ok;
 }

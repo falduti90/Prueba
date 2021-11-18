@@ -34,9 +34,10 @@ class Agencia
 //------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeAgencias();
 void BuscarAgencia(int);
 char *BuscarAgencia(int, bool);
-
+bool BorrarRegistroAgencia();
+int  AgenciaAborrar(int idAgencia);
+int  ModificarEnDiscoAgencia(int pos);
 
 #endif // AGENCIA_H

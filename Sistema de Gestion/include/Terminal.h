@@ -33,7 +33,9 @@ class Terminal {
 //------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
-void ListadoDeTerminales();
 void BuscarTerminal(int);
+bool BorrarRegistroTerminal();
+int  TerminalAborrar(int idTerminal);
+int  ModificarEnDiscoTerminal(int pos);
 
 #endif // TERMINAL_H
