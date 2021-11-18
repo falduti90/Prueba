@@ -41,6 +41,8 @@ class Cronograma {
         int getIdBuque(){return _idBuque;}
         int getNumSemana();
         bool getActivo();
+        int getIdAgencia(){return _idAgencia;}
+        int getIdGiro(){return _idGiro;}
         void cargar();
         void mostrar();
         bool leerDeDisco(int);

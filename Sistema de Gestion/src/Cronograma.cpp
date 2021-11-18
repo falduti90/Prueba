@@ -224,6 +224,9 @@ FILE *p;
         cout<< "No se pudo abrir el archivo";
     return ;
     }
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 
     while(fread(&reg,sizeof(Cronograma),1,p)==1){
         reg.mostrar();
