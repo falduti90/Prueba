@@ -70,10 +70,10 @@ void Agencia::cargar() {
 }
 
 void Agencia::mostrar() {
-    cout<< "ID AGENCIA            : "<< _idAgencia << endl ;
-    cout<< "NOMBRE AGENCIA        : "<< _nombreAgencia << endl;
-    cout<< "DISPONIBILIDAD MENSUAL: "<< _disponibilidadMensual << endl;
-    cout<< "GASTOS FIJOS          : "<< _gastosLocales << endl;
+    cout << "\t\t\t\t\t" << "ID AGENCIA            : " << _idAgencia << endl ;
+    cout << "\t\t\t\t\t" << "NOMBRE AGENCIA        : " << _nombreAgencia << endl;
+    cout << "\t\t\t\t\t" << "DISPONIBILIDAD MENSUAL: " << _disponibilidadMensual << endl;
+    cout << "\t\t\t\t\t" << "GASTOS FIJOS          : " << _gastosLocales << endl;
 }
 
 bool Agencia::leerDeDisco(int pos) {
@@ -125,12 +125,15 @@ void ListadoDeAgencias(){
         cout << "No se pudo abrir el archivo";
     return ;
     }
-
+    cout << "\t\t\t\t\t\t\tLISTADO DE AGENCIAS: " << endl << endl;
+    cout << "\t\t\t\t\t*******************************************" << endl << endl;
     while ( fread( &reg , sizeof(Agencia) , 1 , p ) == 1 ){
         reg.mostrar();
-        cout << endl;
+        cout << "\t\t\t\t\t*******************************************" << endl;
     }
-
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
     fclose(p);
 }
 

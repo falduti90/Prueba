@@ -42,6 +42,10 @@ cout << endl;
     cout << endl;
     c.mostrar();*/
 
+    BaseCalculo obj;
+
+    obj.cargar();
+
    // c.setIdCronograma ( 6 ,3 ,2 );
     //cout << BuscarDiaSemana(c);
 
@@ -58,9 +62,7 @@ cout << endl;
     cout << endl;
     ETD.mostrar();*/
 
-    MenuPrincipal();
-    //ListadoBuques();
-    //ListadoDeAgencias();
+    //MenuPrincipal();
     return 0;
 }
 /*char prueba1[30] = "HOLA ";

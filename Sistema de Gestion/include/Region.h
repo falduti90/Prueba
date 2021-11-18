@@ -18,8 +18,6 @@ class Region{
         bool    leerDeDisco(int pos);
         bool    grabarEnDisco();
 //TODO  bool grabarEnDisco(int);
-
-
     private:
         int  _idRegion;
         char _codRegion[10];

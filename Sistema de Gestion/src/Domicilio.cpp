@@ -53,57 +53,6 @@ void  Domicilio::mostrar() {
     cout<< "LOCALIDAD       : " << _localidad << endl;
 }
 
-bool  Domicilio::leerDeDisco(int pos) {
-    FILE *p;
-    p = fopen("Domicilios.dat","rb");
-    if ( p == NULL ){
-    cout << "No se pudo abrir el archivo";
-    return false;
-    }
-
-    fseek ( p , sizeof(Domicilio)*pos , 0 );
-    bool leyo = fread( this , sizeof(Domicilio) , 1 , p );
-    fclose(p);
-    return leyo;
-}
-
-bool  Domicilio::grabarEnDisco() {
-    FILE *p;
-    p = fopen("Domicilios.dat","ab");
-    if ( p == NULL )
-    {
-        cout << "No se pudo abrir el archivo";
-        return false;
-    }
-
-    bool ok=  fwrite(this,sizeof(Domicilio),1,p);
-    if (ok==true) {
-        cout << "Registro guardado"<<endl;
-    }
-    else {
-        cout << "No se guardo el registro"<<endl;
-    }
-    fclose(p);
-    return ok;
-}
 
 //-------------------------------------------------------------------------------------------------
-//FUNCIONES GLOBALES
 
-void ListadoDeDomicilios(){
-
-    FILE *p;
-    Domicilio reg;
-    p = fopen("Domicilios.dat","rb");
-    if ( p == NULL ){
-        cout << "No se pudo abrir el archivo";
-    return ;
-    }
-
-    while ( fread ( &reg , sizeof(Domicilio) , 1 , p ) ==1 ){
-        reg.mostrar();
-
-    }
-
-    fclose(p);
-}

@@ -13,21 +13,12 @@ class Domicilio{
         char* getLocalidad();
         void cargar();
         void mostrar();
-        bool leerDeDisco(int pos);
-        bool grabarEnDisco();
-//TODO  bool grabarEnDisco(int);
-
     private:
     char _calle[100];
     int  _altura;
     char _localidad[100];
 };
 
-
-//-------------------------------------------------------------------------------------------------
-//FUNCIONES GLOBALES
-
-void ListadoDeDomicilios();
 
 #endif // DOMICILIO_H
 

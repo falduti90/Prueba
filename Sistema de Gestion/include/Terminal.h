@@ -29,9 +29,6 @@ class Terminal {
         float _gastosFijos;
         Domicilio _direccion;
         bool _activo;
-
-
-
 };
 //------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES

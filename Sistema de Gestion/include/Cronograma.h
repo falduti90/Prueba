@@ -6,21 +6,19 @@
 
 class Cronograma {
     private:
-        int _idCronograma[2];
+        int   _idCronograma[2];
         Fecha _fechaRecepcionCnt;
         Fecha _fechaETA;
         Fecha _fechaETD;
         Fecha _fechacutoffFisico;
         Fecha _fechacutoffDoc;
-        int _numSemana;
-        int _idAgencia;
-        int _idBuque;
-        int _numeroViaje;
-        bool _activo;
-        int _idRegion;
-        int _idGiro;
-
-
+        int   _numSemana;
+        int   _idAgencia;
+        int   _idBuque;
+        int   _numeroViaje;
+        bool  _activo;
+        int   _idRegion;
+        int   _idGiro;
     public:
         Cronograma();
         Cronograma(int,int,int);
@@ -47,7 +45,6 @@ class Cronograma {
         void mostrar();
         bool leerDeDisco(int);
         bool grabarEnDisco();
-//TODO  bool grabarEnDisco(int);
 };
 
 #endif // CRONOGRAMA_H
@@ -55,14 +52,7 @@ class Cronograma {
 //FUNCIONES GLOBALES
 
 void ListadoCronograma();
-Fecha BuscarEnCalendario(int, int, int);
-int BuscarIdTerminal(int);
-/*int BuscarDiaETA(Cronograma);
-int BuscarCalculoETD(Cronograma);
-int BuscarDiaCTF(Cronograma);
-int BuscarDiaCTF(Cronograma);
-int BuscarCalculoRecepcionCnt(Cronograma);
-bool BuscarMismaSemana(Cronograma*/
+int  BuscarIdTerminal(int);
 void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , bool *);
 
 

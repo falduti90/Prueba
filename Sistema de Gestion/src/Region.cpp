@@ -60,9 +60,9 @@ void Region::cargar(){
 
 
 void Region::mostrar(){
-    cout<< "NUMERO DE ID     : "<< _idRegion << endl;
-    cout<< "CODIGO DE REGION : "<< _codRegion << endl;
-    cout<< "NOMBRE DE REGION : "<< _nombreRegion << endl;
+    cout<<  "\t\t\t\t\t" << "NUMERO DE ID     : "<< _idRegion << endl;
+    cout<<  "\t\t\t\t\t" << "CODIGO DE REGION : "<< _codRegion << endl;
+    cout<<  "\t\t\t\t\t" << "NOMBRE DE REGION : "<< _nombreRegion << endl;
 
 }
 
@@ -113,12 +113,15 @@ void ListadoDeRegiones(){
         cout << "No se pudo abrir el archivo";
     return ;
     }
-
+    cout << "\t\t\t\t\t\t\tLISTADO DE REGIONES: " << endl << endl;
+    cout << "\t\t\t\t\t*******************************************" << endl << endl;
     while ( fread ( &reg , sizeof(Region) , 1 , p ) == 1 ){
         reg.mostrar();
-        cout << endl;
+        cout << "\t\t\t\t\t*******************************************" << endl;
     }
-
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
     fclose(p);
 }
 

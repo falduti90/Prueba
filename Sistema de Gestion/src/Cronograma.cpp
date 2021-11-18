@@ -116,15 +116,6 @@ void Cronograma::cargar(){
 
     Cronograma c(_idAgencia , _idRegion , giro);      //// PROBAR CON 6 3 111111(DOS ES LA TERMINAL DE BUQUE 1) = 3
 
-    /*int diaETA = BuscarDiaETA(c);
-    int calculoETD = BuscarCalculoETD(c);
-    int diaCTF = BuscarDiaCTF(c);
-    //int horaCTF
-    int diaCTD = BuscarDiaCTF(c);
-    //int horaCTD;
-    int calculoRecepcionCnt = BuscarCalculoRecepcionCnt(c);
-    bool mismaSemana = BuscarMismaSemana(c);*/
-
     int diaETA , calculoETD , diaCTF , diaCTD , calculoRecepcionCnt;
     bool mismaSemana;
 
@@ -242,18 +233,6 @@ FILE *p;
     fclose(p);
 }
 
-
-Fecha BuscarEnCalendario(int dia, int mes, int anio){
-    Fecha f;
-    int i = 0;
-    while (f.leerDeDisco(i)){
-        if (f.getDia() == dia && f.getMes() == mes && f.getAnio() == anio){
-            return f;
-        }
-        i++;
-    }
-
-}
 /*
 int BuscarDiaETA( Cronograma crono ){
     int pos = 0;

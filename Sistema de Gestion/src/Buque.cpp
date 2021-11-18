@@ -5,6 +5,8 @@ using namespace std;
 #include <cstdio>
 #include "Buque.h"
 #include "Terminal.h"
+#include "Cronograma.h"
+#include "Rlutil.h"
 
 Buque::Buque(){
     _idBuque = 0;
@@ -75,11 +77,12 @@ void Buque::cargar(){
 }
 
 void Buque::mostrar(){
-    cout<< "NUMERO DE ID BUQUE-: "<< _idBuque << endl;
-    cout<< "NOMBRE DEL BUQUE---: "<< _nombreBuque << endl;
-    cout<< "BANDERA------------: "<< _banderaBuque << endl;
+    system("color 9F");
+    cout << "\t\t\t\t\t" << "NUMERO DE ID BUQUE: "<< _idBuque << endl;
+    cout << "\t\t\t\t\t" << "NOMBRE DEL BUQUE  : "<< _nombreBuque << endl;
+    cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;
     // cout<< "GIRO---------------: "<< _giro << endl << endl;
-    cout<< "GIRO---------------: ";
+    cout << "\t\t\t\t\t" << "GIRO              : ";
     buscarTerminal(_giro);
     cout << endl;
 }
@@ -132,11 +135,15 @@ void ListadoBuques() {
     return ;
     }
 
+    cout << "\t\t\t\t\t\t\tLISTADO DE BUQUES: " << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
     while ( fread ( &reg , sizeof(Buque) , 1 , p ) == 1 ){
         reg.mostrar();
-        cout << endl;
+        cout << "\t\t\t\t\t*******************************************" << endl;
     }
-
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
     fclose(p);
 }
 
@@ -174,4 +181,40 @@ int BuscarIdTerminal(int idBuque){
         return reg.getGiro();
         }
     }
+}
+
+void ListarPorBuque(){
+    system("color 9F");
+    Buque reg;
+    Cronograma obj;
+    int pos = 0, opc;
+    char *posicion;
+    cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    while(reg.leerDeDisco(pos++)){
+        if(pos < 10){
+         cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
+        }
+        else{
+         cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
+        }
+    }
+    rlutil::locate(60,1);
+    cin >> opc;
+    system("cls");
+    BuqueSeleccionado(opc);
+}
+
+void BuqueSeleccionado(int opc){
+    int pos = 0;
+    Cronograma reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (opc == reg.getIdBuque()){
+            reg.mostrar();
+        }
+    }
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
 }

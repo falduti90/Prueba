@@ -153,32 +153,32 @@ void BaseCalculo::cargar(){
 }
 
 void BaseCalculo::mostrar(){
-    cout << "REFERENCIA: ";
+    cout << "\t\t\t\t\t" << "REFERENCIA: ";
     mostrarIdReferencia();
-    cout << "AGENCIA: ";
+    cout <<  "\t\t\t\t\t" << "AGENCIA: ";
     BuscarAgencia(_idAgencia);
     cout  << endl;
-    cout << "REGION: ";
+    cout <<  "\t\t\t\t\t" << "REGION: ";
     BuscarRegion(_idRegion);
     cout << endl;
-    cout << "TERMINAL DE GIRO: ";
+    cout <<  "\t\t\t\t\t" << "TERMINAL DE GIRO: ";
     BuscarTerminal(_idGiro);
     cout << endl;
 
-    cout << "DIA ETA: ";   //TODO: HACER UNA FUNCION PARA Q MUESTRE SEMANA
+    cout <<  "\t\t\t\t\t" << "DIA ETA: ";   //TODO: HACER UNA FUNCION PARA Q MUESTRE SEMANA
     diaSemana(_diaETA);
     cout << endl;
-    cout << "DIA CUT OFF FIS: ";
+    cout <<  "\t\t\t\t\t" << "DIA CUT OFF FIS: ";
     diaSemana(_diaCTF);
     cout << " " << _horaCTF << " HRS" << endl;
-    cout << "DIA CUT OFF DOC: ";
+    cout <<  "\t\t\t\t\t" << "DIA CUT OFF DOC: ";
     diaSemana(_diaCTD);
     cout << " " << _horaCTD << " HRS" << endl;
 
-    cout << "DIAS QUE SE SUMAN A ETD: " << _calculoETD << endl;
-    cout << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoETD << endl;
+    cout <<  "\t\t\t\t\t" << "DIAS QUE SE SUMAN A ETD: " << _calculoETD << endl;
+    cout <<  "\t\t\t\t\t" << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoETD << endl;
 
-    cout << "CUT OFF EN MISMA SEMANA QUE ETA: ";
+    cout <<  "\t\t\t\t\t" << "CUT OFF EN MISMA SEMANA QUE ETA: ";
     if ( _mismaSemana ) cout << "SI" << endl;
     else cout << "NO" << endl;
 
@@ -242,12 +242,15 @@ void ListadoBaseCalculo() {
         cout<< "No se pudo abrir el archivo";
     return ;
     }
-
+    cout << "\t\t\t\t\t\t\tLISTADO DE BASE DE CALCULO: " << endl << endl;
+    cout << "\t\t\t\t\t*******************************************" << endl << endl;
     while( fread ( &reg , sizeof(BaseCalculo) , 1 , p ) ){
         reg.mostrar();
-        cout << endl;
+        cout << "\t\t\t\t\t*******************************************" << endl;
     }
-
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
     fclose(p);
 }
 

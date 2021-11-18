@@ -3,9 +3,13 @@
 #include "rlutil.h"
 #include "FuncionesGlobales.h"
 #include "Usuario.h"
+#include "Agencia.h"
 #include "Fecha.h"
 #include "Buque.h"
+#include "Region.h"
 #include "Cronograma.h"
+#include "Terminal.h"
+#include "BaseCalculo.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
@@ -210,15 +214,16 @@ void Consultas(){
 void DataEntry(){
     int opc;
 
+
     while(true){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        cout << "\t\t\t\t\t1 - LISTADO DE BUQUES. " << endl << endl;
+        cout << "\t\t\t\t\t1 - LISTADO DE BUQUES. " << endl;
         cout << "\t\t\t\t\t2 - LISTADO DE AGENCIAS. " << endl;
         cout << "\t\t\t\t\t3 - LISTADO DE REGIONES. " << endl;
-        cout << "\t\t\t\t\t3 - LISTADO DE TERMINALES. " << endl;
-        cout << "\t\t\t\t\t4 - LISTADO BASE DE CALCULO. " << endl << endl;
-        cout << "\t\t\t\t\t3 - CARGAR DATOS. " << endl << endl;
+        cout << "\t\t\t\t\t4 - LISTADO DE TERMINALES. " << endl;
+        cout << "\t\t\t\t\t5 - LISTADO BASE DE CALCULO. " << endl;
+        cout << "\t\t\t\t\t6 - CARGAR DATOS. " << endl << endl;
         cout << "\t\t\t\t\t0 - MENU PRINCIPAL." << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
@@ -227,14 +232,18 @@ void DataEntry(){
         system("cls");
 
         switch(opc){
-        //case 1 : LISTADO DE BUQUES
-        //    break;
-        //case 2 : LISTADO DE AGENCIAS
-        //    break;
-        //case 3 : CARGAR DATOS;
-        //    break;
-        case 0 : MenuPrincipal();
-              break;
+            case 1 : ListadoBuques();
+                break;
+            case 2 : ListadoDeAgencias();
+               break;
+            case 3 : ListadoDeRegiones();
+               break;
+            case 4 : ListadoDeTerminales();
+               break;
+            case 5 : ListadoBaseCalculo();
+               break;
+            case 0 : MenuPrincipal();
+               break;
         }
     }
     cout << "\t\t\t\t\t" << system("pause");
@@ -329,40 +338,7 @@ void cargarCadena(char *pal, int tam){
   pal[i]='\0';
   fflush(stdin);
 }
-void ListarPorBuque(){
-    system("color 9F");
-    Buque reg;
-    Cronograma obj;
-    int pos = 0, opc;
-    char *posicion;
-    cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
-    cout << "\t\t\t\t*******************************************" << endl << endl;
-    while(reg.leerDeDisco(pos++)){
-        if(pos < 10){
-         cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
-        }
-        else{
-         cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
-        }
-    }
-    rlutil::locate(60,1);
-    cin >> opc;
-    system("cls");
-    BuqueSeleccionado(opc);
-}
-void BuqueSeleccionado(int opc){
-    int pos = 0;
-    Cronograma reg;
 
-    while(reg.leerDeDisco(pos++)){
-        if (opc == reg.getIdBuque()){
-            reg.mostrar();
-        }
-    }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-}
 void ListarPorSemana(){
     system("color 9F");
     int pos = 0;
