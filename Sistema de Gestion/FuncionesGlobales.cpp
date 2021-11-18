@@ -496,10 +496,18 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
         if (v1 && v2 && v3 && v4 ){
             char s[20] = "hola";
+            char b = '/';
+            char cero = '0';
             //strcpy(s,BuscarAgencia(reg.getIdAgencia()));
             reg.mostrar();
             if (rta){
-                myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl; //Hat que ver la forma de concatenar las fechas y en vez de mostrar el ID crear funciones para que te devuelvar el nombre como vector de char. (el exportador acepta vectores de char)
+                if(reg.getFechaETA().getDia()<10){
+                    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << cero << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl;
+                }
+                else {
+                    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl; //Hat que ver la forma de concatenar las fechas y en vez de mostrar el ID crear funciones para que te devuelvar el nombre como vector de char. (el exportador acepta vectores de char)
+
+                }
             }
             cout << endl << endl;
         }

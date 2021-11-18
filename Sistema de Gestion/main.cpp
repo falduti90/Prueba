@@ -38,7 +38,8 @@ cout << endl;
 //ListadoDeRegiones();
     //ListadoCronograma();
     //ListadoBaseCalculo();
-    //pedirOpcionesDeFiltrado();
+    pedirOpcionesDeFiltrado();
+
     /*
     Cronograma c;
     c.cargar();
@@ -65,7 +66,7 @@ cout << endl;
     cout << endl;
     ETD.mostrar();*/
 
-    MenuPrincipal();
+    //MenuPrincipal();
 
     //ListarPorBuque();
     //EliminarRegistro();
