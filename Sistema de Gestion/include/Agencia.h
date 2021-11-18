@@ -36,6 +36,7 @@ class Agencia
 
 void ListadoDeAgencias();
 void BuscarAgencia(int);
+char *BuscarAgencia(int, bool);
 
 
 #endif // AGENCIA_H

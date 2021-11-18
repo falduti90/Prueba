@@ -150,6 +150,17 @@ void BuscarAgencia(int idAgencia){
     }
 }
 
+char  *BuscarAgencia(int idAgencia, bool i){
+    int pos = 0;
+    Agencia reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idAgencia == reg.getIdAgencia()){
+        return reg.getNombreAgencia();
+
+        }
+    }
+}
 
 
 

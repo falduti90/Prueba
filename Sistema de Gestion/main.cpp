@@ -173,6 +173,13 @@ void pedirOpcionesDeFiltrado(){
 }
 
 void Listado(int buque, int numsemana , int idagencia , int idterminal){
+        bool rta;
+        cout << endl << "Desea exportar el listado?: (1- Si 0-No)";
+        cin >> rta;
+
+            ofstream myFile;
+            myFile.open("listadoCronograma.csv");
+
 
 
         FILE *p;
@@ -198,8 +205,13 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
             cout << endl << "Esto devuelve terminal: " << v4;
 
             if (v1 && v2 && v3 && v4 ){
-
+                char s[20] = "hola";
+                //strcpy(s,BuscarAgencia(reg.getIdAgencia()));
                 reg.mostrar();
+                if (rta){
+                    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl; //Hat que ver la forma de concatenar las fechas y en vez de mostrar el ID crear funciones para que te devuelvar el nombre como vector de char. (el exportador acepta vectores de char)
+
+                }
                 cout << endl;
             }
         }
@@ -210,21 +222,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
 }
 
-bool validarBuque (int value){
 
-}
-
-bool validarNumSemana(int value){
-
-}
-
-bool validarAgencia(int value){
-
-}
-
-bool validarTerminal(int value){
-
-}
 
 
 
