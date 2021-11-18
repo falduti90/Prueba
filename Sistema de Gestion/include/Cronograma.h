@@ -31,6 +31,7 @@ class Cronograma {
         void setFechaCutoffFisico(Fecha f);
         void setFechaCutoffDoc(Fecha f);
         void setNumSemana(int num);
+        void setIdBuque(int id){_idBuque = id;}
         void setActivo(bool);
         int* getIdCronograma();
         Fecha getFechaRecepcionCnt();
@@ -39,6 +40,7 @@ class Cronograma {
         Fecha getFechaCutoffFisico();
         Fecha getFechaCutoffDoc();
         bool operator ==(int *);
+        int getIdBuque(){return _idBuque;}
         int getNumSemana();
         bool getActivo();
         void cargar();

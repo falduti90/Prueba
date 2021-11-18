@@ -6,6 +6,7 @@ using namespace std;
 #include "Agencia.h"
 #include "Fecha.h"
 #include "Region.h"
+#include "rlutil.h"
 #include <cstdlib>
 #include <cstring>
 #include <cstdio>
@@ -167,7 +168,6 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
 
 
 void Cronograma::mostrar(){
-
     printf("%3d",_numSemana);
     cout << ", ";
     BuscarAgencia(_idAgencia);

@@ -35,7 +35,7 @@ cout << endl;
 //ListadoDeRegiones();
     //ListadoCronograma();
     //ListadoBaseCalculo();
-
+    //ListarPorBuque();
     /*
     Cronograma c;
     c.cargar();
@@ -58,10 +58,9 @@ cout << endl;
     cout << endl;
     ETD.mostrar();*/
 
-    //MenuPrincipal();
-    Buque reg;
-    //reg.cargar();
-    ListarPorBuque();
+    MenuPrincipal();
+    //ListadoBuques();
+    //ListadoDeAgencias();
     return 0;
 }
 /*char prueba1[30] = "HOLA ";

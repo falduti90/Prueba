@@ -5,6 +5,7 @@
 #include "Usuario.h"
 #include "Fecha.h"
 #include "Buque.h"
+#include "Cronograma.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
@@ -26,7 +27,7 @@ int MenuPrincipal(){
         cout << "\t\t\t\t\t0 - SALIR. " << endl << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
-        rlutil::locate(60,11);
+        rlutil::locate(60,14);
         cin  >> opc;
 
         if(opc >= 0 && opc < 3){
@@ -86,17 +87,16 @@ void InicioSesion(){
             }
         }
         else{
-            intentos++;
             cout << endl << "\t\t\t\t\tUSUARIO NO ENCONTRADO!!!" << endl << endl;
             system("pause > nul");
             system("cls");
-
-            if(intentos == 3){
-                cout << endl << endl << "\t\t\t\t\tDEMASIADOS INTENTOS FALLIDOS!!!" << endl << endl;
-                cout << "\t\t\t\t\t" << system("pause > nul");
-                system("cls");
-                MenuPrincipal();
-            }
+        }
+        intentos++;
+        if(intentos == 3){
+            cout << endl << endl << "\t\t\t\t\tDEMASIADOS INTENTOS FALLIDOS!!!" << endl << endl;
+            cout << "\t\t\t\t\t" << system("pause > nul");
+            system("cls");
+            MenuPrincipal();
         }
     }while(intentos < 3);
 }
@@ -185,7 +185,7 @@ void Consultas(){
         cout << "\t\t\t\t\t0. MENU PRINCIPAL. " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
-        rlutil::locate(60,11);
+        rlutil::locate(60,13);
         cin  >> opc;
 
         if(opc >= 0 && opc < 3){
@@ -193,9 +193,9 @@ void Consultas(){
         }
 
         switch(opc){
-            case 1 : //LISTAR POR BUQUE
+            case 1 : ListarPorBuque();
                 break;
-            case 2 : //LISTAR POR SEMANA
+            case 2 : ListarPorSemana();
                 break;
             case 0 : MenuPrincipal();
                 break;
@@ -213,8 +213,11 @@ void DataEntry(){
     while(true){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        cout << "\t\t\t\t\t1 - LISTAR POR BUQUE. " << endl << endl;
-        cout << "\t\t\t\t\t2 - LISTAR POR AGENCIAS. " << endl << endl;
+        cout << "\t\t\t\t\t1 - LISTADO DE BUQUES. " << endl << endl;
+        cout << "\t\t\t\t\t2 - LISTADO DE AGENCIAS. " << endl;
+        cout << "\t\t\t\t\t3 - LISTADO DE REGIONES. " << endl;
+        cout << "\t\t\t\t\t3 - LISTADO DE TERMINALES. " << endl;
+        cout << "\t\t\t\t\t4 - LISTADO BASE DE CALCULO. " << endl << endl;
         cout << "\t\t\t\t\t3 - CARGAR DATOS. " << endl << endl;
         cout << "\t\t\t\t\t0 - MENU PRINCIPAL." << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
@@ -224,9 +227,9 @@ void DataEntry(){
         system("cls");
 
         switch(opc){
-        //case 1 : LISTAR POR BUQUE;
+        //case 1 : LISTADO DE BUQUES
         //    break;
-        //case 2 : LISTAR POR SEMANA;
+        //case 2 : LISTADO DE AGENCIAS
         //    break;
         //case 3 : CARGAR DATOS;
         //    break;
@@ -329,7 +332,9 @@ void cargarCadena(char *pal, int tam){
 void ListarPorBuque(){
     system("color 9F");
     Buque reg;
+    Cronograma obj;
     int pos = 0, opc;
+    char *posicion;
     cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
     cout << "\t\t\t\t*******************************************" << endl << endl;
     while(reg.leerDeDisco(pos++)){
@@ -342,4 +347,40 @@ void ListarPorBuque(){
     }
     rlutil::locate(60,1);
     cin >> opc;
+    system("cls");
+    BuqueSeleccionado(opc);
 }
+void BuqueSeleccionado(int opc){
+    int pos = 0;
+    Cronograma reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (opc == reg.getIdBuque()){
+            reg.mostrar();
+        }
+    }
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
+}
+void ListarPorSemana(){
+    system("color 9F");
+    int pos = 0;
+    Cronograma obj;
+    int opc;
+    cout << "\t\t\t\t\tSELECCIONE SEMANA: " << endl << endl;
+    cout << "\t\t\t\t*******************************************" << endl << endl;
+    rlutil::locate(61,1);
+    cin >> opc;
+
+    while(obj.leerDeDisco(pos++)){
+        if (opc == obj.getNumSemana()){
+                rlutil::locate(3,5);
+                obj.mostrar();
+                cout << endl << endl << endl;
+                cout << "\t\t\t\t\t" <<system("pause");
+                system("cls");
+        }
+    }
+}
+

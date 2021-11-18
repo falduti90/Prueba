@@ -12,5 +12,8 @@ void importar();
 void exportar();
 int  buscarPosicionPorUsuario(char *usuario);
 void cargarCadena(char *pal, int tam);
+void ListarPorBuque();
+void BuqueSeleccionado(int opc);
+void ListarPorSemana();
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED

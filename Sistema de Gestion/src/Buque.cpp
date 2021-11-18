@@ -11,7 +11,6 @@ Buque::Buque(){
      strcpy( _nombreBuque , "NO SE INGRESO NOMBRE" );
     strcpy( _banderaBuque , "NO SE INGRESO BANDERA" );
     _activo = true;
-
 }
 
 void Buque::setIdBuque(int nuevoId){
