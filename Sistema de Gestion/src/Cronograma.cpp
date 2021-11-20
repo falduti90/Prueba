@@ -137,7 +137,7 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
     BaseCalculo reg;
 
     while(reg.leerDeDisco(pos++)){
-       if (crono == reg.getIdReferencia()){
+       if (crono == reg.getIdBaseCalculo()){
         *diaETA =  reg.getDiaETA();
         *calculoETD =  reg.getCalculoETD();
         *diaCTF =  reg.getDiaCTF();

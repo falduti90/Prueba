@@ -27,8 +27,8 @@ using namespace std;
 
 int main(){
 
-//ListadoBaseCalculo();
-ListadoCronograma();
+ListadoBaseCalculo();
+//ListadoCronograma();
 /*
 for (int i = 0; i<2;i++){
 Cronograma r;

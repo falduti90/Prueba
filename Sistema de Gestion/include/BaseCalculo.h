@@ -13,7 +13,7 @@ class BaseCalculo{
         void setDiaCTD ( int diaSem );
         void setHoraCTD ( int hora );
         void setCalculoRecepcionCnt ( int restaDias );
-        void setIdReferencia( int idAgencia , int idRegion , int idGiro );
+        void setIdBaseCalculo( int idAgencia , int idRegion , int idGiro );
         int getidAgencia ();
         int getidRegion ();
         int getidGiro ();
@@ -24,8 +24,8 @@ class BaseCalculo{
         int getDiaCTD ();
         int getHoraCTD ();
         int getCalculoRecepcionCnt ();
-        int *getIdReferencia();
-        void mostrarIdReferencia();
+        int *getIdBaseCalculo();
+        void mostrarIdBaseCalculo();
         void cargar();
         void mostrar();
         bool leerDeDisco(int pos);
@@ -33,7 +33,7 @@ class BaseCalculo{
         bool grabarEnDisco(int);
 
     private:
-        int _idReferencia[2];
+        int _idBaseCalculo[2];
         int _idAgencia;
         int _idRegion;
         int _idGiro;

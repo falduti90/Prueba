@@ -52,10 +52,10 @@ void BaseCalculo::setCalculoRecepcionCnt ( int restaDias ){
 // TODO: Habría que ponerle validación para que no siga restando si terminó días de semana
 }
 
-void BaseCalculo::setIdReferencia( int idAgencia , int idRegion , int idGiro ){
-    _idReferencia[0] = idAgencia;
-    _idReferencia[1] = idRegion;
-    _idReferencia[2] = idGiro;
+void BaseCalculo::setIdBaseCalculo( int idAgencia , int idRegion , int idGiro ){
+    _idBaseCalculo[0] = idAgencia;
+    _idBaseCalculo[1] = idRegion;
+    _idBaseCalculo[2] = idGiro;
 }
 
 ////////////////// GETS ////////////////////////////
@@ -102,8 +102,8 @@ int BaseCalculo::getCalculoRecepcionCnt (){
     return _calculoRecepcionCnt;
 }
 
-int *BaseCalculo::getIdReferencia(){
-    return _idReferencia;
+int *BaseCalculo::getIdBaseCalculo(){
+    return _idBaseCalculo;
 }
 
 ////////////////// OTROS ////////////////////////////
@@ -134,14 +134,14 @@ void BaseCalculo::cargar(){
     cout << "CUANTOS DIAS SE RESTAN PARA EL CALCULO DE LA RECEPCION DEL CONTENEDOR: ";
     cin >> _calculoRecepcionCnt;
 
-    setIdReferencia( _idAgencia , _idRegion , _idGiro );
+    setIdBaseCalculo( _idAgencia , _idRegion , _idGiro );
     _activo = true;
 
 }
 
 void BaseCalculo::mostrar(){
     cout << "\t\t\t\t\t" << "REFERENCIA: ";
-    mostrarIdReferencia();
+    mostrarIdBaseCalculo();
     cout <<  "\t\t\t\t\t" << "AGENCIA: ";
     BuscarAgencia(_idAgencia);
     cout  << endl;
@@ -166,9 +166,9 @@ void BaseCalculo::mostrar(){
     cout <<  "\t\t\t\t\t" << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoRecepcionCnt << endl;
 }
 
-void BaseCalculo::mostrarIdReferencia(){
+void BaseCalculo::mostrarIdBaseCalculo(){
     for ( int i = 0 ; i < 3 ; i++){
-        cout << _idReferencia[i] << " ";
+        cout << _idBaseCalculo[i] << " ";
     }
     cout << endl;
 }
