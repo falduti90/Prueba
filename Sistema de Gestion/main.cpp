@@ -27,19 +27,37 @@ using namespace std;
 
 int main(){
 
-ListadoBaseCalculo();
-//ListadoCronograma();
-/*
-for (int i = 0; i<2;i++){
-Cronograma r;
+//ListadoDeAgencias();
+
+/*for (int i = 0; i<3;i++){
+BaseCalculo r;
 r.cargar();
 r.grabarEnDisco();
 cout << endl;
+}*/
+
+//ListadoBaseCalculo();
+
+ListadoCronograma();
+
+/*
+bool ok;
+for (int i = 0; i<6;i++){
+Cronograma r;
+r.cargar();
+cout << endl;
+r.mostrar();
+cout << endl;
+cout << endl <<"CALCULADO OK ? SI = 1, NO = 0";
+cout << endl;
+cin >> ok;
+cout << endl;
+if (ok) r.grabarEnDisco();
+cout << endl;
+cout << endl;
+}
 */
 
-//ListadoDeRegiones();
-    //ListadoCronograma();
-    //ListadoBaseCalculo();
     //pedirOpcionesDeFiltrado();
 
     /*
@@ -47,13 +65,6 @@ cout << endl;
     c.cargar();
     cout << endl;
     c.mostrar();*/
-
-    //BaseCalculo obj;
-
-    //obj.cargar();
-
-   // c.setIdCronograma ( 6 ,3 ,2 );
-    //cout << BuscarDiaSemana(c);
 
 
    /* Fecha ETD, ETA, AUX;

@@ -126,10 +126,11 @@ void Cronograma::cargar(){
     _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
     _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
     if ( _fechacutoffFisico >= _fechaETA ){
-        _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF);
-        _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
+        _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF); //Siempre tiene q ser anterior a la ETA y
     }
-
+    if ( _fechacutoffDoc >= _fechaETA || _fechacutoffDoc > _fechacutoffFisico ){  //Siempre tiene q ser anterior a la ETA y anterior o igual cut off físico
+    _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
+    }
 }
 
 void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *diaCTD , int *calculoRecepcionCnt){
