@@ -13,7 +13,6 @@ class BaseCalculo{
         void setDiaCTD ( int diaSem );
         void setHoraCTD ( int hora );
         void setCalculoRecepcionCnt ( int restaDias );
-        void setMismaSemana ( bool misma );
         void setIdReferencia( int idAgencia , int idRegion , int idGiro );
         int getidAgencia ();
         int getidRegion ();
@@ -25,7 +24,6 @@ class BaseCalculo{
         int getDiaCTD ();
         int getHoraCTD ();
         int getCalculoRecepcionCnt ();
-        bool getMismaSemana();
         int *getIdReferencia();
         void mostrarIdReferencia();
         void cargar();
@@ -45,8 +43,7 @@ class BaseCalculo{
         int _horaCTF;                     // Valor fijo! (varia según día _idReferencia)
         int _diaCTD;                     // Cut off documental. Es un día de la misma semana o semana anterior a la ETA/ETD, previo CTF o igual a CTF. Ejemplo: martes (2)
         int _horaCTD;                   // Valor fijo! (varia según día _idReferencia)
-        int _calculoRecepcionCnt;      // Suelen ser 5/7 días antes de la ETA o del COF, según agencia.
-        bool _mismaSemana;            // Para verificar si cuenta los CTF/CTD en la misma semana o la semana anterior
+        int _calculoRecepcionCnt;      // Suelen ser 5/7 días antes de la ETA
         bool _activo;
 };
 
@@ -55,3 +52,4 @@ class BaseCalculo{
 
 //FUNCIONES GLOBALES
 void diaSemana(int);
+

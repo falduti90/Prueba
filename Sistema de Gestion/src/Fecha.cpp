@@ -34,14 +34,14 @@ void Fecha::setCalendario(int dia, int mes, int anio){
     setAnio(anio);
 }
 
-Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
+/*Fecha::Fecha(int dia, int mes, int anio, int numSemana, int numDia){
     setDia(dia);
     setMes(mes);
     setAnio(anio);
     setNumeroSemana(numSemana);
     setNumDia(numDia);
 
-}
+}*/
 
 void Fecha::setDiasDelmes(){
     if (Bisiesto(_anio)){
@@ -152,10 +152,10 @@ bool Fecha::leerDeDisco(int pos){
 bool Fecha::operator ==(int anio){
  if(_anio!=anio)return false;
  return true;
- }
+}
 
 
- bool Fecha::operator ==(Fecha aux){
+bool Fecha::operator ==(Fecha aux){
  if(_dia!=aux._dia)return false;
  if(_mes!=aux._mes)return false;
  if(_anio!=aux._anio)return false;
@@ -167,12 +167,13 @@ bool Fecha::operator !=(Fecha aux){
  return true;
  }
 
-bool Fecha::operator >(Fecha aux){
+bool Fecha::operator >=(Fecha aux){
  if (_anio > aux._anio) return true;
- if (_anio < aux._anio) return false;
- if (_mes > aux._mes) return true;
- if (_mes < aux._mes) return false;
- if (_dia > aux._dia) return true;
+ //if (_anio < aux._anio) return false;
+ if (_mes  > aux._mes) return true;
+ //if (_mes  < aux._mes) return false;
+ if (_dia  > aux._dia) return true;
+ if (_dia == aux._dia) return true;
  return false;
 
  }
@@ -195,12 +196,33 @@ bool Fecha::operator + (int aux){
  }*/
 
  Fecha Fecha::operator += (int aux){
-    Fecha f(_dia+aux,_mes , _anio);
-    return f;
+     int diasMes = CalcularDiasMes (_mes, _anio);
 
+        if (_dia + aux > diasMes && _mes < 12) {
+            Fecha f(_dia+aux-diasMes , _mes+1 , _anio);
+            return f;
+        }
+        if (_dia + aux > diasMes && _mes == 12) {
+                Fecha f(_dia+aux-diasMes , 1 , _anio+1);
+                return f;
+        }
+
+        Fecha f(_dia+aux,_mes ,_anio);
+        return f;
  }
 
  Fecha Fecha::operator -= (int aux){
+     int diasMes = CalcularDiasMes (_mes-1, _anio);
+
+        if (_dia - aux < 1 && _mes > 1) {
+            Fecha f(diasMes+_dia - aux , _mes-1 , _anio);
+            return f;
+        }
+        if (_dia - aux < 1 && _mes == 1) {
+                Fecha f(diasMes +_dia - aux , 1 , _anio-1);
+                return f;
+        }
+
     Fecha f(_dia-aux,_mes , _anio);
     return f;
 
@@ -235,7 +257,42 @@ bool Bisiesto(int a){
 }
 
 
+int CalcularDiasMes (int mes, int a){
+    int meses31[7]{1,3,5,7,8,10,12};
 
+    for (int i = 0 ; i <= 7 ; i++){
+        if (mes == meses31[i]){
+        return 31;
+        }
+    }
+    if (mes == 2){
+        if (Bisiesto(a))return 29;
+        return 28;
+    }
+    return 30;
+}
+
+int DiasAnio (int a){
+
+    if (Bisiesto( a)) return 366;
+    return 365;
+}
+
+
+
+
+
+int diaSemana(int ano,int mes){   //zeller
+    //Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6
+
+    int a = (14-mes)/12;
+    int y = ano - a;
+    int m = mes + 12*a - 2;
+    int dia = 1;
+    int d = (dia + y+ y/4 - y/100 + y/400 + (31*m)/12)%7;
+    return d;
+
+}
 
 
 
@@ -364,6 +421,9 @@ int zeller(int ano,int mes, int dia){
 //-----------------------------------------
 
 */
+
+
+
 
 
 

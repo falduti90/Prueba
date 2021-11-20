@@ -55,14 +55,12 @@ class Cronograma {
 
 void ListadoCronograma();
 int  BuscarIdTerminal(int);
-void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , bool *);
+void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int *);
 
 
 //------------------------------------------------
 
-int CalcularDiasMes (int mes, int anio);
-int diaSemana(int ano,int mes);
-int DiasAnio (int a);
+
 void calendarioVacio(int m[][8], int tam);
 void mostrarCalendario(Fecha m[][8], int tam);
 void cargarCalendario();

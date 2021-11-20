@@ -27,6 +27,8 @@ using namespace std;
 
 int main(){
 
+//ListadoBaseCalculo();
+ListadoCronograma();
 /*
 for (int i = 0; i<2;i++){
 Cronograma r;
@@ -38,7 +40,7 @@ cout << endl;
 //ListadoDeRegiones();
     //ListadoCronograma();
     //ListadoBaseCalculo();
-    pedirOpcionesDeFiltrado();
+    //pedirOpcionesDeFiltrado();
 
     /*
     Cronograma c;

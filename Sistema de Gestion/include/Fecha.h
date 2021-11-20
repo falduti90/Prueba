@@ -27,7 +27,7 @@ class Fecha {
         bool operator ==(Fecha);
         bool operator ==(int);
         bool operator!=(Fecha);
-        bool operator >(Fecha);
+        bool operator >=(Fecha);
         bool operator <(Fecha);
         //bool operator + (int);
         Fecha operator += (int aux);
@@ -50,18 +50,27 @@ class Fecha {
 
 void ListadoDeFechas();
 
+int CalcularDiasMes (int mes, int anio);
+int diaSemana(int ano,int mes);
+int DiasAnio (int a);
+bool Bisiesto (int);
+
+
+/*
+
 //--------Calendario---------------
 int listarCalendario();
 int CalcularDias (int, int);
-bool Bisiesto (int);
 int zeller (int, int, int);
 //-----------------------------------
-
+*/
 
 
 
 
 
 #endif // FECHA_H
+
+
 
 

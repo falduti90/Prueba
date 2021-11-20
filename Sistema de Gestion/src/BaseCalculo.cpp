@@ -47,15 +47,9 @@ void BaseCalculo::setHoraCTD ( int hora ){
 }
 
 void BaseCalculo::setCalculoRecepcionCnt ( int restaDias ){
-//    _calculoRecepcionCnt = _calculoETA ||| _CalculoCOF - restaDias;
+    _calculoRecepcionCnt = restaDias;
 
 // TODO: Habría que ponerle validación para que no siga restando si terminó días de semana
-// también si depende de ETA o COF
-}
-
-void BaseCalculo::setMismaSemana ( bool misma ){
-    _mismaSemana = misma;
-
 }
 
 void BaseCalculo::setIdReferencia( int idAgencia , int idRegion , int idGiro ){
@@ -108,10 +102,6 @@ int BaseCalculo::getCalculoRecepcionCnt (){
     return _calculoRecepcionCnt;
 }
 
-bool BaseCalculo::getMismaSemana(){
-    return _mismaSemana;
-}
-
 int *BaseCalculo::getIdReferencia(){
     return _idReferencia;
 }
@@ -142,17 +132,11 @@ void BaseCalculo::cargar(){
     cout << "CUANTOS DIAS SE SUMAN PARA EL CALCULO DE LA ETD: ";
     cin >> _calculoETD;
     cout << "CUANTOS DIAS SE RESTAN PARA EL CALCULO DE LA RECEPCION DEL CONTENEDOR: ";
-    cin >> _calculoETD;
-
-    cout << "CUT OFF EN MISMA SEMANA QUE ETA (1-SI, 0-NO): ";
-    cin >> _mismaSemana;
+    cin >> _calculoRecepcionCnt;
 
     setIdReferencia( _idAgencia , _idRegion , _idGiro );
     _activo = true;
 
-    cout << endl << endl;
-    system("pause");
-    system("cls");
 }
 
 void BaseCalculo::mostrar(){
@@ -179,12 +163,7 @@ void BaseCalculo::mostrar(){
     cout << " " << _horaCTD << " HRS" << endl;
 
     cout <<  "\t\t\t\t\t" << "DIAS QUE SE SUMAN A ETD: " << _calculoETD << endl;
-    cout <<  "\t\t\t\t\t" << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoETD << endl;
-
-    cout <<  "\t\t\t\t\t" << "CUT OFF EN MISMA SEMANA QUE ETA: ";
-    if ( _mismaSemana ) cout << "SI" << endl;
-    else cout << "NO" << endl;
-
+    cout <<  "\t\t\t\t\t" << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoRecepcionCnt << endl;
 }
 
 void BaseCalculo::mostrarIdReferencia(){
@@ -193,6 +172,7 @@ void BaseCalculo::mostrarIdReferencia(){
     }
     cout << endl;
 }
+
 
 bool BaseCalculo::leerDeDisco(int pos){
     FILE *p;
@@ -231,6 +211,8 @@ bool BaseCalculo::grabarEnDisco(){
 bool BaseCalculo::grabarEnDisco(int){
     //TODO
 }
+
+
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 
@@ -240,12 +222,9 @@ void diaSemana(int dia){
  string d[] = {"Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"};
 
  cout << d[dia];
+
+
 }
-
-
-
-
-
 
 
 

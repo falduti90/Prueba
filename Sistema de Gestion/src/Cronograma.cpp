@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <ctime>
 #include "Cronograma.h"
 #include "BaseCalculo.h"
 #include "Buque.h"
@@ -95,6 +96,8 @@ bool Cronograma::getActivo(){
 }
 
 void Cronograma::cargar(){
+    int giro, diaETA , calculoETD , diaCTF , diaCTD , calculoRecepcionCnt;
+    diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
 
     cout << "INGRESE NUMERO DE SEMANA: ";
     cin >> _numSemana;
@@ -111,34 +114,25 @@ void Cronograma::cargar(){
     cout << "INGRESE NUMERO DE VIAJE: ";
     cin >> _numeroViaje;
 
-    int giro = BuscarIdTerminal(_idBuque);
+    giro = BuscarIdTerminal(_idBuque);
     setIdCronograma(_idAgencia , _idRegion , giro);
 
-    Cronograma c(_idAgencia , _idRegion , giro);      //// PROBAR CON 6 3 111111(DOS ES LA TERMINAL DE BUQUE 1) = 3
-
-    int diaETA , calculoETD , diaCTF , diaCTD , calculoRecepcionCnt;
-    bool mismaSemana;
-
-    diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
-
-    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &diaCTD , &calculoRecepcionCnt , &mismaSemana);
-
+    Cronograma c(_idAgencia , _idRegion , giro);
+    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &diaCTD , &calculoRecepcionCnt);
 
     _fechaETA            = Calendario(_numSemana , diaETA);
     _fechaETD            = _fechaETA+=calculoETD;
     _fechaRecepcionCnt   = _fechaETA-=calculoRecepcionCnt;
-    if (mismaSemana == true){
-        _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
-        _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
-    }
-    else {
+    _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
+    _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
+    if ( _fechacutoffFisico >= _fechaETA ){
         _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF);
         _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
     }
 
 }
 
-void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *diaCTD , int *calculoRecepcionCnt , bool *mismaSemana){
+void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *diaCTD , int *calculoRecepcionCnt){
     int pos = 0;
     BaseCalculo reg;
 
@@ -149,13 +143,13 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
         *diaCTF =  reg.getDiaCTF();
         *diaCTD =  reg.getDiaCTD();
         *calculoRecepcionCnt =  reg.getCalculoRecepcionCnt();
-        *mismaSemana =  reg.getMismaSemana();
         return;
        }
     }
 
     cout << "NO SE ENCONTRO DATOS PARA CALCULAR ESA AGENCIA/REGION/TERMINAL" << endl << endl;
 }
+
 
 void Cronograma::mostrar(){
     printf("%3d",_numSemana);
@@ -171,9 +165,9 @@ void Cronograma::mostrar(){
     cout << ", ";
     getFechaETD().mostrar();
     cout << ", ";
-    getFechaCutoffDoc().mostrar();
-    cout << ", ";
     getFechaCutoffFisico().mostrar();
+    cout << ", ";
+    getFechaCutoffDoc().mostrar();
     cout << ", ";
     getFechaRecepcionCnt().mostrar();
 }
@@ -214,7 +208,7 @@ bool Cronograma::grabarEnDisco(){
 
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
-void ListadoCronograma(){
+void ListadoCronograma() {
 
 FILE *p;
    Cronograma reg;
@@ -231,33 +225,12 @@ FILE *p;
         reg.mostrar();
         cout << endl;
     }
-    cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
 
     fclose(p);
 }
 
-/*
-int BuscarDiaETA( Cronograma crono ){
-    int pos = 0;
-    BaseCalculo reg;
-
-    while(reg.leerDeDisco(pos++)){
-       if (crono == reg.getIdReferencia())
-        return reg.getDiaETA();
-    }
-
-    cout << "NO SE ENCONTRO DATOS PARA CALCULAR ESA AGENCIA/REGION/TERMINAL" << endl;
-    return -1;
-}*/
-
-
-
 
 bool Cronograma::operator ==(int *aux){
-
-   // cout << "ESTOY ACA";
 
  if( _idCronograma[0] != aux[0] ) return false;
  if( _idCronograma[1] != aux[1] ) return false;
@@ -274,9 +247,14 @@ Fecha Calendario(int ns, int ds){
 
     Fecha c[54][8];
 
-    int anio = 2021;
+    time_t tSac = time(NULL);  // instante actual
+    struct tm* pt1 = localtime(&tSac);
+    tm tm2 = *gmtime(&tSac);   // deferencia y asignación
+    int anio = tm2.tm_year+1900;
+
     int nroSemana = 0;
     int mes = 1;
+
 
     while ( mes <= 12){
         int dia=1;
@@ -285,60 +263,34 @@ Fecha Calendario(int ns, int ds){
         while (dia <= diasMes){
             for (int j = 0 ; j < 7 ; j++){
                 if (dia == 1 && j == 0) j = z;
+                    if ( dia <= diasMes && mes <= 12){
                     c[nroSemana][j].setCalendario(dia,mes,anio);
                     dia++;
-                    if (dia > 32) c[nroSemana][j].setCalendario(1,1,1111);
-                    if ( j == ds && nroSemana == ns) return c[nroSemana][j];
+                    if ( j == ds && nroSemana == ns) {
+                            return c[nroSemana][j];
+                        }
+                } else{
 
-                }
+                dia++; }
+            }
             c[nroSemana][7].setNumeroSemana(nroSemana);
             nroSemana++;
         }
         if (dia-1 != diasMes) nroSemana--;
         mes++;
-    }
-   if (nroSemana < 53) c[nroSemana+1][7].setNumeroSemana(nroSemana+1);
-}
-
-
-
-
-int CalcularDiasMes (int mes, int a){
-    int meses31[7]{1,3,5,7,8,10,12};
-
-    for (int i = 0 ; i <= 7 ; i++){
-        if (mes == meses31[i]){
-        return 31;
+       if (mes > 12){
+            anio++ , mes = 1 , ns= 0 , nroSemana = 0;
         }
     }
-    if (mes == 2){
-        if (Bisiesto(a))return 29;
-        return 28;
-    }
-    return 30;
-}
-
-int DiasAnio (int a){
-
-    if (Bisiesto( a)) return 366;
-    return 365;
-}
-
-
-
-
-
-int diaSemana(int ano,int mes){   //zeller
-    //Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6
-
-    int a = (14-mes)/12;
-    int y = ano - a;
-    int m = mes + 12*a - 2;
-    int dia = 1;
-    int d = (dia + y+ y/4 - y/100 + y/400 + (31*m)/12)%7;
-    return d;
+   if (nroSemana < 53) c[nroSemana+1][7].setNumeroSemana(nroSemana+1);
 
 }
+
+
+
+
+
+
 
 void calendarioVacio(int m[][8], int tam){
     for (int i = 0 ; i < tam ; i++){
@@ -370,5 +322,6 @@ void mostrarCalendario(Fecha m[][8], int tam){
         }
     //}
 }
+
 
 
