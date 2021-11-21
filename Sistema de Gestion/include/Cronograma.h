@@ -11,7 +11,9 @@ class Cronograma {
         Fecha _fechaETA;
         Fecha _fechaETD;
         Fecha _fechacutoffFisico;
+        int   _horaCTF;
         Fecha _fechacutoffDoc;
+        int   _horaCTD;
         int   _numSemana;
         int   _idAgencia;
         int   _idBuque;
@@ -55,7 +57,7 @@ class Cronograma {
 
 void ListadoCronograma();
 int  BuscarIdTerminal(int);
-void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int *);
+void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , int*  , int *);
 
 
 

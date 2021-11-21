@@ -112,20 +112,30 @@ int *BaseCalculo::getIdBaseCalculo(){
 
 
 void BaseCalculo::cargar(){
-    do{
-        cout << "INGRESE ID AGENCIA: ";
-        cin >> _idAgencia;
-    } while ( !validaIdAgencia ( _idAgencia));
+    cout << "INGRESE ID AGENCIA: ";
+    cin >> _idAgencia;
+    while (!validaIdAgencia ( _idAgencia)){
+            cout << endl << "NO SE ENCUENTRA AGENCIA CON ESE ID." << endl << endl;
+            cout << "INGRESE ID AGENCIA: ";
+            cin >> _idAgencia;
+        }
 
-    do{
-        cout << "INGRESE ID REGION: ";
-        cin >> _idRegion;
-    } while ( !validaIdRegion ( _idRegion));
+    cout << "INGRESE ID REGION: ";
+    cin >> _idRegion;
+    while (!validaIdRegion ( _idRegion)){
+            cout << endl << "NO SE ENCUENTRA REGION CON ESE ID." << endl << endl;
+            cout << "INGRESE ID REGION: ";
+            cin >> _idRegion;
+    }
 
-    do{
-        cout << "ID TERMINAL DE GIRO: ";
-        cin >> _idTerminalDeGiro;
-    } while ( !validaIdTerminal (_idTerminalDeGiro));
+
+    cout << "INGRESE ID TERMINAL DE GIRO: ";
+    cin >> _idTerminalDeGiro;
+    while (!validaIdTerminal ( _idTerminalDeGiro)){
+            cout << endl << "NO SE ENCUENTRA TERMINAL CON ESE ID." << endl << endl;
+            cout << "INGRESE ID TERMINAL DE GIRO: ";
+            cin >> _idTerminalDeGiro;
+    }
 
 
     cout << "DIAS DE SEMANA: Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6 " << endl;

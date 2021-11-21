@@ -7,6 +7,7 @@ using namespace std;
 #include "Terminal.h"
 #include "Cronograma.h"
 #include "Rlutil.h"
+#include "../Validaciones.h"
 
 Buque::Buque(){
     _idBuque = 0;
@@ -56,21 +57,46 @@ bool Buque::getActivo(){
 }
 
 void Buque::cargar(){
+    bool aux;
 
-    cout<< "INGRESE EL ID DEL BUQUE     : ";
-    cin >> _idBuque;
+    do{
+        aux = false;
+        cout<< "INGRESE EL ID DEL BUQUE: ";
+        cin>> _idBuque;
+        if (validaIdBuque ( _idBuque)){
+                aux = true;
+                cout << endl << "YA EXISTE UN BUQUE CON ESE ID." << endl << endl;
+        }
+        if (_idBuque <= 0 ){
+                aux = true;
+                cout << endl << "HA INGRESADO UN ID INVALIDO." << endl << endl;
+        }
+    } while ( aux );
 
-    cout<< "INGRESE EL NOMBRE DEL BUQUE : ";
+
+    cout<< "INGRESE EL NOMBRE DEL BUQUE: ";
     cin.ignore();
-    cin.getline(_nombreBuque,99);
+    cin.getline( _nombreBuque , 99 );
+    while (validaNombreBuque ( _nombreBuque)){
+            cout << endl << "YA EXISTE UN BUQUE CON ESE NOMBRE." << endl << endl;
+            cout<< "INGRESE EL NOMBRE DEL BUQUE: ";
+            cin.getline( _nombreBuque , 99 );
+    }
+
 
     cout<< "INGRESE LA BANDERA DEL BUQUE: ";
     cin.getline(_banderaBuque,99);
 
-    cout<< "INGRESE ID TERMINAL DE GIRO : ";
-    cin >> _terminalDeGiro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
+    cout << "INGRESE ID TERMINAL DE GIRO: ";
+    cin >> _terminalDeGiro;
+    while (!validaIdTerminal ( _terminalDeGiro)){
+            cout << endl << "NO SE ENCUENTRA TERMINAL CON ESE ID." << endl << endl;
+            cout << "INGRESE ID TERMINAL DE GIRO: ";
+            cin >> _terminalDeGiro;
+    }
+
     cout << endl;
-    grabarEnDisco();
+   // grabarEnDisco();
     cout << endl << endl;
     system("pause");
     system("cls");
@@ -83,7 +109,6 @@ void Buque::mostrar(){
         cout << "\t\t\t\t\t" << "NUMERO DE ID BUQUE: "<< _idBuque << endl;
         cout << "\t\t\t\t\t" << "NOMBRE DEL BUQUE  : "<< _nombreBuque << endl;
         cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;
-        // cout<< "GIRO---------------: "<< _giro << endl << endl;
         cout << "\t\t\t\t\t" << "GIRO              : ";
         buscarTerminal(_terminalDeGiro);
         cout << endl;

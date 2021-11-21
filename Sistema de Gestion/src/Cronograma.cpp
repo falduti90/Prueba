@@ -107,7 +107,7 @@ bool Cronograma::operator ==(int *aux){
 
 
 void Cronograma::cargar(){
-    int giro, diaETA , calculoETD , diaCTF , diaCTD , calculoRecepcionCnt;
+    int giro, diaETA , calculoETD , diaCTF , horaCTF , diaCTD , horaCTD , calculoRecepcionCnt;
     diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
 
     do{
@@ -115,21 +115,29 @@ void Cronograma::cargar(){
         cin >> _numSemana;
     } while ( !validaNroSemana ( _numSemana));
 
-    do{
-        cout << "INGRESE ID AGENCIA: ";
-        cin >> _idAgencia;
-    } while ( !validaIdAgencia ( _idAgencia));
+    cout << "INGRESE ID AGENCIA: ";
+    cin >> _idAgencia;
+    while (!validaIdAgencia ( _idAgencia)){
+            cout << endl << "NO SE ENCUENTRA AGENCIA CON ESE ID." << endl << endl;
+            cout << "INGRESE ID AGENCIA: ";
+            cin >> _idAgencia;
+        }
 
-    do{
-        cout << "INGRESE ID REGION: ";
-        cin >> _idRegion;
-    } while ( !validaIdRegion ( _idRegion));
+    cout << "INGRESE ID REGION: ";
+    cin >> _idRegion;
+    while (!validaIdRegion ( _idRegion)){
+            cout << endl << "NO SE ENCUENTRA REGION CON ESE ID." << endl << endl;
+            cout << "INGRESE ID REGION: ";
+            cin >> _idRegion;
+    }
 
-    do{
-        cout << "INGRESE ID BUQUE: ";
-        cin >> _idBuque;
-    } while ( !validaIdBuque ( _idBuque));
-
+    cout << "INGRESE ID BUQUE: ";
+    cin >> _idBuque;
+    while (!validaIdBuque ( _idBuque)){
+            cout << endl << "NO SE ENCUENTRA BUQUE CON ESE ID." << endl << endl;
+            cout << "INGRESE ID BUQUE: ";
+            cin >> _idBuque;
+    }
 
     cout << "INGRESE NUMERO DE VIAJE: ";
     cin >> _viaje;
@@ -138,7 +146,7 @@ void Cronograma::cargar(){
     setIdCronograma(_idAgencia , _idRegion , giro);
 
     Cronograma c(_idAgencia , _idRegion , giro);
-    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &diaCTD , &calculoRecepcionCnt);
+    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &horaCTF , &diaCTD , &horaCTD , &calculoRecepcionCnt);
 
     _fechaETA            = Calendario(_numSemana , diaETA);
     _fechaETD            = _fechaETA+=calculoETD;
@@ -151,9 +159,11 @@ void Cronograma::cargar(){
     if ( _fechacutoffDoc >= _fechaETA || _fechacutoffDoc > _fechacutoffFisico ){  //Siempre tiene q ser anterior a la ETA y anterior o igual cut off físico
     _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
     }
+    _horaCTF             = horaCTF;
+    _horaCTD             = horaCTD;
 }
 
-void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *diaCTD , int *calculoRecepcionCnt){
+void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *horaCTF , int *diaCTD , int *horaCTD , int *calculoRecepcionCnt){
     int pos = 0;
     BaseCalculo reg;
 
@@ -162,13 +172,15 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
         *diaETA =  reg.getDiaETA();
         *calculoETD =  reg.getCalculoETD();
         *diaCTF =  reg.getDiaCTF();
+        *horaCTF = reg.getHoraCTF();
         *diaCTD =  reg.getDiaCTD();
+        *horaCTD = reg.getHoraCTD();
         *calculoRecepcionCnt =  reg.getCalculoRecepcionCnt();
         return;
        }
     }
 
-    cout << "NO SE ENCONTRO DATOS PARA CALCULAR ESA AGENCIA/REGION/TERMINAL" << endl << endl;
+    cout << endl << "COMBINACION DE AGENCIA/REGION/TERMINAL NO HALLADA EN BASE DE CALCULO." << endl << endl;
 }
 
 
@@ -187,9 +199,9 @@ void Cronograma::mostrar(){
     getFechaETD().mostrar();
     cout << ", ";
     getFechaCutoffFisico().mostrar();
-    cout << ", ";
+    cout << " " << _horaCTF << "Hrs, ";
     getFechaCutoffDoc().mostrar();
-    cout << ", ";
+    cout << " " << _horaCTD << "Hrs, ";
     getFechaRecepcionCnt().mostrar();
 }
 

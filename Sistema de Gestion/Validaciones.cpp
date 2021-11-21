@@ -26,7 +26,6 @@ bool validaIdAgencia( int idAg ){
     while (reg.leerDeDisco(pos++)){
         if ( reg.getIdAgencia() == idAg) return true;
     }
-    cout << endl << "NO SE ENCUENTRA AGENCIA CON ESE ID." << endl << endl;
     return false;
 }
 
@@ -36,7 +35,6 @@ bool validaIdRegion( int idReg ){
     while (reg.leerDeDisco(pos++)){
         if ( reg.getIdRegion() == idReg) return true;
     }
-    cout << endl << "NO SE ENCUENTRA REGION CON ESE ID." << endl << endl;
     return false;
 }
 
@@ -46,7 +44,6 @@ bool validaIdBuque( int idBuq ){
     while (reg.leerDeDisco(pos++)){
         if ( reg.getIdBuque() == idBuq) return true;
     }
-    cout << endl << "NO SE ENCUENTRA BUQUE CON ESE ID." << endl << endl;
     return false;
 }
 
@@ -57,7 +54,6 @@ bool validaIdTerminal( int idTerm ){
     while (reg.leerDeDisco(pos++)){
         if ( reg.getIdTerminal() == idTerm) return true;
     }
-    cout << endl << "NO SE ENCUENTRA TERMINAL CON ESE ID." << endl << endl;
     return false;
 }
 
@@ -87,3 +83,53 @@ bool validaPositivo( int num ){
     return true;
 }
 
+bool validaNombreAgencia ( char *nomAgencia){
+    Agencia reg;
+    int pos = 0;
+    while (reg.leerDeDisco(pos++)){
+        if (strcmp( reg.getNombreAgencia() , nomAgencia ) == 0) return true;
+        }
+
+    return false;
+}
+
+bool validaNombreBuque ( char *nomBuque){
+    Buque reg;
+    int pos = 0;
+    while (reg.leerDeDisco(pos++)){
+        if (strcmp( reg.getnombreBuque() , nomBuque ) == 0) return true;
+        }
+
+    return false;
+}
+
+bool validaCodigoRegion ( char *codRegion){
+    Region reg;
+    int pos = 0;
+    while (reg.leerDeDisco(pos++)){
+        if (strcmp( reg.getCodRegion() , codRegion ) == 0) return true;
+        }
+
+    return false;
+}
+
+
+bool validaNombreRegion ( char *nomRegion){
+    Region reg;
+    int pos = 0;
+    while (reg.leerDeDisco(pos++)){
+        if (strcmp( reg.getNombreRegion() , nomRegion ) == 0) return true;
+        }
+
+    return false;
+}
+
+bool validaNombreTerminal ( char *nomTerm){
+    Terminal reg;
+    int pos = 0;
+    while (reg.leerDeDisco(pos++)){
+        if (strcmp( reg.getNombreTerminal() , nomTerm ) == 0) return true;
+        }
+
+    return false;
+}

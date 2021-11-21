@@ -27,27 +27,26 @@ using namespace std;
 
 int main(){
 
-//ListadoDeAgencias();
-
-/*for (int i = 0; i<3;i++){
-BaseCalculo r;
-r.cargar();
-r.grabarEnDisco();
-cout << endl;
-}*/
-
-//ListadoBaseCalculo();
-
-BaseCalculo r;
-r.cargar();
-cout << endl;
-r.mostrar();
+ListadoCronograma();
 
 
 
 /*
+
+    //pedirOpcionesDeFiltrado();
+
+
+
+    //MenuPrincipal();
+
+    //ListarPorBuque();
+    //EliminarRegistro();
+
+*/
+
+/* PARA CARGAR CRONOGRAMA:
 bool ok;
-for (int i = 0; i<6;i++){
+for (int i = 0; i<27;i++){
 Cronograma r;
 r.cargar();
 cout << endl;
@@ -60,34 +59,9 @@ cout << endl;
 if (ok) r.grabarEnDisco();
 cout << endl;
 cout << endl;
-}
-*/
-
-    //pedirOpcionesDeFiltrado();
-
-    /*
-    Cronograma c;
-    c.cargar();
-    cout << endl;
-    c.mostrar();*/
+}*/
 
 
-   /* Fecha ETD, ETA, AUX;
-    int v = 0;
-
-    ETA = Calendario( 2 , 2);
-    //ETA.mostrar();
-
-    ETD = ETA-=2;
-
-    ETA.mostrar();
-    cout << endl;
-    ETD.mostrar();*/
-
-    //MenuPrincipal();
-
-    //ListarPorBuque();
-    //EliminarRegistro();
     return 0;
 }
 /*char prueba1[30] = "HOLA ";

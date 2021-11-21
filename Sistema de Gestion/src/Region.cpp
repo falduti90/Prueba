@@ -4,6 +4,7 @@ using namespace std;
 #include <cstring>
 #include <cstdio>
 #include "Region.h"
+#include "../Validaciones.h"
 
 Region::Region(){
     _idRegion = 0;
@@ -46,16 +47,39 @@ bool Region::getActivo(){
 }
 
 void Region::cargar(){
+    bool aux;
 
-    cout<< "INGRESE EL NUMERO DE ID REGION: ";
-    cin >> _idRegion;
+    do{
+        aux = false;
+        cout<< "INGRESE EL ID DE LA REGION: ";
+        cin>> _idRegion;
+        if (validaIdRegion ( _idRegion)){
+                aux = true;
+                cout << endl << "YA EXISTE UNA REGION CON ESE ID." << endl << endl;
+        }
+        if (_idRegion <= 0 ){
+                aux = true;
+                cout << endl << "HA INGRESADO UN ID INVALIDO." << endl << endl;
+        }
+    } while ( aux );
 
-    cout<< "INGRESE EL CODIGO DE LA REGION: ";  //TODO : Validación para que no igrese mas de 9 letras
+
+    cout<< "INGRESE EL CODIGO DE LA REGION: ";  //TODO : Validación para que no igrese mas de 9 letras?
     cin.ignore();
     cin.getline( _codRegion , 9 );
+    while (validaCodigoRegion ( _codRegion)){
+            cout << endl << "YA EXISTE UNA REGION CON ESE CODIGO." << endl << endl;
+            cout<< "INGRESE EL CODIGO DE LA REGION: ";
+            cin.getline( _codRegion , 99 );
+    }
 
-    cout<< "INGRESE  EL NOMBRE DE LA REGION: ";
+    cout<< "INGRESE EL NOMBRE DE LA REGION: ";
     cin.getline( _nombreRegion , 99 );
+    while (validaNombreRegion ( _nombreRegion)){
+            cout << endl << "YA EXISTE UNA REGION CON ESE NOMBRE." << endl << endl;
+            cout<< "INGRESE EL NOMBRE DE LA REGION: ";
+            cin.getline( _nombreRegion , 99 );
+    }
 
     cout << endl << endl;
     system("pause");

@@ -5,6 +5,7 @@ using namespace std;
 #include <cstdio>
 #include "Terminal.h"
 #include "Domicilio.h"
+#include "../Validaciones.h"
 
 
 Terminal::Terminal(){
@@ -63,18 +64,38 @@ float Terminal::getGastosFijos(){
 }
 
 void Terminal::cargar(){
-    cout<< "INGRESE EL ID DE LA TERMINAL    : ";
-    cin >> _idTerminal;
+    bool aux;
+
+    do{
+        aux = false;
+        cout<< "INGRESE EL ID DE LA TERMINAL: ";
+        cin>> _idTerminal;
+        if (validaIdTerminal ( _idTerminal)){
+                aux = true;
+                cout << endl << "YA EXISTE UNA TERMINAL CON ESE ID." << endl << endl;
+        }
+        if (_idTerminal <= 0 ){
+                aux = true;
+                cout << endl << "HA INGRESADO UN ID INVALIDO." << endl << endl;
+        }
+    } while ( aux );
 
     cout<< "INGRESE EL NOMBRE DE LA TERMINAL: ";
     cin.ignore();
     cin.getline( _nombreTerminal , 99 );
+    while (validaNombreTerminal ( _nombreTerminal)){
+            cout << endl << "YA EXISTE UNA TERMINAL CON ESE NOMBRE." << endl << endl;
+            cout<< "INGRESE EL NOMBRE DE LA TERMINAL: ";
+            cin.getline( _nombreTerminal , 99 );
+    }
 
     cout<< "INGRESE EL EMAIL DE LA TERMINAL : ";
     cin.getline( _email , 99 );
 
-    cout<< "INGRESE EL GASTO FIJO           : ";
-    cin >> _gastosFijos;
+    do{
+        cout<< "INGRESE EL GASTO FIJO           : ";
+        cin >> _gastosFijos;
+    } while ( !validaPositivo ( _gastosFijos));
 
     _direccion.cargar();
 

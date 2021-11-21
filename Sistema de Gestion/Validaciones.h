@@ -2,16 +2,19 @@
 #define VALIDACIONES_H_INCLUDED
 
 
-bool validaNroSemana( int ns );
-bool validaIdAgencia( int idAg );
-bool validaIdRegion( int idReg );
-bool validaIdBuque( int idBuq );
-bool validaIdTerminal( int idTerm );
-bool validaDiaSemana( int ds );
-bool validaHora( int hr );
-bool validaPositivo( int num );
-
-
+bool validaNroSemana( int );
+bool validaIdAgencia( int );
+bool validaIdRegion( int );
+bool validaIdBuque( int );
+bool validaIdTerminal( int );
+bool validaDiaSemana( int );
+bool validaHora( int );
+bool validaPositivo( int );
+bool validaNombreAgencia ( char *);
+bool validaNombreBuque ( char *);
+bool validaCodigoRegion ( char *);
+bool validaNombreRegion ( char *);
+bool validaNombreTerminal ( char *);
 
 
 

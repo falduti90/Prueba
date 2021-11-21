@@ -4,6 +4,7 @@ using namespace std;
 #include <cstring>
 #include <cstdio>
 #include "Domicilio.h"
+#include "../Validaciones.h"
 
 Domicilio::Domicilio() {
     _altura = 0;
@@ -40,8 +41,11 @@ void  Domicilio::cargar() {
     cout<<"INGRESE EL NOMBRE DE CALLE:  ";
     cin.ignore();
     cin.getline( _calle , 99 );
-    cout<<"INGRESE LA ALTURA DE LA CALLE:  ";
-    cin>> _altura;
+    do{
+        cout<<"INGRESE LA ALTURA DE LA CALLE:  ";
+        cin>> _altura;
+    } while ( !validaPositivo ( _altura));
+
     cout<<"INGRESE LA LOCALIDAD:  ";
     cin.ignore();
     cin.getline( _localidad , 99 );

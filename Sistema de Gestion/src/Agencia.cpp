@@ -4,6 +4,7 @@ using namespace std;
 #include <cstring>
 #include <cstdio>
 #include "Agencia.h"
+#include "../Validaciones.h"
 
 Agencia::Agencia() {
     _idAgencia = 0;
@@ -54,18 +55,42 @@ bool Agencia::getActivo() {
 }
 
 void Agencia::cargar() {
-    cout<< "INGRESE EL ID DE LA AGENCIA: ";
-    cin>> _idAgencia;
+    bool aux;
 
-    cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
-    cin.ignore();
-    cin.getline( _nombreAgencia , 99 );
+    do{
+        aux = false;
+        cout<< "INGRESE EL ID DE LA AGENCIA: ";
+        cin>> _idAgencia;
+        if (validaIdAgencia ( _idAgencia) ){
+                aux = true;
+                cout << endl << "YA EXISTE UNA AGENCIA CON ESE ID." << endl << endl;
+        }
+        if (_idAgencia <= 0 ){
+                aux = true;
+                cout << endl << "HA INGRESADO UN ID INVALIDO." << endl << endl;
+        }
+    } while ( aux );
 
-    cout<< "INGRESE LA DISPONIBILIDAD MENSUAL: ";
-    cin>> _disponibilidadMensual;
 
-    cout<< "INGRESE LOS GASTOS LOCALES: ";
-    cin>> _gastosLocales;
+        cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
+        cin.ignore();
+        cin.getline( _nombreAgencia , 99 );
+        while (validaNombreAgencia ( _nombreAgencia)){
+                cout << endl << "YA EXISTE UNA AGENCIA CON ESE NOMBRE." << endl << endl;
+                cout<< "INGRESE EL NOMBRE DE LA AGENCIA: ";
+                cin.getline( _nombreAgencia , 99 );
+        }
+
+    do {
+        cout<< "INGRESE LA DISPONIBILIDAD MENSUAL: ";
+        cin>> _disponibilidadMensual;
+    } while ( !validaPositivo ( _disponibilidadMensual));
+
+    do {
+        cout<< "INGRESE LOS GASTOS LOCALES: USD";
+        cin>> _gastosLocales;
+    } while ( !validaPositivo ( _gastosLocales));
+
 
     cout << endl << endl;
     system("pause");
