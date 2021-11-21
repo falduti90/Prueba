@@ -133,8 +133,7 @@ void BuscarTerminal(int idTerminal){
 
     while(reg.leerDeDisco(pos++)){
         if (idTerminal == reg.getIdTerminal()){
-        printf("%12.23s",reg.getNombreTerminal());
-        //cout << reg.getNombreTerminal();
+        cout << reg.getNombreTerminal();
         }
     }
 }

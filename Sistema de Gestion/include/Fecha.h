@@ -30,7 +30,6 @@ class Fecha {
         bool operator >=(Fecha);
         bool operator >(Fecha);
         bool operator <(Fecha);
-        //bool operator + (int);
         Fecha operator += (int aux);
         Fecha operator -= (int aux);
         //bool operator = (int);

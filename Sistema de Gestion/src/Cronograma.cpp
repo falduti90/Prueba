@@ -11,6 +11,7 @@ using namespace std;
 #include <cstdlib>
 #include <cstring>
 #include <cstdio>
+#include "../Validaciones.h"
 
 
 Cronograma::Cronograma(){
@@ -95,24 +96,43 @@ bool Cronograma::getActivo(){
     return _activo;
 }
 
+bool Cronograma::operator ==(int *aux){
+
+ if( _idCronograma[0] != aux[0] ) return false;
+ if( _idCronograma[1] != aux[1] ) return false;
+ if( _idCronograma[2] != aux[2] ) return false;
+
+ return true;
+}
+
+
 void Cronograma::cargar(){
     int giro, diaETA , calculoETD , diaCTF , diaCTD , calculoRecepcionCnt;
     diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
 
-    cout << "INGRESE NUMERO DE SEMANA: ";
-    cin >> _numSemana;
+    do{
+        cout << "INGRESE NUMERO DE SEMANA: ";
+        cin >> _numSemana;
+    } while ( !validaNroSemana ( _numSemana));
 
-    cout << "INGRESE ID AGENCIA: ";
-    cin >> _idAgencia;
+    do{
+        cout << "INGRESE ID AGENCIA: ";
+        cin >> _idAgencia;
+    } while ( !validaIdAgencia ( _idAgencia));
 
-    cout << "INGRESE ID REGION: ";
-    cin >> _idRegion;
+    do{
+        cout << "INGRESE ID REGION: ";
+        cin >> _idRegion;
+    } while ( !validaIdRegion ( _idRegion));
 
-    cout << "INGRESE ID BUQUE: ";
-    cin >> _idBuque;
+    do{
+        cout << "INGRESE ID BUQUE: ";
+        cin >> _idBuque;
+    } while ( !validaIdBuque ( _idBuque));
+
 
     cout << "INGRESE NUMERO DE VIAJE: ";
-    cin >> _numeroViaje;
+    cin >> _viaje;
 
     giro = BuscarIdTerminal(_idBuque);
     setIdCronograma(_idAgencia , _idRegion , giro);
@@ -161,7 +181,7 @@ void Cronograma::mostrar(){
     cout << ", ";
     BuscarBuque(_idBuque);
     cout << ", ";
-    cout << _numeroViaje << ", ";
+    cout << _viaje << ", ";
     getFechaETA().mostrar();
     cout << ", ";
     getFechaETD().mostrar();
@@ -231,16 +251,6 @@ FILE *p;
 }
 
 
-bool Cronograma::operator ==(int *aux){
-
- if( _idCronograma[0] != aux[0] ) return false;
- if( _idCronograma[1] != aux[1] ) return false;
- if( _idCronograma[2] != aux[2] ) return false;
-
- return true;
-}
-
-
 //**--------------------------------
 
 
@@ -285,43 +295,6 @@ Fecha Calendario(int ns, int ds){
     }
    if (nroSemana < 53) c[nroSemana+1][7].setNumeroSemana(nroSemana+1);
 
-}
-
-
-
-
-
-
-
-void calendarioVacio(int m[][8], int tam){
-    for (int i = 0 ; i < tam ; i++){
-        for (int j = 0 ; j < 8 ; j++){
-            m[i][j] = -1;
-        }
-    }
-}
-
-
-
-
-void mostrarCalendario(Fecha m[][8], int tam){
-
-    //for (int mes=1; mes<=12; mes++){
-        //cout << "  Mes : " <<  m[mes-1] << endl;
-        cout << "|   Domingo\t|   Lunes\t|   Martes\t|   Miercoles\t|   Jueves\t|   Viernes\t|   Sabado\t| SEMANA\t" << endl;
-        cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
-
-        for (int i = 0 ; i < tam ; i++){
-            for (int j = 0 ; j < 7 ; j++){
-                cout << "|  ";
-                m[i][j].mostrar();
-                cout << "\t";
-            }
-            cout << "|   ";
-            cout << m[i][7].getNumeroSemana() << endl;
-            cout << "--------------------------------------------------------------------------------------------------------------------------" << endl;
-        }
-    //}
 }
 
 

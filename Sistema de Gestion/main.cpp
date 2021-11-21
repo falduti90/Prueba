@@ -38,7 +38,12 @@ cout << endl;
 
 //ListadoBaseCalculo();
 
-ListadoCronograma();
+BaseCalculo r;
+r.cargar();
+cout << endl;
+r.mostrar();
+
+
 
 /*
 bool ok;

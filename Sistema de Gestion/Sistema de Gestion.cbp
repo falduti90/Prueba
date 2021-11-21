@@ -42,6 +42,8 @@
 		<Unit filename="FuncionesGlobales.h" />
 		<Unit filename="Listados.cpp" />
 		<Unit filename="Listados.h" />
+		<Unit filename="Validaciones.cpp" />
+		<Unit filename="Validaciones.h" />
 		<Unit filename="include/Agencia.h" />
 		<Unit filename="include/BaseCalculo.h" />
 		<Unit filename="include/Buque.h" />

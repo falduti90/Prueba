@@ -7,6 +7,8 @@ using namespace std;
 #include "Region.h"
 #include "Terminal.h"
 #include "Agencia.h"
+#include "../Validaciones.h"
+
 
 
 void BaseCalculo::setidAgencia ( int idAgencia ){
@@ -19,7 +21,7 @@ void BaseCalculo::setidRegion ( int idRegion ){
 }
 
 void BaseCalculo::setidGiro ( int idGiro ){
-    _idGiro = idGiro;
+    _idTerminalDeGiro = idGiro;
 }
 
 void BaseCalculo::setDiaETA ( int diaSem ){
@@ -70,7 +72,7 @@ int BaseCalculo::getidRegion (){
 }
 
 int BaseCalculo::getidGiro (){
-    return _idGiro;
+    return _idTerminalDeGiro;
 
 }
 
@@ -110,37 +112,65 @@ int *BaseCalculo::getIdBaseCalculo(){
 
 
 void BaseCalculo::cargar(){
-    cout << "ID AGENCIA: ";
-    cin >> _idAgencia;
-    cout << "ID REGION: ";
-    cin >> _idRegion;
-    cout << "ID TERMINAL DE GIRO: ";
-    cin >> _idGiro;
+    do{
+        cout << "INGRESE ID AGENCIA: ";
+        cin >> _idAgencia;
+    } while ( !validaIdAgencia ( _idAgencia));
 
-    cout << "DIAS DE SEMANA (Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6) " << endl;
-    cout << "DIA ETA: ";
-    cin >> _diaETA;
-    cout << "DIA CUT OFF FISICO: ";
-    cin >> _diaCTF;
-    cout << "HORA CUT OFF FISICO: ";
-    cin >> _horaCTF;
-    cout << "DIA CUT OFF DOCUMENTAL: ";
-    cin >> _diaCTD;
-    cout << "HORA CUT OFF DOCUMENTAL: ";
-    cin >> _horaCTD;
+    do{
+        cout << "INGRESE ID REGION: ";
+        cin >> _idRegion;
+    } while ( !validaIdRegion ( _idRegion));
 
-    cout << "CUANTOS DIAS SE SUMAN PARA EL CALCULO DE LA ETD: ";
-    cin >> _calculoETD;
-    cout << "CUANTOS DIAS SE RESTAN PARA EL CALCULO DE LA RECEPCION DEL CONTENEDOR: ";
-    cin >> _calculoRecepcionCnt;
+    do{
+        cout << "ID TERMINAL DE GIRO: ";
+        cin >> _idTerminalDeGiro;
+    } while ( !validaIdTerminal (_idTerminalDeGiro));
 
-    setIdBaseCalculo( _idAgencia , _idRegion , _idGiro );
+
+    cout << "DIAS DE SEMANA: Dom 0,  Lun 1, Mart 2, Mier 3, Juev 4, Vier 5, Sab 6 " << endl;
+    do{
+        cout << "DIA ETA: ";
+        cin >> _diaETA;
+    } while ( !validaDiaSemana ( _diaETA));
+
+    do{
+        cout << "DIA CUT OFF FISICO: ";
+        cin >> _diaCTF;
+    } while ( !validaDiaSemana ( _diaCTF));
+
+    do{
+        cout << "HORA CUT OFF FISICO: ";
+        cin >> _horaCTF;
+    } while ( !validaHora ( _horaCTF));
+
+    do{
+        cout << "DIA CUT OFF DOCUMENTAL: ";
+        cin >> _diaCTD;
+    } while ( !validaDiaSemana ( _diaCTD));
+
+    do{
+        cout << "HORA CUT OFF DOCUMENTAL: ";
+        cin >> _horaCTD;
+    } while ( !validaHora ( _horaCTD));
+
+    do{
+        cout << "ETD (CUANTOS SE ADICIONAN A LA ETA): ";
+        cin >> _calculoETD;
+    } while ( !validaPositivo ( _calculoETD));
+
+    do{
+        cout << "RECEPCION DEL CNT (CUANTOS DIAS SE RESTAN A LA ETA): ";
+        cin >> _calculoRecepcionCnt;
+    } while ( !validaPositivo ( _calculoRecepcionCnt));
+
+    setIdBaseCalculo( _idAgencia , _idRegion , _idTerminalDeGiro );
     _activo = true;
 
 }
 
 void BaseCalculo::mostrar(){
-    cout << "\t\t\t\t\t" << "REFERENCIA: ";
+    cout << "\t\t\t\t\t" << "ID: ";
     mostrarIdBaseCalculo();
     cout <<  "\t\t\t\t\t" << "AGENCIA: ";
     BuscarAgencia(_idAgencia);
@@ -149,10 +179,10 @@ void BaseCalculo::mostrar(){
     BuscarRegion(_idRegion);
     cout << endl;
     cout <<  "\t\t\t\t\t" << "TERMINAL DE GIRO: ";
-    BuscarTerminal(_idGiro);
+    BuscarTerminal(_idTerminalDeGiro);
     cout << endl;
 
-    cout <<  "\t\t\t\t\t" << "DIA ETA: ";   //TODO: HACER UNA FUNCION PARA Q MUESTRE SEMANA
+    cout <<  "\t\t\t\t\t" << "DIA ETA: ";
     diaSemana(_diaETA);
     cout << endl;
     cout <<  "\t\t\t\t\t" << "DIA CUT OFF FIS: ";
@@ -162,8 +192,8 @@ void BaseCalculo::mostrar(){
     diaSemana(_diaCTD);
     cout << " " << _horaCTD << " HRS" << endl;
 
-    cout <<  "\t\t\t\t\t" << "DIAS QUE SE SUMAN A ETD: " << _calculoETD << endl;
-    cout <<  "\t\t\t\t\t" << "DIAS QUE RESTAN PARA RECEP DEL CNT: " << _calculoRecepcionCnt << endl;
+    cout <<  "\t\t\t\t\t" << "DIAS QUE SUMA PARA ETD: " << _calculoETD << endl;
+    cout <<  "\t\t\t\t\t" << "DIAS QUE RESTA PARA RECEPCION DEL CNT: " << _calculoRecepcionCnt << endl;
 }
 
 void BaseCalculo::mostrarIdBaseCalculo(){

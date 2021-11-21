@@ -47,7 +47,6 @@ void Fecha::setDiasDelmes(){
     if (Bisiesto(_anio)){
         _diasDelMes[1] = 29;
     }
-
 }
 
 void Fecha::setDia(int dia){
@@ -154,7 +153,6 @@ bool Fecha::operator ==(int anio){
  return true;
 }
 
-
 bool Fecha::operator ==(Fecha aux){
  if(_dia!=aux._dia)return false;
  if(_mes!=aux._mes)return false;
@@ -196,12 +194,6 @@ bool Fecha::operator >=(Fecha aux){
 
  }
 
-/*
-bool Fecha::operator + (int aux){
-    Fecha f(_dia+aux,_mes , _anio);
-    return f;
-
- }*/
 
  Fecha Fecha::operator += (int aux){
      int diasMes = CalcularDiasMes (_mes, _anio);
@@ -237,14 +229,6 @@ bool Fecha::operator + (int aux){
  }
 
 
- /*
- bool Fecha::operator -= (int aux){
-    if (_dia > 1){
-    _dia = _dia - aux;
-    }
-    return true;
-
- }*/
 
  bool Fecha::operator = (Fecha aux){
     setDia(aux.getDia());
@@ -285,8 +269,6 @@ int DiasAnio (int a){
     if (Bisiesto( a)) return 366;
     return 365;
 }
-
-
 
 
 

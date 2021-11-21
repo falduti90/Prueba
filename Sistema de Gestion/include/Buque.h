@@ -9,12 +9,12 @@ class Buque{
         void  setIdBuque(int nuevoId);
         void  setnombreBuque(char* nuevoNombre);
         void  setBanderaBuque(char* nuevaBandera);
-        void  setGiro(int nuevoGiro);
+        void  setTerminalDeGiro(int nuevoGiro);
         void  setActivo(bool nuevoEstado);
         int   getIdBuque();
         char* getnombreBuque();
         char* getBanderaBuque();
-        int   getGiro();
+        int   getTerminalDeGiro();
         bool  getActivo();
         void  cargar();
         void  mostrar();
@@ -25,7 +25,7 @@ class Buque{
         int   _idBuque;
         char  _nombreBuque[100];
         char  _banderaBuque [100];
-        int   _giro;
+        int   _terminalDeGiro;
         bool  _activo;
 };
 

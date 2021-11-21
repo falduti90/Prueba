@@ -15,7 +15,7 @@ class Cronograma {
         int   _numSemana;
         int   _idAgencia;
         int   _idBuque;
-        int   _numeroViaje;
+        char   _viaje[11];
         bool  _activo;
         int   _idRegion;
         int   _idGiro;
@@ -58,11 +58,11 @@ int  BuscarIdTerminal(int);
 void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int *);
 
 
+
+
+
 //------------------------------------------------
 
-
-void calendarioVacio(int m[][8], int tam);
-void mostrarCalendario(Fecha m[][8], int tam);
 void cargarCalendario();
 
 Fecha Calendario(int ns, int ds);   // Hay que pasarle nro de semana y dia de semana

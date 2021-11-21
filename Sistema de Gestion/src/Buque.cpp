@@ -27,8 +27,8 @@ void Buque::setBanderaBuque(char *nuevaBandera){
     strcpy( _banderaBuque , nuevaBandera );
 }
 
-void Buque::setGiro(int nuevoGiro){
-    _giro = nuevoGiro;
+void Buque::setTerminalDeGiro(int nuevoGiro){
+    _terminalDeGiro = nuevoGiro;
 }
 
 void Buque::setActivo(bool nuevoEstado){
@@ -47,8 +47,8 @@ char *Buque::getBanderaBuque(){
     return _banderaBuque;
 }
 
-int  Buque::getGiro(){
-    return _giro;
+int  Buque::getTerminalDeGiro(){
+    return _terminalDeGiro;
 }
 
 bool Buque::getActivo(){
@@ -67,8 +67,8 @@ void Buque::cargar(){
     cout<< "INGRESE LA BANDERA DEL BUQUE: ";
     cin.getline(_banderaBuque,99);
 
-    cout<< "INGRESE ID TERMINAL         : ";
-    cin >> _giro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
+    cout<< "INGRESE ID TERMINAL DE GIRO : ";
+    cin >> _terminalDeGiro;   /// TODO Acá habría que agregar alguna validación que revise que el ID existe...
     cout << endl;
     grabarEnDisco();
     cout << endl << endl;
@@ -85,7 +85,7 @@ void Buque::mostrar(){
         cout << "\t\t\t\t\t" << "BANDERA           : "<< _banderaBuque << endl;
         // cout<< "GIRO---------------: "<< _giro << endl << endl;
         cout << "\t\t\t\t\t" << "GIRO              : ";
-        buscarTerminal(_giro);
+        buscarTerminal(_terminalDeGiro);
         cout << endl;
     }
 }
@@ -145,10 +145,9 @@ void BuscarBuque(int idBuque){
 
     while(reg.leerDeDisco(pos++)){
         if (idBuque == reg.getIdBuque()){
-        printf("%-4.28s",reg.getnombreBuque());
-//        cout << reg.getnombreBuque();
+        cout << reg.getnombreBuque();
         cout << ", ";
-        BuscarTerminal(reg.getGiro());
+        BuscarTerminal(reg.getTerminalDeGiro());
         return;
         }
     }
@@ -160,7 +159,7 @@ int BuscarIdTerminal(int idBuque){
 
     while(reg.leerDeDisco(pos++)){
         if (idBuque == reg.getIdBuque()){
-        return reg.getGiro();
+        return reg.getTerminalDeGiro();
         }
     }
 }
