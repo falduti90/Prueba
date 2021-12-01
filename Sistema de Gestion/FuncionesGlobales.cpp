@@ -191,7 +191,7 @@ void Consultas(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t1. CRONOGRAMA COMPLETO. " << endl << endl;
         cout << "\t\t\t\t\t2. APLICAR FILTROS. " << endl << endl;
-        cout << "\t\t\t\t\t0. MENU PRINCIPAL. " << endl << endl;
+        cout << "\t\t\t\t\t0. CERRAR SESION. " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
         rlutil::locate(60,13);
@@ -206,7 +206,12 @@ void Consultas(){
                 break;
             case 2 : pedirOpcionesDeFiltrado();
                 break;
-            case 0 : MenuPrincipal();
+            case 0 : if(reg.getCategoria() != 3){
+                        MenuPrincipal();
+                     }
+                     else{
+                        Admin();
+                     }
                 break;
             default : rlutil::locate(41,13);
                       cout << "OPCION INVALIDA!!!" << endl;
@@ -226,7 +231,7 @@ void DataEntry(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t1 - LISTADOS. " << endl << endl;
         cout << "\t\t\t\t\t2 - CARGAR DATOS. " << endl << endl;
-        cout << "\t\t\t\t\t0 - MENU PRINCIPAL." << endl << endl;
+        cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
         cin  >> opc;
@@ -257,7 +262,7 @@ void Admin(){
         cout << "\t\t\t\t\t2 - DATA-ENTRY. " << endl << endl;
         cout << "\t\t\t\t\t3 - CREAR USUARIO. " << endl << endl;
         cout << "\t\t\t\t\t4 - ELIMINAR REGISTRO. " << endl << endl;
-        cout << "\t\t\t\t\t0 - MENU PRINCIPAL." << endl << endl;
+        cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
         cin  >> opc;
@@ -466,7 +471,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
     bool rta;
     cout << endl << endl;
-    cout << "\t\t\t\t¿DESEA EXPORTAR DATOS? - 1. FILTRAR / 0. NO FILTRAR: ";
+    cout << "\t\t\t\t¿DESEA EXPORTAR DATOS? - 1. EXPORTAR / 0. NO EXPORTAR: ";
     cin >> rta;
 
     ofstream myFile;
@@ -479,6 +484,8 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
         cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
     return ;
     }
+    //cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;

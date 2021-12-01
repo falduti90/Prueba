@@ -256,8 +256,10 @@ FILE *p;
 
     while(fread(&reg,sizeof(Cronograma),1,p)==1){
         reg.mostrar();
-        cout << endl;
     }
+    cout << endl << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
 
     fclose(p);
 }

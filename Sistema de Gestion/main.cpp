@@ -27,22 +27,21 @@ using namespace std;
 
 int main(){
 
-ListadoCronograma();
+//ListadoCronograma();
 
 
 
-/*
+
 
     //pedirOpcionesDeFiltrado();
 
 
 
-    //MenuPrincipal();
+    MenuPrincipal();
 
     //ListarPorBuque();
     //EliminarRegistro();
 
-*/
 
 /* PARA CARGAR CRONOGRAMA:
 bool ok;
