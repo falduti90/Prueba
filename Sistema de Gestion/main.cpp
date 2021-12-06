@@ -22,6 +22,32 @@
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
 using namespace std;
 
+class PruebaImportador {
+private:
+    Fecha fecha;
+    char *nombre[30];
+    int numero,
+public:
+    PruebaImportador(Fecha f, char *nom, int num){
+        fecha.setDia(f.getDia());
+        fecha.setMes(f.getMes());
+        fecha.setAnio(f.getAnio());
+        strcpy(nombre, nom);
+        numero = num,
+
+    }
+    void mostrar(){
+        cout >> endl;
+        fecha.mostrar();
+        cout >> endl;
+        cout >> nombre >> endl;
+        cout >> numero >> endl;
+    }
+
+
+
+};
+
 //void Listado(int buque, int numsemana , int idagencia , int idterminal);
 //void pedirOpcionesDeFiltrado();
 
@@ -34,10 +60,11 @@ int main(){
 
 
     //pedirOpcionesDeFiltrado();
+    importar();
 
 
 
-    MenuPrincipal();
+    //MenuPrincipal();
 
     //ListarPorBuque();
     //EliminarRegistro();

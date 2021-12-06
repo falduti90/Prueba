@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include "rlutil.h"
 #include "FuncionesGlobales.h"
@@ -289,16 +290,22 @@ void Admin(){
 void importar(){
     ifstream archivo(NOMBRE_ARCHIVO);
 	string linea;
+	size_t posicion;
 	char delimitador = ',';
 	getline(archivo, linea);
 
 	while(getline(archivo, linea)){
         stringstream stream (linea);
-        string dia, mes, anio;
+        string fecha, dia, mes, anio, nombre, numero;
         getline(stream, dia, delimitador);
         getline(stream, mes, delimitador);
         getline(stream, anio, delimitador);
         int d, m, a;
+        while ((posicion = fecha.find("/"))!= string::npos){
+
+            d = fecha.substr(0,posicion); //Revisar
+            fecha.substr(0,posicion +1);
+        }
         istringstream(dia) >> d;
         istringstream(mes) >> m;
         istringstream(anio) >> a;
@@ -311,16 +318,22 @@ void importar(){
 
 }
 
-void exportar(){
+void exportar(Cronograma reg){
     ofstream myFile;
-	myFile.open("test.csv");
-	Fecha f;
+    myFile.open("listadoCronograma.csv");
+    string str = BuscarAgencia(reg.getIdAgencia(),true);
+    //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
+    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
+
+
+
+	/*Fecha f;
 	int i = 0;
 	while (f.leerDeDisco(i)){
         myFile << f.getDia() << ',' << f.getMes() << ',' << f.getAnio() << endl;
         i++;
 
-	}
+	}*/
 }
 
 int buscarPosicionPorUsuario(char *usuario){
@@ -476,7 +489,9 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
     ofstream myFile;
     myFile.open("listadoCronograma.csv");
-
+    if (rta){
+        myFile << "NumSemana" << ',' << "ID de Agencia"<< ',' << "Fecha ETA" << ',' << "ID GIRO" << ',' << "ID BUQUE" << ','  << "Nombre Agencia" << ','  << endl;
+    }
     FILE *p;
     Cronograma reg;
     p = fopen("Cronograma.dat","rb");
@@ -508,13 +523,9 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
             //strcpy(s,BuscarAgencia(reg.getIdAgencia()));
             reg.mostrar();
             if (rta){
-                if(reg.getFechaETA().getDia()<10){
-                    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << cero << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl;
-                }
-                else {
-                    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ',' << s << endl; //Hat que ver la forma de concatenar las fechas y en vez de mostrar el ID crear funciones para que te devuelvar el nombre como vector de char. (el exportador acepta vectores de char)
-
-                }
+                string str = BuscarAgencia(reg.getIdAgencia(),true);
+                //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
+                myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
             }
             cout << endl << endl;
         }
