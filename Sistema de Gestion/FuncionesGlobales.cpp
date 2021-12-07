@@ -16,6 +16,7 @@
 #include "BaseCalculo.h"
 #include <sstream> //Libredias para
 #include <fstream> // el importador
+#include "Validaciones.h"
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
 
 using namespace std;
@@ -287,34 +288,64 @@ void Admin(){
     system("cls");
 }
 
-void importar(){
-    ifstream archivo(NOMBRE_ARCHIVO);
-	string linea;
-	size_t posicion;
-	char delimitador = ',';
-	getline(archivo, linea);
+bool importarCronograma(){
+   ifstream archivo(NOMBRE_ARCHIVO);
+        string linea;
+       // size_t posicion;
+        char delimitador = ',';
+        getline(archivo, linea);
 
-	while(getline(archivo, linea)){
-        stringstream stream (linea);
-        string fecha, dia, mes, anio, nombre, numero;
-        getline(stream, dia, delimitador);
-        getline(stream, mes, delimitador);
-        getline(stream, anio, delimitador);
-        int d, m, a;
-        while ((posicion = fecha.find("/"))!= string::npos){
+        while(getline(archivo, linea)){
+            stringstream stream (linea);
+            string numDeSemana, idDeAgencia,  idDeRegion, idDeBuque,   numeroDeViaje;
+            getline(stream, numDeSemana, delimitador);
+            getline(stream, idDeAgencia, delimitador);
+            getline(stream, idDeRegion, delimitador);
+            getline(stream, idDeBuque, delimitador);
+            getline(stream, numeroDeViaje, delimitador);
+            int numSemana, idAgencia,  idRegion, idBuque;
+            char numViaje[11];
+            istringstream(numDeSemana) >> numSemana;
+            istringstream(idDeAgencia) >> idAgencia;
+            istringstream(idDeRegion) >> idRegion;
+            istringstream(idDeBuque) >> idBuque;
+            strcpy(numViaje, numeroDeViaje.c_str());
 
+           // cout << endl << "Numero de semana: " << numSemana;
+           // cout << endl << "idAgencia: " << idAgencia;
+           // cout << endl << "idRegion: " << idRegion;
+           // cout << endl << "idBuque: " << idBuque;
+           // cout << endl << "numeroDeViaje: " << numViaje;
+
+
+            if (validaNroSemana(numSemana)&& validaIdAgencia(idAgencia) && validaIdRegion(idRegion) && validaIdBuque(idBuque)){
+
+                Cronograma reg;
+                reg.cargar(idAgencia, idRegion, idBuque, numSemana, numViaje);
+                reg.mostrar();
+
+
+                //c.mostrar();
+            }
+            else{
+                cout << endl << "Importacion finalizada con errores";
+                return false;
+            }
+            /*while ((posicion = fecha.find("/"))!= string::npos){
             d = fecha.substr(0,posicion); //Revisar
             fecha.substr(0,posicion +1);
-        }
-        istringstream(dia) >> d;
-        istringstream(mes) >> m;
-        istringstream(anio) >> a;
-        Fecha f(d,m,a);
-        f.mostrar();
-        cout << endl;
-        //cout << endl << dia << "/" << mes << "/" << anio;
+            }*/
+
+            /*
+            Fecha f(d,m,a);
+            f.mostrar();
+            */
+            cout << endl;
+            //cout << endl << dia << "/" << mes << "/" << anio;
 
 	}
+
+	return true;
 
 }
 

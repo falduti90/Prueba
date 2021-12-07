@@ -12,6 +12,10 @@ using namespace std;
 #include <cstring>
 #include <cstdio>
 #include "../Validaciones.h"
+#include <sstream> //LibreRias para
+#include <fstream> // el importador
+#define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
+
 
 
 Cronograma::Cronograma(){
@@ -161,6 +165,9 @@ void Cronograma::cargar(){
     }
     _horaCTF             = horaCTF;
     _horaCTD             = horaCTD;
+
+
+
 }
 
 void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *horaCTF , int *diaCTD , int *horaCTD , int *calculoRecepcionCnt){
@@ -308,6 +315,40 @@ Fecha Calendario(int ns, int ds){
         }
     }
    if (nroSemana < 53) c[nroSemana+1][7].setNumeroSemana(nroSemana+1);
+
+}
+
+bool Cronograma::cargar(int idAgencia, int idRegion, int idBuque, int numSemana, char *viaje){
+
+    _idAgencia = idAgencia;
+    _idRegion = idRegion;
+    _idBuque = idBuque;
+    _numSemana = numSemana;
+    strcpy(_viaje, viaje);
+
+    int giro, diaETA , calculoETD , diaCTF , horaCTF , diaCTD , horaCTD , calculoRecepcionCnt;
+    diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
+
+    giro = BuscarIdTerminal(_idBuque);
+    setIdCronograma(_idAgencia , _idRegion , giro);
+
+    Cronograma c(_idAgencia , _idRegion , giro);
+    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &horaCTF , &diaCTD , &horaCTD , &calculoRecepcionCnt);
+
+    _fechaETA            = Calendario(_numSemana , diaETA);
+    _fechaETD            = _fechaETA+=calculoETD;
+    _fechaRecepcionCnt   = _fechaETA-=calculoRecepcionCnt;
+    _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
+    _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
+    if ( _fechacutoffFisico >= _fechaETA ){
+        _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF); //Siempre tiene q ser anterior a la ETA y
+    }
+    if ( _fechacutoffDoc >= _fechaETA || _fechacutoffDoc > _fechacutoffFisico ){  //Siempre tiene q ser anterior a la ETA y anterior o igual cut off físico
+    _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
+    }
+    _horaCTF             = horaCTF;
+    _horaCTD             = horaCTD;
+
 
 }
 

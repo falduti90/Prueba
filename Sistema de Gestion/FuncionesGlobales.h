@@ -8,7 +8,7 @@ bool pedirContrasenia();
 void Consultas();
 void DataEntry();
 void Admin();
-void importar();
+bool importarCronograma();
 void exportar();
 int  buscarPosicionPorUsuario(char *usuario);
 void cargarCadena(char *pal, int tam);

@@ -293,3 +293,5 @@ bool Buque::ModificarEnDiscoBuques(int pos){
     fclose(p);
     return ok;
 }
+
+

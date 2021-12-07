@@ -20,47 +20,25 @@
 #include <sstream> //LibreRias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
+#include "Validaciones.h"
 using namespace std;
 
-class PruebaImportador {
-private:
-    Fecha fecha;
-    char *nombre[30];
-    int numero,
-public:
-    PruebaImportador(Fecha f, char *nom, int num){
-        fecha.setDia(f.getDia());
-        fecha.setMes(f.getMes());
-        fecha.setAnio(f.getAnio());
-        strcpy(nombre, nom);
-        numero = num,
-
-    }
-    void mostrar(){
-        cout >> endl;
-        fecha.mostrar();
-        cout >> endl;
-        cout >> nombre >> endl;
-        cout >> numero >> endl;
-    }
-
-
-
-};
 
 //void Listado(int buque, int numsemana , int idagencia , int idterminal);
 //void pedirOpcionesDeFiltrado();
 
 int main(){
 
-//ListadoCronograma();
+importarCronograma(); // Revisar combinaciones de base de calculo -> Consultar
+//ListadoBaseCalculo();
+//ListadoBuques();
 
 
 
 
 
     //pedirOpcionesDeFiltrado();
-    importar();
+    //importar();
 
 
 
@@ -70,7 +48,8 @@ int main(){
     //EliminarRegistro();
 
 
-/* PARA CARGAR CRONOGRAMA:
+//PARA CARGAR CRONOGRAMA:
+/*
 bool ok;
 for (int i = 0; i<27;i++){
 Cronograma r;
@@ -85,8 +64,8 @@ cout << endl;
 if (ok) r.grabarEnDisco();
 cout << endl;
 cout << endl;
-}*/
-
+}
+*/
 
     return 0;
 }

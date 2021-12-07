@@ -4,6 +4,7 @@
 #include "Fecha.h"
 #include "BaseCalculo.h"
 
+
 class Cronograma {
     private:
         int   _idCronograma[2];
@@ -46,9 +47,11 @@ class Cronograma {
         int getIdAgencia(){return _idAgencia;}
         int getIdGiro(){return _idGiro;}
         void cargar();
+        bool cargar(int, int, int, int, char*);
         void mostrar();
         bool leerDeDisco(int);
         bool grabarEnDisco();
+        bool importarCronograma();
 };
 
 #endif // CRONOGRAMA_H
@@ -58,6 +61,9 @@ class Cronograma {
 void ListadoCronograma();
 int  BuscarIdTerminal(int);
 void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , int*  , int *);
+
+
+
 
 
 
