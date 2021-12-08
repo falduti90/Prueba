@@ -266,5 +266,14 @@ void diaSemana(int dia){
 
 }
 
+string diaSemanaStr(int dia, bool b){
+    string d[] = {"Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"};
+
+    return d[dia];
+
+}
+
+
+
 
 

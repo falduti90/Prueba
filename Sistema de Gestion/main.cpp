@@ -34,11 +34,11 @@ int main(){
 //ListadoBuques();
 
 
+    exportarBaseDeCalculo();
 
-
-    Cronograma c;
-    c.leerDeDisco(1);
-    getline( BuscarAgencia(c.getIdAgencia(), 1));
+    //Cronograma c;
+    //c.leerDeDisco(1);
+    //cout << BuscarAgencia(c.getIdAgencia(), 1)
     //pedirOpcionesDeFiltrado();
     //importar();
 

@@ -1,5 +1,8 @@
 #ifndef BASECALCULO_H_INCLUDED
 #define BASECALCULO_H_INCLUDED
+#include <string.h>
+#include <bits/stdc++.h>
+using namespace std;
 
 class BaseCalculo{
     public:
@@ -52,4 +55,5 @@ class BaseCalculo{
 
 //FUNCIONES GLOBALES
 void diaSemana(int);
+string diaSemanaStr(int, bool);
 

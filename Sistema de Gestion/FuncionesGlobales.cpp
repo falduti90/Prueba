@@ -596,3 +596,56 @@ string converToString(char *vec, int tam){
 
 }
 
+bool exportarBaseDeCalculo(){
+    ofstream myFile;
+    myFile.open("listadoBaseDeCalculo.csv");
+
+
+    FILE *p;
+    BaseCalculo reg;
+    p=fopen("BasesCalculos.dat","rb");
+    if(p==NULL){
+        cout<< "No se pudo abrir el archivo";
+    return false ;
+    }
+
+    myFile << "ID BDC" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "TERMINAL"  << ','  << "DIA ETA"  << ','  << "CUT OFF FISICO" << ','  << "CUT OFF DOC" << ',' << "DIAS QUE SUMA PARA ETD" << ',' << "IAS QUE RESTA PARA RECEPCION DEL CNT" << ',' << endl;
+
+    while( fread ( &reg , sizeof(BaseCalculo) , 1 , p ) ){
+
+        myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << reg.getidAgencia() << ',' << reg.getidRegion() << ',' << reg.getidGiro() << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
+
+    }
+
+    return true;
+    //cout << endl << endl;
+    //cout << "\t\t\t\t\t" << system("pause");
+    //system("cls");
+    //fclose(p);
+    //cout << "\t\t\t\t\t" << "ID: ";
+    //mostrarIdBaseCalculo();
+    //cout <<  "\t\t\t\t\t" << "AGENCIA: ";
+    //BuscarAgencia(_idAgencia);
+    //cout  << endl;
+    //cout <<  "\t\t\t\t\t" << "REGION: ";
+    //BuscarRegion(_idRegion);
+    //cout << endl;
+    //cout <<  "\t\t\t\t\t" << "TERMINAL DE GIRO: ";
+    //BuscarTerminal(_idTerminalDeGiro);
+    //cout << endl;
+
+    //cout <<  "\t\t\t\t\t" << "DIA ETA: ";
+    //diaSemana(_diaETA);
+    //cout << endl;
+    //cout <<  "\t\t\t\t\t" << "DIA CUT OFF FIS: ";
+    //diaSemana(_diaCTF);
+    //cout << " " << _horaCTF << " HRS" << endl;
+    //cout <<  "\t\t\t\t\t" << "DIA CUT OFF DOC: ";
+    //diaSemana(_diaCTD);
+    //cout << "    " << _horaCTD << " HRS" << endl;
+
+   //cout <<  "\t\t\t\t\t" << "DIAS QUE SUMA PARA ETD: " << _calculoETD << endl;
+   //cout <<  "\t\t\t\t\t" << "DIAS QUE RESTA PARA RECEPCION DEL CNT: " << _calculoRecepcionCnt << endl;
+
+}
+

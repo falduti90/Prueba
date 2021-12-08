@@ -18,5 +18,6 @@ void ListarPorSemana();
 void pedirOpcionesDeFiltrado();
 void Listado(int buque, int numsemana , int idagencia , int idterminal);
 string converToString(char *vec, int tam);
+bool exportarBaseDeCalculo();
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED
