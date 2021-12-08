@@ -1,5 +1,7 @@
 #ifndef FUNCIONESGLOBALES_H_INCLUDED
 #define FUNCIONESGLOBALES_H_INCLUDED
+#include <bits/stdc++.h>
+using namespace std;
 
 int  MenuPrincipal();
 void InicioSesion();
@@ -15,5 +17,6 @@ void cargarCadena(char *pal, int tam);
 void ListarPorSemana();
 void pedirOpcionesDeFiltrado();
 void Listado(int buque, int numsemana , int idagencia , int idterminal);
+string converToString(char *vec, int tam);
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED

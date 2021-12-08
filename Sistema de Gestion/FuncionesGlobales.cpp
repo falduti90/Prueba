@@ -521,7 +521,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
     ofstream myFile;
     myFile.open("listadoCronograma.csv");
     if (rta){
-        myFile << "NumSemana" << ',' << "ID de Agencia"<< ',' << "Fecha ETA" << ',' << "ID GIRO" << ',' << "ID BUQUE" << ','  << "Nombre Agencia" << ','  << endl;
+        myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
     }
     FILE *p;
     Cronograma reg;
@@ -552,12 +552,31 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
             char b = '/';
             char cero = '0';
             //strcpy(s,BuscarAgencia(reg.getIdAgencia()));
-            reg.mostrar();
+            //reg.mostrar();
             if (rta){
                 string str = BuscarAgencia(reg.getIdAgencia(),true);
                 //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
-                myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
+                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
+
+                string numViaje = converToString(reg.getViaje(), 11);
+                string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
+                string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
+                string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
+                //int agencia_size = sizeof()
+                cout << endl << endl;
+                cout << endl << "---------------------------------------------" << endl;
+                cout << endl << numViaje << endl;
+                cout << BuscarAgencia(reg.getIdAgencia(), 1);
+                //cout << endl << regionStr;
+                //cout << endl << buqueStr;
+                //cout << endl << endl;
+
+
+
+                myFile << reg.getNumSemana() << ',' << agenciaStr << ',' << regionStr << ','  << buqueStr << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+
             }
+
             cout << endl << endl;
         }
     }
@@ -565,3 +584,15 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
     cout << endl << endl;
     system("pause");
 }
+
+string converToString(char *vec, int tam){
+    int i;
+    string s = "";
+    for (i = 0; i<tam; i++){
+        s = s + vec[i];
+    }
+
+    return s;
+
+}
+

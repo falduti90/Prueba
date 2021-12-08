@@ -32,6 +32,7 @@ class Buque{
 //FUNCIONES GLOBALES
 
 void BuscarBuque(int);
+char *BuscarBuque(int, bool);
 void buscarTerminal(int );
 void ListarPorBuque();
 void BuqueSeleccionado(int opc);

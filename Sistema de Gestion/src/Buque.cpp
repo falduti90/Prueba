@@ -178,6 +178,18 @@ void BuscarBuque(int idBuque){
     }
 }
 
+char *BuscarBuque(int idBuque, bool b){
+    int pos = 0;
+    Buque reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idBuque == reg.getIdBuque()){
+        //BuscarTerminal(reg.getTerminalDeGiro());
+        return reg.getnombreBuque();
+        }
+    }
+}
+
 int BuscarIdTerminal(int idBuque){
     int pos = 0;
     Buque reg;

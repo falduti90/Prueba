@@ -46,12 +46,14 @@ class Cronograma {
         bool getActivo();
         int getIdAgencia(){return _idAgencia;}
         int getIdGiro(){return _idGiro;}
+        int getIdRegion() {return _idRegion;}
         void cargar();
         bool cargar(int, int, int, int, char*);
         void mostrar();
         bool leerDeDisco(int);
         bool grabarEnDisco();
         bool importarCronograma();
+        char *getViaje();
 };
 
 #endif // CRONOGRAMA_H

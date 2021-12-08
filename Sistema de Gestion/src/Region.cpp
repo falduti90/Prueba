@@ -142,6 +142,17 @@ void BuscarRegion(int idRegion){
     }
 }
 
+char *BuscarRegion(int idRegion, bool b){
+    int pos = 0;
+    Region reg;
+
+    while(reg.leerDeDisco(pos++)){
+        if (idRegion == reg.getIdRegion()){
+        return reg.getNombreRegion();
+        }
+    }
+}
+
 bool BorrarRegistroRegion(){
 
     Region reg;

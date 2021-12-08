@@ -100,6 +100,15 @@ bool Cronograma::getActivo(){
     return _activo;
 }
 
+char *Cronograma::getViaje(){
+
+    //string numViaje;
+    //strcpy(numViaje, _viaje.c_str());
+    //return numViaje;
+    return _viaje;
+
+}
+
 bool Cronograma::operator ==(int *aux){
 
  if( _idCronograma[0] != aux[0] ) return false;

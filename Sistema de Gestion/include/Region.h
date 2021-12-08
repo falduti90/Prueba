@@ -32,6 +32,7 @@ class Region{
 //FUNCIONES GLOBALES
 
 void BuscarRegion(int);
+char *BuscarRegion(int, bool);
 bool BorrarRegistroRegion();
 int  RegionAborrar(int idRegion);
 

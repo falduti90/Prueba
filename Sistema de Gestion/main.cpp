@@ -29,14 +29,16 @@ using namespace std;
 
 int main(){
 
-importarCronograma(); // Revisar combinaciones de base de calculo -> Consultar
+//importarCronograma(); // Revisar combinaciones de base de calculo -> Consultar
 //ListadoBaseCalculo();
 //ListadoBuques();
 
 
 
 
-
+    Cronograma c;
+    c.leerDeDisco(1);
+    getline( BuscarAgencia(c.getIdAgencia(), 1));
     //pedirOpcionesDeFiltrado();
     //importar();
 
