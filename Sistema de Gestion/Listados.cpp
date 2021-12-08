@@ -152,6 +152,15 @@ void ListadoBaseCalculo() {
     cout << "\t\t\t\t\t" << system("pause");
     system("cls");
     fclose(p);
+
+    bool rta;
+    cout << endl << "Desea exportar el listado? 1- SI  0- NO";
+    cin >> rta;
+    if (rta){
+        exportarBaseDeCalculo();
+    }
+
+
 }
 
 

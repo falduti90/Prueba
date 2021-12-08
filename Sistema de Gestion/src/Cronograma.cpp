@@ -258,6 +258,40 @@ bool Cronograma::grabarEnDisco(){
 //---------------------------------------------------------------------------------------------------
 //FUNCIONES GLOBALES
 void ListadoCronograma() {
+bool rta, direc;
+cout << endl << "Desea ordenar el listado por fecha de ETA?  1-SI  0-NO";
+cin >> rta;
+cout << "Elija una opcion: 1-Ascendente 0-Descendente";
+cin >> direc;
+if (rta){
+
+    Cronograma *vec;
+    int tam = tamanoCronogramas();
+    vec = new Cronograma [tam];
+
+    generarVecCronograma(vec, tam);
+
+
+    ordenarCronograma(vec, tam, direc);
+
+
+    for(int i = 0; i<tamanoCronogramas(); i++){
+        vec[i].mostrar();
+        cout << endl;
+    }
+
+
+    delete vec;
+
+    cout << endl << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
+
+
+}
+
+cout << endl << endl;
+cout << endl << "___________________________________________________________" << endl;
 
 FILE *p;
    Cronograma reg;
@@ -269,6 +303,7 @@ FILE *p;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+
 
     while(fread(&reg,sizeof(Cronograma),1,p)==1){
         reg.mostrar();
@@ -361,6 +396,63 @@ bool Cronograma::cargar(int idAgencia, int idRegion, int idBuque, int numSemana,
 
 
 }
+
+
+void generarVecCronograma(Cronograma *vec, int tam){
+    Cronograma reg;
+    int i = 0;
+    while(reg.leerDeDisco(i)){
+        vec[i] = reg;
+        i++;
+    }
+
+}
+
+void ordenarCronograma(Cronograma *vec, int tam, bool direc){
+    int i, j, posMin, posMax;
+    Cronograma aux;
+    if (direc){
+
+        for (i=0; i<tam-1; i++){
+            posMin = i;
+            for (j=i+1; j<tam; j++){
+                if (vec[j].getFechaETA() < vec[posMin].getFechaETA()){
+                    posMin = j;
+                }
+            }
+            aux = vec[i];
+            vec[i]= vec [posMin];
+            vec[posMin]= aux;
+        }
+    }
+    else {
+        for (i=0; i<tam-1; i++){
+            posMax = i;
+            for (j=i+1; j<tam; j++){
+                if (vec[j].getFechaETA() > vec[posMax].getFechaETA()){
+                    posMax = j;
+                }
+            }
+            aux = vec[i];
+            vec[i]= vec [posMax];
+            vec[posMax]= aux;
+        }
+    }
+
+
+}
+
+int tamanoCronogramas(){
+    Cronograma reg;
+    int i = 0;
+    while(reg.leerDeDisco(i)){
+        i++;
+    }
+    return i;
+
+
+}
+
 
 
 

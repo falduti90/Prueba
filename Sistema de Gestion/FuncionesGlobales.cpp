@@ -291,7 +291,7 @@ void Admin(){
 bool importarCronograma(){
    ifstream archivo(NOMBRE_ARCHIVO);
         string linea;
-       // size_t posicion;
+
         char delimitador = ';';
         getline(archivo, linea);
 
@@ -311,18 +311,13 @@ bool importarCronograma(){
             istringstream(idDeBuque) >> idBuque;
             strcpy(numViaje, numeroDeViaje.c_str());
 
-           // cout << endl << "Numero de semana: " << numSemana;
-           // cout << endl << "idAgencia: " << idAgencia;
-           // cout << endl << "idRegion: " << idRegion;
-           // cout << endl << "idBuque: " << idBuque;
-           // cout << endl << "numeroDeViaje: " << numViaje;
 
 
             if (validaNroSemana(numSemana)&& validaIdAgencia(idAgencia) && validaIdRegion(idRegion) && validaIdBuque(idBuque)){
 
                 Cronograma reg;
                 reg.cargar(idAgencia, idRegion, idBuque, numSemana, numViaje);
-                reg.mostrar();
+                reg.grabarEnDisco();
 
 
                 //c.mostrar();
@@ -331,17 +326,9 @@ bool importarCronograma(){
                 cout << endl << "Importacion finalizada con errores";
                 return false;
             }
-            /*while ((posicion = fecha.find("/"))!= string::npos){
-            d = fecha.substr(0,posicion); //Revisar
-            fecha.substr(0,posicion +1);
-            }*/
 
-            /*
-            Fecha f(d,m,a);
-            f.mostrar();
-            */
             cout << endl;
-            //cout << endl << dia << "/" << mes << "/" << anio;
+
 
 	}
 
@@ -572,8 +559,19 @@ bool exportarBaseDeCalculo(){
 
     while( fread ( &reg , sizeof(BaseCalculo) , 1 , p ) ){
 
-        myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << reg.getidAgencia() << ',' << reg.getidRegion() << ',' << reg.getidGiro() << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
+        char  agencia[100]{} , region[100]{}, term[100]{};
 
+        strcpy(agencia , BuscarAgencia(reg.getidAgencia(),1));
+        strcpy(region , BuscarRegion(reg.getidRegion(),1));
+        strcpy(term , BuscarTerminal(reg.getidGiro(),0));
+
+
+        string agenciaStr = converToString(agencia, 100);
+        string regionStr = converToString(region,100);
+        string terminalStr = converToString(term, 100);
+
+        myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << agenciaStr << ',' << regionStr << ',' << terminalStr << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
+        //myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ';' << agenciaStr << ';' << regionStr << ';' << terminalStr << ';' << diaSemanaStr(reg.getDiaETA(), 1) << ';' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ';' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ';' << reg.getCalculoETD() <<  ';' << reg.getCalculoRecepcionCnt() <<  ';' << endl;
     }
 
     return true;
@@ -611,11 +609,6 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
 
         if (v1 && v2 && v3 && v4 ){
 
-
-                //string str = BuscarAgencia(reg.getIdAgencia(),true);
-                //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
-                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
-
                 char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
                 strcpy(viaje,reg.getViaje());
                 strcpy(agencia , BuscarAgencia(reg.getIdAgencia(),1));
@@ -644,40 +637,5 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
     system("pause");
 }
 
-//int tamanoCronogramas(){
-//    Cronograma reg;
-//    int i = 0;
-//    while(reg.leerDeDisco(i)){
-//        i++;
-//    }
-//    return i;
-//
-//
-//}
-//
-//void generarVecCronograma(Cronograma *vec, int tam){
-//    Cronograma reg;
-//    int i = 0;
-//    while(reg.leerDeDisco(i)){
-//
-//    }
-//
-//}
-//
-//void ordenarCronograma(Cronograma *vec, int tam){
-//    int i, j, posMin;
-//    Cronograma aux;
-//    for (i=0; i<cant-1; i++){
-//        posMin = i;
-//        for (j=i+1; j<cant; j++){
-//            if (vec[j].getFechaETA() < vec[posMin].getFechaETA()){
-//                posMin = j;
-//            }
-//        }
-//    }
-//    aux = vec[i];
-//    vec[i]= vec [posMin];
-//    lista[posMin]= aux;
-//
-//
-//}
+
+

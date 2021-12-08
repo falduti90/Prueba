@@ -63,6 +63,9 @@ class Cronograma {
 void ListadoCronograma();
 int  BuscarIdTerminal(int);
 void BuscarFechas( Cronograma  , int * , int * , int * , int*  , int * , int*  , int *);
+void generarVecCronograma(Cronograma *vec, int tam);
+void ordenarCronograma(Cronograma *vec, int tam, bool direc);
+int tamanoCronogramas();
 
 
 

@@ -167,10 +167,16 @@ char *BuscarTerminal(int idBuque, bool i){
     Buque aux;
     int idTerminal = 0;
 
-    while(aux.leerDeDisco(pos++)){
-        if (idBuque == aux.getIdBuque()){
-            idTerminal = aux.getTerminalDeGiro();
+    if (i){
+
+        while(aux.leerDeDisco(pos++)){
+            if (idBuque == aux.getIdBuque()){
+                idTerminal = aux.getTerminalDeGiro();
+            }
         }
+    }
+    else{
+        idTerminal = idBuque;
     }
 
     pos = 0;
