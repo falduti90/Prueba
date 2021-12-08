@@ -37,5 +37,7 @@ class Terminal {
 void BuscarTerminal(int);
 bool BorrarRegistroTerminal();
 int  TerminalAborrar(int idTerminal);
+char *BuscarTerminal(int idBuque, bool i);
+
 
 #endif // TERMINAL_H

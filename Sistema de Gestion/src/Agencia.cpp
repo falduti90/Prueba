@@ -153,7 +153,6 @@ void BuscarAgencia(int idAgencia){
 
     while(reg.leerDeDisco(pos++)){
         if (idAgencia == reg.getIdAgencia()){
-        printf("%.11s",reg.getNombreAgencia());
         cout << reg.getNombreAgencia();
         }
     }
@@ -162,13 +161,10 @@ void BuscarAgencia(int idAgencia){
 char *BuscarAgencia(int idAgencia, bool i){
     int pos = 0;
     Agencia reg;
-    char vec[100];
 
     while(reg.leerDeDisco(pos++)){
         if (idAgencia == reg.getIdAgencia()){
-            strcpy( vec, reg.getNombreAgencia());
-            return vec;
-
+            return reg.getNombreAgencia();
         }
     }
 }

@@ -36,8 +36,7 @@ int main(){
 
     //exportarBaseDeCalculo();
     pedirOpcionesDeFiltrado();
-
-
+//ListadoCronograma();
 
     //importar();
 

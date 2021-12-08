@@ -587,7 +587,8 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
     ofstream myFile;
     myFile.open("listadoCronograma.csv");
 
-    myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
+    //myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
+    myFile << "WEEK" << ';' << "AGENCIA"<< ';' << "REGION" << ';' << "BUQUE" << ';' << "GIRO" << ';'  << "VIAJE" << ';'  << "ETA" << ';' << "ETD" << ';'  << "CUT OFF DOC" << ';'  << "CUT OFF FISICO" << ';' << "INICIO DE RECEPCION" << ';'  << endl;
 
     FILE *p;
     Cronograma reg;
@@ -605,7 +606,7 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
         //cout << endl << "Esto devuelve semana: " << v2;
         bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
         //cout << endl << "Esto devuelve agencia: " << v3;
-        bool v4 = (idterminal == -1) || (idterminal == reg.getIdGiro());
+        bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(reg.getIdBuque()));
        // cout << endl << "Esto devuelve terminal: " << v4;
 
         if (v1 && v2 && v3 && v4 ){
@@ -615,15 +616,23 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
                 //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
                 //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
 
-                string numViaje = converToString(reg.getViaje(), 11);
-                //string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
-                //string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
-                //string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
-                //
-                //cout << BuscarAgencia(reg.getIdAgencia(), 1);
+                char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
+                strcpy(viaje,reg.getViaje());
+                strcpy(agencia , BuscarAgencia(reg.getIdAgencia(),1));
+                strcpy(region , BuscarRegion(reg.getIdRegion(),1));
+                strcpy(buque , BuscarBuque(reg.getIdBuque(),1));
+                strcpy(term , BuscarTerminal(reg.getIdBuque(),1));
+
+                string numViaje = converToString(viaje, 11);
+                string agenciaStr = converToString(agencia, 100);
+                string regionStr = converToString(region,100);
+                string buqueStr = converToString(buque, 100);
+                string terminalStr = converToString(term, 100);
 
 
-                myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+
+                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+                myFile << reg.getNumSemana() << ';' << agenciaStr << ';' << regionStr << ';'  << buqueStr << ';' << terminalStr << ';' << numViaje << ';' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ';'  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ';'  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ';' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ';' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ';'  << endl;
 
             }
 

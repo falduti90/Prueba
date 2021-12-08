@@ -5,6 +5,7 @@ using namespace std;
 #include <cstdio>
 #include "Terminal.h"
 #include "Domicilio.h"
+#include "Buque.h"
 #include "../Validaciones.h"
 
 
@@ -158,6 +159,28 @@ void BuscarTerminal(int idTerminal){
         }
     }
 }
+
+
+char *BuscarTerminal(int idBuque, bool i){
+    int pos = 0;
+    Terminal reg;
+    Buque aux;
+    int idTerminal = 0;
+
+    while(aux.leerDeDisco(pos++)){
+        if (idBuque == aux.getIdBuque()){
+            idTerminal = aux.getTerminalDeGiro();
+        }
+    }
+
+    pos = 0;
+    while(reg.leerDeDisco(pos++)){
+        if (idTerminal == reg.getIdTerminal()){
+            return reg.getNombreTerminal();
+        }
+    }
+}
+
 
 bool BorrarRegistroTerminal(){
 
