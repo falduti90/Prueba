@@ -349,23 +349,6 @@ bool importarCronograma(){
 
 }
 
-void exportar(Cronograma reg){
-    ofstream myFile;
-    myFile.open("listadoCronograma.csv");
-    string str = BuscarAgencia(reg.getIdAgencia(),true);
-    //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
-    myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
-
-
-
-	/*Fecha f;
-	int i = 0;
-	while (f.leerDeDisco(i)){
-        myFile << f.getDia() << ',' << f.getMes() << ',' << f.getAnio() << endl;
-        i++;
-
-	}*/
-}
 
 int buscarPosicionPorUsuario(char *usuario){
 
@@ -513,16 +496,6 @@ void pedirOpcionesDeFiltrado(){
 
 void Listado(int buque, int numsemana , int idagencia , int idterminal){
 
-    bool rta;
-    cout << endl << endl;
-    cout << "\t\t\t\t¿DESEA EXPORTAR DATOS? - 1. EXPORTAR / 0. NO EXPORTAR: ";
-    cin >> rta;
-
-    ofstream myFile;
-    myFile.open("listadoCronograma.csv");
-    if (rta){
-        myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
-    }
     FILE *p;
     Cronograma reg;
     p = fopen("Cronograma.dat","rb");
@@ -548,41 +521,27 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
        // cout << endl << "Esto devuelve terminal: " << v4;
 
         if (v1 && v2 && v3 && v4 ){
-            char s[20] = "hola";
-            char b = '/';
-            char cero = '0';
-            //strcpy(s,BuscarAgencia(reg.getIdAgencia()));
-            //reg.mostrar();
-            if (rta){
-                string str = BuscarAgencia(reg.getIdAgencia(),true);
-                //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
-                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
 
-                string numViaje = converToString(reg.getViaje(), 11);
-                string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
-                string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
-                string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
-                //int agencia_size = sizeof()
-                cout << endl << endl;
-                cout << endl << "---------------------------------------------" << endl;
-                cout << endl << numViaje << endl;
-                cout << BuscarAgencia(reg.getIdAgencia(), 1);
-                //cout << endl << regionStr;
-                //cout << endl << buqueStr;
-                //cout << endl << endl;
-
-
-
-                myFile << reg.getNumSemana() << ',' << agenciaStr << ',' << regionStr << ','  << buqueStr << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
-
-            }
+            reg.mostrar();
 
             cout << endl << endl;
         }
     }
     fclose(p);
     cout << endl << endl;
+
+    bool rta;
+    cout << endl << endl;
+    cout << "\t\t\t\t¿DESEA EXPORTAR DATOS? - 1. EXPORTAR / 0. NO EXPORTAR: ";
+    cin >> rta;
+
+    if (rta){
+        ExportarCronograma(buque, numsemana , idagencia , idterminal);
+    }
+
     system("pause");
+
+
 }
 
 string converToString(char *vec, int tam){
@@ -618,34 +577,66 @@ bool exportarBaseDeCalculo(){
     }
 
     return true;
-    //cout << endl << endl;
-    //cout << "\t\t\t\t\t" << system("pause");
-    //system("cls");
-    //fclose(p);
-    //cout << "\t\t\t\t\t" << "ID: ";
-    //mostrarIdBaseCalculo();
-    //cout <<  "\t\t\t\t\t" << "AGENCIA: ";
-    //BuscarAgencia(_idAgencia);
-    //cout  << endl;
-    //cout <<  "\t\t\t\t\t" << "REGION: ";
-    //BuscarRegion(_idRegion);
-    //cout << endl;
-    //cout <<  "\t\t\t\t\t" << "TERMINAL DE GIRO: ";
-    //BuscarTerminal(_idTerminalDeGiro);
-    //cout << endl;
 
-    //cout <<  "\t\t\t\t\t" << "DIA ETA: ";
-    //diaSemana(_diaETA);
-    //cout << endl;
-    //cout <<  "\t\t\t\t\t" << "DIA CUT OFF FIS: ";
-    //diaSemana(_diaCTF);
-    //cout << " " << _horaCTF << " HRS" << endl;
-    //cout <<  "\t\t\t\t\t" << "DIA CUT OFF DOC: ";
-    //diaSemana(_diaCTD);
-    //cout << "    " << _horaCTD << " HRS" << endl;
 
-   //cout <<  "\t\t\t\t\t" << "DIAS QUE SUMA PARA ETD: " << _calculoETD << endl;
-   //cout <<  "\t\t\t\t\t" << "DIAS QUE RESTA PARA RECEPCION DEL CNT: " << _calculoRecepcionCnt << endl;
+}
 
+void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal){
+
+
+    ofstream myFile;
+    myFile.open("listadoCronograma.csv");
+
+    myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
+
+    FILE *p;
+    Cronograma reg;
+    p = fopen("Cronograma.dat","rb");
+    if(p == NULL){
+        cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
+    return ;
+    }
+
+    while(fread(&reg,sizeof(Cronograma),1,p)==1){
+
+        bool v1 = (buque == -1) || (buque == reg.getIdBuque());
+        //cout << endl << "Esto devuelve buque: " << v1;
+        bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
+        //cout << endl << "Esto devuelve semana: " << v2;
+        bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
+        //cout << endl << "Esto devuelve agencia: " << v3;
+        bool v4 = (idterminal == -1) || (idterminal == reg.getIdGiro());
+       // cout << endl << "Esto devuelve terminal: " << v4;
+
+        if (v1 && v2 && v3 && v4 ){
+
+
+                string str = BuscarAgencia(reg.getIdAgencia(),true);
+                //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
+                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
+
+                string numViaje = converToString(reg.getViaje(), 11);
+                string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
+                string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
+                string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
+                //int agencia_size = sizeof()
+                cout << endl << endl;
+                cout << endl << "---------------------------------------------" << endl;
+                cout << endl << numViaje << endl;
+                cout << BuscarAgencia(reg.getIdAgencia(), 1);
+                //cout << endl << regionStr;
+                //cout << endl << buqueStr;
+                //cout << endl << endl;
+
+                myFile << reg.getNumSemana() << ',' << agenciaStr << ',' << regionStr << ','  << buqueStr << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+
+            }
+
+            cout << endl << endl;
+        }
+
+    fclose(p);
+    cout << endl << endl;
+    system("pause");
 }
 

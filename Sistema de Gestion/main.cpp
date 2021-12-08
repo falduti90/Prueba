@@ -34,12 +34,12 @@ int main(){
 //ListadoBuques();
 
 
-    exportarBaseDeCalculo();
+    //exportarBaseDeCalculo();
 
     //Cronograma c;
     //c.leerDeDisco(1);
     //cout << BuscarAgencia(c.getIdAgencia(), 1)
-    //pedirOpcionesDeFiltrado();
+    pedirOpcionesDeFiltrado();
     //importar();
 
 

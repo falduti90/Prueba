@@ -19,5 +19,6 @@ void pedirOpcionesDeFiltrado();
 void Listado(int buque, int numsemana , int idagencia , int idterminal);
 string converToString(char *vec, int tam);
 bool exportarBaseDeCalculo();
+void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal);
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED
