@@ -611,24 +611,19 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
         if (v1 && v2 && v3 && v4 ){
 
 
-                string str = BuscarAgencia(reg.getIdAgencia(),true);
+                //string str = BuscarAgencia(reg.getIdAgencia(),true);
                 //WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION
                 //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia()<< ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ',' << reg.getIdGiro() << ',' << reg.getIdBuque() << ','  << str << ','  << endl;
 
                 string numViaje = converToString(reg.getViaje(), 11);
-                string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
-                string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
-                string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
-                //int agencia_size = sizeof()
-                cout << endl << endl;
-                cout << endl << "---------------------------------------------" << endl;
-                cout << endl << numViaje << endl;
-                cout << BuscarAgencia(reg.getIdAgencia(), 1);
-                //cout << endl << regionStr;
-                //cout << endl << buqueStr;
-                //cout << endl << endl;
+                //string agenciaStr = converToString(BuscarAgencia(reg.getIdAgencia(), 1), 100);
+                //string regionStr = converToString(BuscarRegion(reg.getIdRegion(), 1),100);
+                //string buqueStr = converToString(BuscarBuque(reg.getIdBuque(), 1), 100);
+                //
+                //cout << BuscarAgencia(reg.getIdAgencia(), 1);
 
-                myFile << reg.getNumSemana() << ',' << agenciaStr << ',' << regionStr << ','  << buqueStr << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+
+                myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
 
             }
 
@@ -640,3 +635,40 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
     system("pause");
 }
 
+//int tamanoCronogramas(){
+//    Cronograma reg;
+//    int i = 0;
+//    while(reg.leerDeDisco(i)){
+//        i++;
+//    }
+//    return i;
+//
+//
+//}
+//
+//void generarVecCronograma(Cronograma *vec, int tam){
+//    Cronograma reg;
+//    int i = 0;
+//    while(reg.leerDeDisco(i)){
+//
+//    }
+//
+//}
+//
+//void ordenarCronograma(Cronograma *vec, int tam){
+//    int i, j, posMin;
+//    Cronograma aux;
+//    for (i=0; i<cant-1; i++){
+//        posMin = i;
+//        for (j=i+1; j<cant; j++){
+//            if (vec[j].getFechaETA() < vec[posMin].getFechaETA()){
+//                posMin = j;
+//            }
+//        }
+//    }
+//    aux = vec[i];
+//    vec[i]= vec [posMin];
+//    lista[posMin]= aux;
+//
+//
+//}

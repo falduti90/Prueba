@@ -35,11 +35,10 @@ int main(){
 
 
     //exportarBaseDeCalculo();
-
-    //Cronograma c;
-    //c.leerDeDisco(1);
-    //cout << BuscarAgencia(c.getIdAgencia(), 1)
     pedirOpcionesDeFiltrado();
+
+
+
     //importar();
 
 

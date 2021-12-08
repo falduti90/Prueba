@@ -162,10 +162,12 @@ void BuscarAgencia(int idAgencia){
 char *BuscarAgencia(int idAgencia, bool i){
     int pos = 0;
     Agencia reg;
+    char vec[100];
 
     while(reg.leerDeDisco(pos++)){
         if (idAgencia == reg.getIdAgencia()){
-            return reg.getNombreAgencia();
+            strcpy( vec, reg.getNombreAgencia());
+            return vec;
 
         }
     }
