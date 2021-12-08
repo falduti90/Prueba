@@ -15,6 +15,7 @@ class BaseCalculo{
         void setHoraCTF ( int hora );
         void setDiaCTD ( int diaSem );
         void setHoraCTD ( int hora );
+        void setActivo(bool activo){_activo = activo;}
         void setCalculoRecepcionCnt ( int restaDias );
         void setIdBaseCalculo( int idAgencia , int idRegion , int idGiro );
         int getidAgencia ();

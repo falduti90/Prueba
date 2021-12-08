@@ -40,4 +40,5 @@ char *BuscarAgencia(int, bool);
 bool BorrarRegistroAgencia();
 int  AgenciaAborrar(int idAgencia);
 
+
 #endif // AGENCIA_H

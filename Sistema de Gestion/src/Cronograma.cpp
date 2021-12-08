@@ -259,9 +259,9 @@ bool Cronograma::grabarEnDisco(){
 //FUNCIONES GLOBALES
 void ListadoCronograma() {
 bool rta, direc;
-cout << endl << "Desea ordenar el listado por fecha de ETA?  1-SI  0-NO";
+cout << endl << "Desea ordenar el listado por fecha de ETA?  1-SI  0-NO ";
 cin >> rta;
-cout << "Elija una opcion: 1-Ascendente 0-Descendente";
+cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
 cin >> direc;
 if (rta){
 

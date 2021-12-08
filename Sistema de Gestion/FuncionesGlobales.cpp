@@ -578,6 +578,80 @@ bool exportarBaseDeCalculo(){
 
 
 }
+bool importarBaseCalculo(){
+
+
+    ifstream archivo("importadorBaseCalculo.csv");
+    string linea;
+
+        char delimitador = ','; //Cambiar a ;
+        getline(archivo, linea);
+
+        while(getline(archivo, linea)){
+            stringstream stream (linea);
+            string idDeAgencia,  idDeRegion, idDeTerminal, diaDeETA, diaDeCTF, horDeCTF, diaDeCTD, horaDeCTD, masDeETD, menosDeCNT ;
+            getline(stream, idDeAgencia, delimitador);
+            getline(stream, idDeRegion, delimitador);
+            getline(stream, idDeTerminal, delimitador);
+            getline(stream, diaDeETA, delimitador);
+            getline(stream, diaDeCTF, delimitador);
+            getline(stream, horDeCTF, delimitador);
+            getline(stream, diaDeCTD, delimitador);
+            getline(stream, horaDeCTD, delimitador);
+            getline(stream, masDeETD, delimitador);
+            getline(stream, menosDeCNT, delimitador);
+
+
+            int idAgencia,  idRegion, idTerminall, diaETA, diaCTF, horCTF, diaCTD, horCTD, masETD, menosCNT ;
+            //char numViaje[11];
+            istringstream(idDeAgencia) >> idAgencia;
+            istringstream(idDeRegion) >> idRegion;
+            istringstream(idDeTerminal) >> idTerminall;
+            istringstream(diaDeETA) >> diaETA;
+            istringstream(diaDeCTF) >> diaCTF;
+            istringstream(horDeCTF) >> horCTF;
+            istringstream(diaDeCTD) >> diaCTD;
+            istringstream(horaDeCTD) >> horCTD;
+            istringstream(masDeETD) >> masETD;
+            istringstream(menosDeCNT) >> menosCNT;
+            //strcpy(numViaje, numeroDeViaje.c_str());
+
+
+            BaseCalculo reg;
+
+            if (validaIdAgencia (idAgencia) && validaIdRegion (idRegion) && validaIdTerminal (idTerminall) && validaDiaSemana ( diaETA) && validaDiaSemana (diaCTF) && validaHora (horCTF) && validaDiaSemana (diaCTD) && validaHora (horCTD) && validaPositivo (masETD) && validaPositivo (menosCNT)){
+
+                reg.setidAgencia(idAgencia);
+                reg.setidRegion(idRegion);
+                reg.setidGiro(idTerminall);
+                reg.setDiaETA(diaETA);
+                reg.setDiaCTF(diaCTF);
+                reg.setHoraCTF(horCTF);
+                reg.setDiaCTD(diaCTD);
+                reg.setHoraCTD(horCTD);
+                reg.setCalculoETD(masETD);
+                reg.setCalculoRecepcionCnt(menosCNT);
+                reg.setIdBaseCalculo( idAgencia , idRegion , idTerminall );
+                reg.setActivo (true);
+                //reg.mostrar();
+                reg.grabarEnDisco();
+
+            }
+            else{
+                cout << endl << "Importacion finalizada con errores";
+                return false;
+            }
+
+            cout << endl;
+
+
+	}
+
+	return true;
+
+
+
+}
 
 void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal){
 
