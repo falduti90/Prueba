@@ -97,7 +97,7 @@ int Fecha::getNumDia(){
 void Fecha::mostrar(){
 
     if (getAnio() ==(1111)){
-    cout << "   ---   ";
+    //cout << "   ---   ";
     return;
     }
 

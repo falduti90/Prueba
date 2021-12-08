@@ -200,26 +200,83 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
 }
 
 
+void Cronograma::mostrar(int &y){
+
+    rlutil::locate(2, y);
+    printf("%3d",_numSemana);
+
+    rlutil::locate(9, y);
+    BuscarAgencia(_idAgencia);
+
+    rlutil::locate(23, y);
+    BuscarRegion(_idRegion);
+
+    rlutil::locate(31, y);
+    BuscarBuque(_idBuque);
+
+    rlutil::locate(62, y);
+    cout << _viaje;
+
+    rlutil::locate(70, y);
+    getFechaETA().mostrar();
+
+    rlutil::locate(83, y);
+    getFechaETD().mostrar();
+
+    rlutil::locate(96, y);
+    getFechaCutoffFisico().mostrar();
+    cout << " " << _horaCTF << "Hrs";
+
+    rlutil::locate(106, y);
+    getFechaCutoffDoc().mostrar();
+    cout << " " << _horaCTD << "Hrs";
+
+    rlutil::locate(126, y);
+    getFechaRecepcionCnt().mostrar();
+
+    y++;
+}
+
 void Cronograma::mostrar(){
+
     printf("%3d",_numSemana);
     cout << ", ";
+
+
     BuscarAgencia(_idAgencia);
     cout << ", ";
+
+
     BuscarRegion(_idRegion);
     cout << ", ";
+
+
     BuscarBuque(_idBuque);
     cout << ", ";
     cout << _viaje << ", ";
+
+
     getFechaETA().mostrar();
     cout << ", ";
+
+
     getFechaETD().mostrar();
     cout << ", ";
+
+
     getFechaCutoffFisico().mostrar();
     cout << " " << _horaCTF << "Hrs, ";
+
+
     getFechaCutoffDoc().mostrar();
     cout << " " << _horaCTD << "Hrs, ";
+
+
     getFechaRecepcionCnt().mostrar();
+
+
 }
+
 
 bool Cronograma::leerDeDisco(int pos){
     FILE *p;
@@ -261,10 +318,10 @@ void ListadoCronograma() {
 bool rta, direc;
 cout << endl << "Desea ordenar el listado por fecha de ETA?  1-SI  0-NO ";
 cin >> rta;
-cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
-cin >> direc;
-if (rta){
 
+if (rta){
+    cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
+    cin >> direc;
     Cronograma *vec;
     int tam = tamanoCronogramas();
     vec = new Cronograma [tam];
@@ -290,8 +347,7 @@ if (rta){
 
 }
 
-cout << endl << endl;
-cout << endl << "___________________________________________________________" << endl;
+
 
 FILE *p;
    Cronograma reg;
@@ -303,7 +359,7 @@ FILE *p;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
-
+    int y = 7;
 
     while(fread(&reg,sizeof(Cronograma),1,p)==1){
         reg.mostrar();
