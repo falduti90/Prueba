@@ -49,6 +49,7 @@
 		<Unit filename="include/Buque.h" />
 		<Unit filename="include/Cronograma.h" />
 		<Unit filename="include/Domicilio.h" />
+		<Unit filename="include/Estadistica.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Region.h" />
 		<Unit filename="include/Terminal.h" />
@@ -60,6 +61,7 @@
 		<Unit filename="src/Buque.cpp" />
 		<Unit filename="src/Cronograma.cpp" />
 		<Unit filename="src/Domicilio.cpp" />
+		<Unit filename="src/Estadistica.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Region.cpp" />
 		<Unit filename="src/Terminal.cpp" />

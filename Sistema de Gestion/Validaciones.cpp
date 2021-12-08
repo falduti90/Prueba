@@ -7,7 +7,7 @@ using namespace std;
 #include "Terminal.h"
 #include "Agencia.h"
 #include "Buque.h"
-
+#include <ctime>
 
 
 /// VALIDACIONES AL CARGAR
@@ -132,4 +132,34 @@ bool validaNombreTerminal ( char *nomTerm){
         }
 
     return false;
+}
+
+
+
+bool validaMesCarga( int mes ){
+    if ( mes <= 0 || mes > 12){
+        cout << endl << "NUMERO DE MES INVALIDO." << endl << endl;
+        return false;
+    }
+
+    time_t tSac = time(NULL);  // instante actual
+    struct tm* pt1 = localtime(&tSac);
+    tm tm2 = *gmtime(&tSac);   // deferencia y asignación
+    int mesActual = tm2.tm_mon+1;
+
+    if ( mes > mesActual ){
+        cout << endl << "NO PUEDE INGRESAR UN MES MAYOR AL ACTUAL." << endl << endl;
+        return false;
+    }
+
+    return true;
+}
+
+
+bool validaMayorCero( int num ){
+        if ( num <= 0){
+        cout << endl << "DEBE INGRESAR UN VALOR MAYOR A 0." << endl << endl;
+        return false;
+    }
+    return true;
 }

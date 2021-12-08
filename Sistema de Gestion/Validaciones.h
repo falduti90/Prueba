@@ -15,7 +15,8 @@ bool validaNombreBuque ( char *);
 bool validaCodigoRegion ( char *);
 bool validaNombreRegion ( char *);
 bool validaNombreTerminal ( char *);
-
+bool validaMesCarga( int  );
+bool validaMayorCero( int );
 
 
 

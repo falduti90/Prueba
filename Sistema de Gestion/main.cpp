@@ -17,6 +17,7 @@
 #include "EliminarRegistro.h"
 #include "Cronograma.h"
 #include "Listados.h"
+#include "Estadistica.h"
 #include <sstream> //LibreRias para
 #include <fstream> // el importador
 #define NOMBRE_ARCHIVO "Prueba.csv" // Archivo para importador
@@ -35,10 +36,14 @@ int main(){
 
 
     //exportarBaseDeCalculo();
-    pedirOpcionesDeFiltrado();
+  //  pedirOpcionesDeFiltrado();
 //ListadoCronograma();
 
     //importar();
+
+    resumenAnual();
+    cout << endl;
+    resumenMensual();
 
 
 
