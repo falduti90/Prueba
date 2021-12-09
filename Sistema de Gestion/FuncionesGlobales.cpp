@@ -481,11 +481,18 @@ void pedirOpcionesDeFiltrado(){
         cin >> agencia;
         fclose(p);
     }
-        cout << endl << endl;
-        cout << "\t\t\t\t\tDESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
+        system("cls");
+        cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
+        cout << "\t\t\t\t*******************************************" << endl << endl;
+        cout << "\t\t\t\t\DESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
+        rlutil::locate(62,8);
         cin >> op;
+        system("cls");
         if (op){
-            cout << endl << "1- Ascendente  0-Descendente";
+            cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
+            cout << "\t\t\t\t*******************************************" << endl << endl;
+            cout << "\t\t\t\t\-1 ASCENDENTE  -0 DESCENDENTE" << endl << endl;
+            rlutil::locate(62,8);
             cin >> orden;
         }
 

@@ -36,10 +36,7 @@ int main(){
 
 
     //exportarBaseDeCalculo();
-  Cronograma reg;
-  reg.leerDeDisco(1);
-  int y = 10;
-  reg.mostrar(y);
+pedirOpcionesDeFiltrado();
 //ListadoCronograma();
 
     //importar();
