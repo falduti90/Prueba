@@ -227,11 +227,11 @@ void Cronograma::mostrar(int &y){
     getFechaCutoffFisico().mostrar();
     cout << " " << _horaCTF << "Hrs";
 
-    rlutil::locate(106, y);
+    rlutil::locate(115, y);
     getFechaCutoffDoc().mostrar();
     cout << " " << _horaCTD << "Hrs";
 
-    rlutil::locate(126, y);
+    rlutil::locate(130, y);
     getFechaRecepcionCnt().mostrar();
 
     y++;

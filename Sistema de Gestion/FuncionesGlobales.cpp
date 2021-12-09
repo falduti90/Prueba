@@ -289,6 +289,7 @@ void Admin(){
 }
 
 bool importarCronograma(){
+    int lineaImp = 0;
    ifstream archivo(NOMBRE_ARCHIVO);
         string linea;
 
@@ -318,12 +319,14 @@ bool importarCronograma(){
                 Cronograma reg;
                 reg.cargar(idAgencia, idRegion, idBuque, numSemana, numViaje);
                 reg.grabarEnDisco();
+                lineaImp ++;
 
 
                 //c.mostrar();
             }
             else{
-                cout << endl << "Importacion finalizada con errores";
+                lineaImp++;
+                cout << endl << "Error en la linea" << lineaImp << ". No se importo la informacion de la misma";
                 return false;
             }
 
@@ -386,6 +389,7 @@ void pedirOpcionesDeFiltrado(){
     int buque, semana, agencia, terminal;
     buque = semana = agencia = terminal = -1;
     bool op;
+    bool orden = true;
     cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
     cout << "\t\t\t\t*******************************************" << endl << endl;
     cout << "\t\t\t\tBUQUE - 1. FILTRAR / 0. NO FILTRAR: ";
@@ -477,12 +481,39 @@ void pedirOpcionesDeFiltrado(){
         cin >> agencia;
         fclose(p);
     }
-    Listado(buque, semana, agencia, terminal);
+        cout << endl << endl;
+        cout << "\t\t\t\t\tDESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
+        cin >> op;
+        if (op){
+            cout << endl << "1- Ascendente  0-Descendente";
+            cin >> orden;
+        }
+
+
+    Listado(buque, semana, agencia, terminal, orden, op);
     system("cls");
 }
 
-void Listado(int buque, int numsemana , int idagencia , int idterminal){
+void Listado(int buque, int numsemana , int idagencia , int idterminal, bool orden, bool op){
 
+    Cronograma *vecList;
+    //bool *mostrar;
+
+    int tam = tamanoCronogramas();
+    vecList = new Cronograma [tam];
+
+    //mostrar = new bool [tam] {};
+
+    generarVecCronograma(vecList, tam);
+
+
+
+    if (op){
+
+        ordenarCronograma(vecList, tam, orden);
+    }
+
+    /*
     FILE *p;
     Cronograma reg;
     p = fopen("Cronograma.dat","rb");
@@ -490,15 +521,29 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
         cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
     return ;
     }
+    */
     //cout << "\t\t\t\t\t" << system("pause");
     system("cls");
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 
-    while(fread(&reg,sizeof(Cronograma),1,p)==1){
+    /*
+    while(fread(&reg,sizeof(Cronograma),1,p)==1){ */
+    for (int i=0; i<tam; i++){
 
-        bool v1 = (buque == -1) || (buque == reg.getIdBuque());
+
+        bool v1 = (buque == -1) || (buque == vecList[i].getIdBuque());
+        //cout << endl << "Esto devuelve buque: " << v1;
+        bool v2 = (numsemana == -1) || (numsemana == vecList[i].getNumSemana());
+        //cout << endl << "Esto devuelve semana: " << v2;
+        bool v3 = (idagencia == -1 )|| (idagencia == vecList[i].getIdAgencia());
+        //cout << endl << "Esto devuelve agencia: " << v3;
+        bool v4 = (idterminal == -1) || (idterminal == vecList[i].getIdGiro());
+       // cout << endl << "Esto devuelve terminal: " << v4;
+
+       /*
+       bool v1 = (buque == -1) || (buque == reg.getIdBuque());
         //cout << endl << "Esto devuelve buque: " << v1;
         bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
         //cout << endl << "Esto devuelve semana: " << v2;
@@ -507,15 +552,23 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
         bool v4 = (idterminal == -1) || (idterminal == reg.getIdGiro());
        // cout << endl << "Esto devuelve terminal: " << v4;
 
+
+       */
+
         if (v1 && v2 && v3 && v4 ){
 
-            reg.mostrar();
+            vecList[i].mostrar();
 
             cout << endl << endl;
         }
+
+    }
+
+
+    /*
     }
     fclose(p);
-    cout << endl << endl;
+    cout << endl << endl; */
 
     bool rta;
     cout << endl << endl;
@@ -523,7 +576,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal){
     cin >> rta;
 
     if (rta){
-        ExportarCronograma(buque, numsemana , idagencia , idterminal);
+        ExportarCronograma(buque, numsemana , idagencia , idterminal, vecList, tam);
     }
 
     system("pause");
@@ -653,7 +706,7 @@ bool importarBaseCalculo(){
 
 }
 
-void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal){
+void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal, Cronograma *vecList,int tam){
 
 
     ofstream myFile;
@@ -662,53 +715,91 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
     //myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
     myFile << "WEEK" << ';' << "AGENCIA"<< ';' << "REGION" << ';' << "BUQUE" << ';' << "GIRO" << ';'  << "VIAJE" << ';'  << "ETA" << ';' << "ETD" << ';'  << "CUT OFF DOC" << ';'  << "CUT OFF FISICO" << ';' << "INICIO DE RECEPCION" << ';'  << endl;
 
-    FILE *p;
-    Cronograma reg;
-    p = fopen("Cronograma.dat","rb");
-    if(p == NULL){
-        cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
-    return ;
-    }
+//    FILE *p;
+//    Cronograma reg;
+//    p = fopen("Cronograma.dat","rb");
+//    if(p == NULL){
+//        cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
+//    return ;
+//    }
+//
+//    while(fread(&reg,sizeof(Cronograma),1,p)==1){
+//
+//        bool v1 = (buque == -1) || (buque == reg.getIdBuque());
+//        //cout << endl << "Esto devuelve buque: " << v1;
+//        bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
+//        //cout << endl << "Esto devuelve semana: " << v2;
+//        bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
+//        //cout << endl << "Esto devuelve agencia: " << v3;
+//        bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(reg.getIdBuque()));
+//       // cout << endl << "Esto devuelve terminal: " << v4;
+//
+//        if (v1 && v2 && v3 && v4 ){
+//
+//                char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
+//                strcpy(viaje,reg.getViaje());
+//                strcpy(agencia , BuscarAgencia(reg.getIdAgencia(),1));
+//                strcpy(region , BuscarRegion(reg.getIdRegion(),1));
+//                strcpy(buque , BuscarBuque(reg.getIdBuque(),1));
+//                strcpy(term , BuscarTerminal(reg.getIdBuque(),1));
+//
+//                string numViaje = converToString(viaje, 11);
+//                string agenciaStr = converToString(agencia, 100);
+//                string regionStr = converToString(region,100);
+//                string buqueStr = converToString(buque, 100);
+//                string terminalStr = converToString(term, 100);
+//
+//
+//
+//                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+//                myFile << reg.getNumSemana() << ';' << agenciaStr << ';' << regionStr << ';'  << buqueStr << ';' << terminalStr << ';' << numViaje << ';' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ';'  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ';'  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ';' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ';' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ';'  << endl;
+//
+//            }
+//
+//            cout << endl << endl;
+//        }
+//
 
-    while(fread(&reg,sizeof(Cronograma),1,p)==1){
-
-        bool v1 = (buque == -1) || (buque == reg.getIdBuque());
-        //cout << endl << "Esto devuelve buque: " << v1;
-        bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
-        //cout << endl << "Esto devuelve semana: " << v2;
-        bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
-        //cout << endl << "Esto devuelve agencia: " << v3;
-        bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(reg.getIdBuque()));
-       // cout << endl << "Esto devuelve terminal: " << v4;
-
-        if (v1 && v2 && v3 && v4 ){
-
-                char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
-                strcpy(viaje,reg.getViaje());
-                strcpy(agencia , BuscarAgencia(reg.getIdAgencia(),1));
-                strcpy(region , BuscarRegion(reg.getIdRegion(),1));
-                strcpy(buque , BuscarBuque(reg.getIdBuque(),1));
-                strcpy(term , BuscarTerminal(reg.getIdBuque(),1));
-
-                string numViaje = converToString(viaje, 11);
-                string agenciaStr = converToString(agencia, 100);
-                string regionStr = converToString(region,100);
-                string buqueStr = converToString(buque, 100);
-                string terminalStr = converToString(term, 100);
+        for (int i=0; i<tam; i++){
 
 
+            bool v1 = (buque == -1) || (buque == vecList[i].getIdBuque());
+            //cout << endl << "Esto devuelve buque: " << v1;
+            bool v2 = (numsemana == -1) || (numsemana == vecList[i].getNumSemana());
+            //cout << endl << "Esto devuelve semana: " << v2;
+            bool v3 = (idagencia == -1 )|| (idagencia == vecList[i].getIdAgencia());
+            //cout << endl << "Esto devuelve agencia: " << v3;
+            bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(vecList[i].getIdBuque()));
+           // cout << endl << "Esto devuelve terminal: " << v4;
 
-                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
-                myFile << reg.getNumSemana() << ';' << agenciaStr << ';' << regionStr << ';'  << buqueStr << ';' << terminalStr << ';' << numViaje << ';' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ';'  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ';'  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ';' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ';' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ';'  << endl;
 
+            if (v1 && v2 && v3 && v4 ){
+
+                    char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
+                    strcpy(viaje,vecList[i].getViaje());
+                    strcpy(agencia , BuscarAgencia(vecList[i].getIdAgencia(),1));
+                    strcpy(region , BuscarRegion(vecList[i].getIdRegion(),1));
+                    strcpy(buque , BuscarBuque(vecList[i].getIdBuque(),1));
+                    strcpy(term , BuscarTerminal(vecList[i].getIdBuque(),1));
+
+                    string numViaje = converToString(viaje, 11);
+                    string agenciaStr = converToString(agencia, 100);
+                    string regionStr = converToString(region,100);
+                    string buqueStr = converToString(buque, 100);
+                    string terminalStr = converToString(term, 100);
+
+                    //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
+                    myFile << vecList[i].getNumSemana() << ';' << agenciaStr << ';' << regionStr << ';'  << buqueStr << ';' << terminalStr << ';' << numViaje << ';' << vecList[i].getFechaETA().getDia() << '/' << vecList[i].getFechaETA().getMes() << '/' << vecList[i].getFechaETA().getAnio() << ';'  << vecList[i].getFechaETD().getDia() << '/' << vecList[i].getFechaETD().getMes() << '/' << vecList[i].getFechaETD().getAnio() << ';'  << vecList[i].getFechaCutoffFisico().getDia() << '/' << vecList[i].getFechaCutoffFisico().getMes() << '/' << vecList[i].getFechaCutoffFisico().getAnio()  << ';' <<  vecList[i].getFechaCutoffDoc().getDia() << '/' << vecList[i].getFechaCutoffDoc().getMes() << '/' << vecList[i].getFechaCutoffDoc().getAnio() << ';' <<  vecList[i].getFechaRecepcionCnt().getDia() << '/' << vecList[i].getFechaRecepcionCnt().getMes() << '/' << vecList[i].getFechaRecepcionCnt().getAnio() << ';'  << endl;
+
+                cout << endl << endl;
             }
 
-            cout << endl << endl;
         }
 
-    fclose(p);
-    cout << endl << endl;
-    system("pause");
+
+//    fclose(p);
+//    cout << endl << endl;
+//    system("pause");
 }
 
 
