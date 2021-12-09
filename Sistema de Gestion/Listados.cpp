@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void Listados(){
+void Listados(int categoria){
 
     int opc;
 
@@ -40,7 +40,7 @@ void Listados(){
                break;
             case 5 : ListadoBaseCalculo();
                break;
-            case 0 : DataEntry();
+            case 0 : DataEntry(categoria);
                break;
         }
     }
@@ -149,12 +149,11 @@ void ListadoBaseCalculo() {
         cout << "\t\t\t\t\t*******************************************" << endl;
     }
     cout << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
+
     fclose(p);
 
     bool rta;
-    cout << endl << "Desea exportar el listado? 1- SI  0- NO";
+    cout << endl << "Desea exportar el listado? 1- SI  0- NO ";
     cin >> rta;
     if (rta){
         exportarBaseDeCalculo();

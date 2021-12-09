@@ -239,7 +239,8 @@ void Cronograma::mostrar(int &y){
 
 void Cronograma::mostrar(){
 
-    printf("%3d",_numSemana);
+    //printf("%3d",_numSemana);
+    cout << _numSemana;
     cout << ", ";
 
 
@@ -319,18 +320,24 @@ bool rta, direc;
 cout << endl << "Desea ordenar el listado por fecha de ETA?  1-SI  0-NO ";
 cin >> rta;
 
-if (rta){
-    cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
-    cin >> direc;
     Cronograma *vec;
     int tam = tamanoCronogramas();
     vec = new Cronograma [tam];
 
     generarVecCronograma(vec, tam);
 
+    if (rta) {
 
-    ordenarCronograma(vec, tam, direc);
+        cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
+        cin >> direc;
+        ordenarCronograma(vec, tam, direc);
 
+    }
+
+
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 
     for(int i = 0; i<tamanoCronogramas(); i++){
         vec[i].mostrar();
@@ -345,31 +352,9 @@ if (rta){
     system("cls");
 
 
-}
 
 
 
-FILE *p;
-   Cronograma reg;
-   p=fopen("Cronograma.dat","rb");
-    if(p==NULL){
-        cout<< "No se pudo abrir el archivo";
-    return ;
-    }
-    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
-    cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
-    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
-    int y = 7;
-
-    while(fread(&reg,sizeof(Cronograma),1,p)==1){
-        reg.mostrar();
-        cout << endl;
-    }
-    cout << endl << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
-    system("cls");
-
-    fclose(p);
 }
 
 

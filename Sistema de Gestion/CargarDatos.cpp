@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void CargarDatos(){
+void CargarDatos(int categoria){
 
     int opc;
     Buque buq;
@@ -17,6 +17,8 @@ void CargarDatos(){
     Region reg;
     Terminal term;
     BaseCalculo bas;
+    Cronograma cron;
+    bool tipoCarga;
 
     while(true){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
@@ -26,6 +28,7 @@ void CargarDatos(){
         cout << "\t\t\t\t\t3 - CARGAR REGION. " << endl << endl;
         cout << "\t\t\t\t\t4 - CARGAR TERMINAL. " << endl << endl;
         cout << "\t\t\t\t\t5 - CARGAR BASE DE CALCULO. " << endl << endl;
+        cout << "\t\t\t\t\t6 - CARGAR CRONOGRAMA " << endl << endl;
         cout << "\t\t\t\t\t0 - VOLVER." << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
@@ -42,9 +45,29 @@ void CargarDatos(){
                break;
             case 4 : term.cargar();
                break;
-            case 5 : bas.cargar();
+            case 5 :
+                system("cls");
+                cout << endl << "1- IMPORTAR 2- CARGA MANUAL ";
+                cin >> tipoCarga;
+                if (tipoCarga){
+                    importarBaseCalculo();
+                }
+                else{
+                    bas.cargar();
+                }
                break;
-            case 0 : DataEntry();
+            case 6:
+                system("cls");
+                cout << endl << "1- IMPORTAR 2- CARGA MANUAL ";
+                cin >> tipoCarga;
+                if (tipoCarga){
+                    importarCronograma();
+                }
+                else{
+                cron.cargar();
+                }
+                break;
+            case 0 : DataEntry(categoria);
                break;
         }
     }

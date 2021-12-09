@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void EliminarRegistro(){
+void EliminarRegistro(int categoria){
 
     int opc;
 
@@ -39,7 +39,7 @@ void EliminarRegistro(){
                break;
 //            case 5 : BORRAR REGISTRO DE BASE DE CALCULO
 //               break;
-            case 0 : Admin();
+            case 0 : Admin(categoria);
                break;
         }
     }

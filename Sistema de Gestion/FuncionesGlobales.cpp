@@ -71,12 +71,22 @@ void InicioSesion(){
         cout << "\t\t\t\t\t - USUARIO : ";
         cargarCadena(usuario,30);
         cout << endl;
+        pos = buscarPosicionPorUsuario(usuario);
+
+
+        if (pos == -1){
+            cout << endl << "\t\t\t\t\tUSUARIO INEXISTENTE!!!" << endl << endl;
+            system("pause > nul");
+            system("cls");
+            return;
+
+        }
         cout << "\t\t\t\t\t - PASSWORD: ";
         rlutil::setColor(rlutil::LIGHTBLUE);
         cargarCadena(contrasenia,30);
         rlutil::setColor(rlutil::WHITE);
 
-        pos = buscarPosicionPorUsuario(usuario);
+
 
         obj.leerDeDisco(pos);
 
@@ -84,17 +94,18 @@ void InicioSesion(){
             cout << endl << "\t\t\t\t\t   BIENVENIDO!!! " << endl << endl;
             system("pause > nul");
             system("cls");
-            switch(obj.getCategoria()){
-                case 1 : Consultas();
+            int categoria = obj.getCategoria();
+            switch(categoria){
+                case 1 : Consultas(categoria);
                     break;
-                case 2 : DataEntry();
+                case 2 : DataEntry(categoria);
                     break;
-                case 3 : Admin();
+                case 3 : Admin(categoria);
                     break;
             }
         }
         else{
-            cout << endl << "\t\t\t\t\tUSUARIO NO ENCONTRADO!!!" << endl << endl;
+            cout << endl << "\t\t\t\t\tCONTRASEÑA INVALIDA!!!" << endl << endl;
             system("pause > nul");
             system("cls");
         }
@@ -182,7 +193,7 @@ bool pedirContrasenia(){
     }
 }
 
-void Consultas(){
+void Consultas(int categoria){
 
     Usuario reg;
     int opc;
@@ -193,7 +204,7 @@ void Consultas(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t1. CRONOGRAMA COMPLETO. " << endl << endl;
         cout << "\t\t\t\t\t2. APLICAR FILTROS. " << endl << endl;
-        cout << "\t\t\t\t\t0. CERRAR SESION. " << endl << endl;
+        cout << "\t\t\t\t\t0. VOLVER. " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
         rlutil::locate(60,13);
@@ -208,12 +219,23 @@ void Consultas(){
                 break;
             case 2 : pedirOpcionesDeFiltrado();
                 break;
-            case 0 : if(reg.getCategoria() != 3){
-                        MenuPrincipal();
-                     }
-                     else{
-                        Admin();
-                     }
+            case 0 :
+
+                    switch(categoria){
+                    case 1:
+                        Consultas(categoria);
+                        break;
+                    case 2:
+                        DataEntry(categoria);
+                        break;
+                    case 3:
+                        Admin(categoria);
+                        break;
+
+                    }
+
+
+
                 break;
             default : rlutil::locate(41,13);
                       cout << "OPCION INVALIDA!!!" << endl;
@@ -224,7 +246,7 @@ void Consultas(){
     }
 }
 
-void DataEntry(){
+void DataEntry(int categoria){
     int opc;
 
 
@@ -233,7 +255,12 @@ void DataEntry(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t1 - LISTADOS. " << endl << endl;
         cout << "\t\t\t\t\t2 - CARGAR DATOS. " << endl << endl;
-        cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
+        if (categoria != 2){
+            cout << "\t\t\t\t\t0 - VOLVER" << endl << endl;
+        }
+        else {
+            cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
+        }
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
         cin  >> opc;
@@ -241,11 +268,24 @@ void DataEntry(){
         system("cls");
 
         switch(opc){
-            case 1 : Listados();
+            case 1 : Listados(categoria);
                break;
-            case 2 : CargarDatos();
+            case 2 : CargarDatos(categoria);
                break;
-            case 0 : MenuPrincipal();
+            case 0 :
+                switch(categoria){
+                case 1:
+                    Consultas(categoria);
+                    break;
+                case 2:
+                    MenuPrincipal();
+                    break;
+                case 3:
+                    Admin(categoria);
+                    break;
+
+                }
+
                break;
         }
     }
@@ -253,7 +293,7 @@ void DataEntry(){
     system("cls");
 }
 
-void Admin(){
+void Admin(int categoria){
 
     int opc;
 
@@ -272,13 +312,13 @@ void Admin(){
         system("cls");
 
         switch(opc){
-            case 1 : DataEntry();
+            case 1 : Consultas(3);
                 break;
-            case 2 : Consultas();
+            case 2 : DataEntry(3);
                 break;
             case 3 : CrearUsuario();
                 break;
-            case 4 : EliminarRegistro();
+            case 4 : EliminarRegistro(3);
                 break;
             case 0 : MenuPrincipal(); ;
               break;
@@ -351,6 +391,8 @@ int buscarPosicionPorUsuario(char *usuario){
         }
         pos++;
     }
+
+    return -1;
 }
 
 void cargarCadena(char *pal, int tam){
@@ -633,6 +675,11 @@ bool exportarBaseDeCalculo(){
         myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << agenciaStr << ',' << regionStr << ',' << terminalStr << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
         //myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ';' << agenciaStr << ';' << regionStr << ';' << terminalStr << ';' << diaSemanaStr(reg.getDiaETA(), 1) << ';' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ';' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ';' << reg.getCalculoETD() <<  ';' << reg.getCalculoRecepcionCnt() <<  ';' << endl;
     }
+
+    cout << endl << "Listado exportado correctamente";
+    system("pause");
+    system("cls");
+
 
     return true;
 

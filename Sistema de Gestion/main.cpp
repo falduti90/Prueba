@@ -35,8 +35,9 @@ int main(){
 //ListadoBuques();
 
 
-    //exportarBaseDeCalculo();
-pedirOpcionesDeFiltrado();
+
+//pedirOpcionesDeFiltrado();
+MenuPrincipal();
 //ListadoCronograma();
 
     //importar();
