@@ -41,13 +41,13 @@ class BaseCalculo{
         int _idAgencia;
         int _idRegion;
         int _idTerminalDeGiro;
-        int _diaETA;                         // Día de la semana que es la ETA. Ejemplo: miercoles = día número 3
-        int _calculoETD;                    // Cantidad de días que se le suma a la ETA. Ejemplo: ETD = ETA + 2
-        int _diaCTF;                       // Cut off físico. Es un día de la misma semana o semana anterior a la ETA/ETD. Ejemplo: miercoles (3)
-        int _horaCTF;                     // Valor fijo! (varia según día _idReferencia)
-        int _diaCTD;                     // Cut off documental. Es un día de la misma semana o semana anterior a la ETA/ETD, previo CTF o igual a CTF. Ejemplo: martes (2)
-        int _horaCTD;                   // Valor fijo! (varia según día _idReferencia)
-        int _calculoRecepcionCnt;      // Suelen ser 5/7 días antes de la ETA
+        int _diaETA;
+        int _calculoETD;
+        int _diaCTF;
+        int _horaCTF;
+        int _diaCTD;
+        int _horaCTD;
+        int _calculoRecepcionCnt;
         bool _activo;
 };
 

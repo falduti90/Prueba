@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Fecha.h"
 #include <cstring>
+#include<clocale>
 #include "Buque.h"
 #include "Agencia.h"
 #include "Region.h"
@@ -29,44 +30,10 @@ using namespace std;
 //void pedirOpcionesDeFiltrado();
 
 int main(){
+setlocale(LC_ALL, "Spanish");
 
-//importarCronograma(); //
-//ListadoBaseCalculo();
-//ListadoBuques();
-
-
-
-//pedirOpcionesDeFiltrado();
 MenuPrincipal();
-//ListadoCronograma();
 
-    //importar();
-
-//ListadoEstadistica();
-    //MenuPrincipal();
-
-    //ListarPorBuque();
-    //EliminarRegistro();
-
-
-//PARA CARGAR CRONOGRAMA:
-/*
-bool ok;
-for (int i = 0; i<27;i++){
-Cronograma r;
-r.cargar();
-cout << endl;
-r.mostrar();
-cout << endl;
-cout << endl <<"CALCULADO OK ? SI = 1, NO = 0";
-cout << endl;
-cin >> ok;
-cout << endl;
-if (ok) r.grabarEnDisco();
-cout << endl;
-cout << endl;
-}
-*/
 
     return 0;
 }

@@ -199,6 +199,7 @@ int BuscarIdTerminal(int idBuque){
         return reg.getTerminalDeGiro();
         }
     }
+    return -1;
 }
 
 void ListarPorBuque(){
@@ -206,7 +207,6 @@ void ListarPorBuque(){
     Buque reg;
     Cronograma obj;
     int pos = 0, opc;
-    char *posicion;
     cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
     cout << "\t\t\t\t*******************************************" << endl << endl;
     while(reg.leerDeDisco(pos++)){

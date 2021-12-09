@@ -4,13 +4,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int  MenuPrincipal();
+void  MenuPrincipal();
 void InicioSesion();
 void CrearUsuario();
 bool pedirContrasenia();
-void Consultas(int);
+void Comercial(int);
 void DataEntry(int);
 void Admin(int);
+void Estadisticas();
 bool importarCronograma();
 void exportar();
 int  buscarPosicionPorUsuario(char *usuario);

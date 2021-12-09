@@ -248,9 +248,6 @@ bool BaseCalculo::grabarEnDisco(){
     return ok;
 }
 
-bool BaseCalculo::grabarEnDisco(int){
-    //TODO
-}
 
 
 //---------------------------------------------------------------------------------------------------

@@ -323,23 +323,21 @@ cin >> rta;
     Cronograma *vec;
     int tam = tamanoCronogramas();
     vec = new Cronograma [tam];
-
     generarVecCronograma(vec, tam);
 
     if (rta) {
 
-        cout << "Elija una opcion: 1-Ascendente 0-Descendente ";
+        cout << "Elija una opcion: 0-Ascendente 1-Descendente ";
         cin >> direc;
         ordenarCronograma(vec, tam, direc);
 
     }
 
-
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 
-    for(int i = 0; i<tamanoCronogramas(); i++){
+    for(int i = 0; i<tam; i++){
         vec[i].mostrar();
         cout << endl;
     }
@@ -348,11 +346,8 @@ cin >> rta;
     delete vec;
 
     cout << endl << endl << endl;
-    cout << "\t\t\t\t\t" << system("pause");
+    cout << system("pause");
     system("cls");
-
-
-
 
 
 }
@@ -404,7 +399,7 @@ Fecha Calendario(int ns, int ds){
 
 }
 
-bool Cronograma::cargar(int idAgencia, int idRegion, int idBuque, int numSemana, char *viaje){
+void Cronograma::cargar(int idAgencia, int idRegion, int idBuque, int numSemana, char *viaje){
 
     _idAgencia = idAgencia;
     _idRegion = idRegion;
@@ -441,10 +436,13 @@ bool Cronograma::cargar(int idAgencia, int idRegion, int idBuque, int numSemana,
 
 void generarVecCronograma(Cronograma *vec, int tam){
     Cronograma reg;
-    int i = 0;
+    int i;/*
     while(reg.leerDeDisco(i)){
         vec[i] = reg;
         i++;
+    }*/
+    for ( i = 0 ; i < tam ; i++){
+        vec[i].leerDeDisco(i);
     }
 
 }
@@ -484,12 +482,24 @@ void ordenarCronograma(Cronograma *vec, int tam, bool direc){
 }
 
 int tamanoCronogramas(){
-    Cronograma reg;
+    /*Cronograma reg;
     int i = 0;
     while(reg.leerDeDisco(i)){
         i++;
     }
-    return i;
+    return i;*/
+
+    int bytes, cant;
+    FILE *p;
+    p = fopen("Cronograma.dat", "rb");
+    if (p == NULL){
+        return 0;
+    }
+    fseek(p, 0, SEEK_END);
+    bytes = ftell(p);
+    fclose(p);
+    cant = bytes / sizeof(Cronograma);
+    return cant;
 
 
 }

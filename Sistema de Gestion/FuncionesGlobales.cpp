@@ -12,6 +12,7 @@
 #include "Terminal.h"
 #include "Listados.h"
 #include "CargarDatos.h"
+#include "Estadistica.h"
 #include "EliminarRegistro.h"
 #include "BaseCalculo.h"
 #include <sstream> //Libredias para
@@ -21,9 +22,9 @@
 
 using namespace std;
 
-int MenuPrincipal(){
+void MenuPrincipal(){
 
-    int opc, pos = 0;
+    int opc;
 
     Usuario obj;
 
@@ -45,7 +46,9 @@ int MenuPrincipal(){
         switch(opc){
             case 1 : InicioSesion();
                 break;
-            case 0 : exit (-1);
+            case 0 :
+                cout << "\t\t\t\t\t" <<" ¡ HASTA LUEGO !" << endl << endl;
+                exit (0);
                 break;
 
             default : rlutil::locate(41,12);
@@ -96,7 +99,7 @@ void InicioSesion(){
             system("cls");
             int categoria = obj.getCategoria();
             switch(categoria){
-                case 1 : Consultas(categoria);
+                case 1 : Comercial(categoria);
                     break;
                 case 2 : DataEntry(categoria);
                     break;
@@ -193,9 +196,10 @@ bool pedirContrasenia(){
     }
 }
 
-void Consultas(int categoria){
+void Comercial(int categoria){
 
     Usuario reg;
+    Estadistica est;
     int opc;
 
     while(true){
@@ -203,11 +207,18 @@ void Consultas(int categoria){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t1. CRONOGRAMA COMPLETO. " << endl << endl;
-        cout << "\t\t\t\t\t2. APLICAR FILTROS. " << endl << endl;
-        cout << "\t\t\t\t\t0. VOLVER. " << endl << endl;
+        cout << "\t\t\t\t\t2. FILTRAR CRONOGRAMA " << endl << endl;
+        cout << "\t\t\t\t\t3. REGISTRAR CARGAS " << endl << endl;
+        cout << "\t\t\t\t\t4. ESTADISTICAS " << endl << endl;
+        if (categoria != 1){
+            cout << "\t\t\t\t\t0 - VOLVER" << endl << endl;
+        }
+        else {
+            cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
+        }
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE OPCION: ";
-        rlutil::locate(60,13);
+        rlutil::locate(60,17);
         cin  >> opc;
 
         if(opc >= 0 && opc < 3){
@@ -219,11 +230,15 @@ void Consultas(int categoria){
                 break;
             case 2 : pedirOpcionesDeFiltrado();
                 break;
+            case 3 : est.cargar();
+                break;
+            case 4 : Estadisticas();
+                break;
             case 0 :
 
                     switch(categoria){
                     case 1:
-                        Consultas(categoria);
+                        MenuPrincipal();
                         break;
                     case 2:
                         DataEntry(categoria);
@@ -237,13 +252,61 @@ void Consultas(int categoria){
 
 
                 break;
-            default : rlutil::locate(41,13);
+            default : rlutil::locate(40,17);
                       cout << "OPCION INVALIDA!!!" << endl;
                       system("pause > nul");
                       rlutil::locate(1,1);
                 break;
         }
     }
+}
+
+void Estadisticas(){
+    Estadistica est;
+    int opc;
+    system("cls");
+    while(true){
+        system("color 9F");
+        cout << "\t\t\t\t\t\t***SELECCIONE ESTADISTICA***" << endl << endl;
+        cout << "\t\t\t\t*******************************************" << endl << endl;
+        cout << "\t\t\t\t\t1. RESUMEN ANUAL. " << endl << endl;
+        cout << "\t\t\t\t\t2. RESUMEN MENSUAL. " << endl << endl;
+        cout << "\t\t\t\t\t3. RESUMEN POR AGENCIA. " << endl << endl;
+        cout << "\t\t\t\t\t4. TODOS LOS REGISTROS. " << endl << endl;
+        cout << "\t\t\t\t\t0 - VOLVER" << endl << endl;
+        cout << "\t\t\t\t*******************************************" << endl << endl;
+        cout << "\t\t\t\t\tSELECCIONE OPCION: ";
+        rlutil::locate(60,17);
+        cin  >> opc;
+
+        if(opc >= 0 && opc < 3){
+            system("cls");
+        }
+
+        switch(opc){
+            case 1 : resumenAnual();
+                break;
+            case 2 : resumenMensual();
+                break;
+            case 3 : resumenxAgencia();
+                break;
+            case 4 : ListadoEstadistica();
+                break;
+            case 0 :
+                Comercial(1);
+                break;
+            default : rlutil::locate(40,17);
+                      cout << "OPCION INVALIDA!!!" << endl;
+                      system("pause > nul");
+                      rlutil::locate(1,1);
+                break;
+        }
+    }
+
+
+
+
+
 }
 
 void DataEntry(int categoria){
@@ -275,7 +338,7 @@ void DataEntry(int categoria){
             case 0 :
                 switch(categoria){
                 case 1:
-                    Consultas(categoria);
+                    Comercial(categoria);
                     break;
                 case 2:
                     MenuPrincipal();
@@ -300,8 +363,8 @@ void Admin(int categoria){
     while(true){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        cout << "\t\t\t\t\t1 - CONSULTAS. " << endl << endl;
-        cout << "\t\t\t\t\t2 - DATA-ENTRY. " << endl << endl;
+        cout << "\t\t\t\t\t1 - OPCIONES COMERCIALES. " << endl << endl;
+        cout << "\t\t\t\t\t2 - OPCIONES DATA-ENTRY. " << endl << endl;
         cout << "\t\t\t\t\t3 - CREAR USUARIO. " << endl << endl;
         cout << "\t\t\t\t\t4 - ELIMINAR REGISTRO. " << endl << endl;
         cout << "\t\t\t\t\t0 - CERRAR SESION." << endl << endl;
@@ -312,7 +375,7 @@ void Admin(int categoria){
         system("cls");
 
         switch(opc){
-            case 1 : Consultas(3);
+            case 1 : Comercial(3);
                 break;
             case 2 : DataEntry(3);
                 break;
@@ -430,6 +493,7 @@ void ListarPorSemana(){
 void pedirOpcionesDeFiltrado(){
     int buque, semana, agencia, terminal;
     buque = semana = agencia = terminal = -1;
+    int pos = 0;
     bool op;
     bool orden = true;
     cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
@@ -438,11 +502,8 @@ void pedirOpcionesDeFiltrado(){
     cin >> op;
 
     if (op){
-
         Buque reg;
         Cronograma obj;
-        int pos = 0, opc;
-        char *posicion;
         cout << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE BUQUE: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
@@ -476,64 +537,58 @@ void pedirOpcionesDeFiltrado(){
     cin >> op;
 
     if (op){
-
-        FILE *p;
-        Agencia reg;
-        p = fopen("Agencias.dat","rb");
-        if( p == NULL ){
-            cout << "No se pudo abrir el archivo";
-        return ;
-        }
+        Agencia ag;
+        pos = 0;
         cout << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE AGENCIA: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        while ( fread( &reg , sizeof(Agencia) , 1 , p ) == 1 ){
-            reg.mostrar();
-            cout << "\t\t\t\t*******************************************" << endl;
+        while(ag.leerDeDisco(pos++)){
+            if(pos < 10){
+             cout << "\t\t\t\t\t" << pos << ".  " << ag.getNombreAgencia() << endl;
+            }
+            else{
+             cout << "\t\t\t\t\t" << pos << ". " << ag.getNombreAgencia() << endl;
+            }
         }
-        rlutil::locate(62,8);
+        rlutil::locate(60,8);
         cin >> agencia;
         system("cls");
-        fclose(p);
-
-
     }
     system("cls");
-    cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
+        cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
     cout << "\t\t\t\t*******************************************" << endl << endl;
     cout << "\t\t\t\tTERMINAL - 1. FILTRAR / 0. NO FILTRAR: ";
     cin >> op;
     if (op){
-
-        FILE *p;
-        Terminal reg;
-        p = fopen("Terminales.dat","rb");
-        if ( p == NULL ){
-            cout << "No se pudo abrir el archivo";
-        return ;
-        }
+        Terminal term;
+        pos = 0;
         cout << endl << endl;
         cout << "\t\t\t\t\tSELECCIONE TERMINAL: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        while( fread ( &reg , sizeof(Terminal) , 1 ,  p) == 1){
-            reg.mostrar();
-            cout << "\t\t\t\t*******************************************" << endl;
+        while(term.leerDeDisco(pos++)){
+            if(pos < 10){
+             cout << "\t\t\t\t\t" << pos << ".  " << term.getNombreTerminal() << endl;
+            }
+            else{
+             cout << "\t\t\t\t\t" << pos << ". " << term.getNombreTerminal() << endl;
+            }
         }
-        rlutil::locate(62,8);
-        cin >> agencia;
-        fclose(p);
+        rlutil::locate(60,8);
+        cin >> terminal;
+        system("cls");
     }
+
         system("cls");
         cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
-        cout << "\t\t\t\t\DESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
+        cout << "\t\t\t\tDESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
         rlutil::locate(62,8);
         cin >> op;
         system("cls");
         if (op){
-            cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
+            cout << "\t\t\t\t\t" << "SELECCIONE FILTROS: " << endl << endl;
             cout << "\t\t\t\t*******************************************" << endl << endl;
-            cout << "\t\t\t\t\-1 ASCENDENTE  -0 DESCENDENTE" << endl << endl;
+            cout << "\t\t\t\t\t" << "1- ASCENDENTE  0- DESCENDENTE" << endl << endl;
             rlutil::locate(62,8);
             cin >> orden;
         }
@@ -546,78 +601,34 @@ void pedirOpcionesDeFiltrado(){
 void Listado(int buque, int numsemana , int idagencia , int idterminal, bool orden, bool op){
 
     Cronograma *vecList;
-    //bool *mostrar;
-
     int tam = tamanoCronogramas();
     vecList = new Cronograma [tam];
 
-    //mostrar = new bool [tam] {};
-
     generarVecCronograma(vecList, tam);
 
-
-
     if (op){
-
         ordenarCronograma(vecList, tam, orden);
     }
 
-    /*
-    FILE *p;
-    Cronograma reg;
-    p = fopen("Cronograma.dat","rb");
-    if(p == NULL){
-        cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
-    return ;
-    }
-    */
-    //cout << "\t\t\t\t\t" << system("pause");
     system("cls");
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
     cout << " WEEK   AGENCIA   REGION   BUQUE    GIRO   VIAJE     ETA     ETD     CUT OFF DOC   CUT OFF FISICO   INICIO DE RECEPCION" << endl;
     cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
 
-    /*
-    while(fread(&reg,sizeof(Cronograma),1,p)==1){ */
+
     for (int i=0; i<tam; i++){
 
-
         bool v1 = (buque == -1) || (buque == vecList[i].getIdBuque());
-        //cout << endl << "Esto devuelve buque: " << v1;
         bool v2 = (numsemana == -1) || (numsemana == vecList[i].getNumSemana());
-        //cout << endl << "Esto devuelve semana: " << v2;
         bool v3 = (idagencia == -1 )|| (idagencia == vecList[i].getIdAgencia());
-        //cout << endl << "Esto devuelve agencia: " << v3;
         bool v4 = (idterminal == -1) || (idterminal == vecList[i].getIdGiro());
-       // cout << endl << "Esto devuelve terminal: " << v4;
-
-       /*
-       bool v1 = (buque == -1) || (buque == reg.getIdBuque());
-        //cout << endl << "Esto devuelve buque: " << v1;
-        bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
-        //cout << endl << "Esto devuelve semana: " << v2;
-        bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
-        //cout << endl << "Esto devuelve agencia: " << v3;
-        bool v4 = (idterminal == -1) || (idterminal == reg.getIdGiro());
-       // cout << endl << "Esto devuelve terminal: " << v4;
-
-
-       */
 
         if (v1 && v2 && v3 && v4 ){
-
             vecList[i].mostrar();
-
-            cout << endl << endl;
+            cout << endl;
         }
 
     }
-
-
-    /*
-    }
-    fclose(p);
-    cout << endl << endl; */
 
     bool rta;
     cout << endl << endl;
@@ -627,9 +638,8 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal, bool ord
     if (rta){
         ExportarCronograma(buque, numsemana , idagencia , idterminal, vecList, tam);
     }
-
+    delete vecList;
     system("pause");
-
 
 }
 

@@ -6,11 +6,11 @@ class Agencia
 {
     public:
         Agencia();
-        int   setIdAgencia(int nuevoID);
-        char  setNombreAgencia(char *nuevoNombre);
-        int   setDisponibilidadMensual(int nuevoCupo);
-        float setGastosLocales(float nuevoGasto);
-        bool  setActivo(bool nuevoEstado);
+        void   setIdAgencia(int nuevoID);
+        void  setNombreAgencia(char *nuevoNombre);
+        void   setDisponibilidadMensual(int nuevoCupo);
+        void   setGastosLocales(float nuevoGasto);
+        void  setActivo(bool nuevoEstado);
         int   getIdAgencia();
         char *getNombreAgencia();
         int   getDisponibilidadMensual();

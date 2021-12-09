@@ -14,23 +14,23 @@ Agencia::Agencia() {
     _activo = true;
 }
 
-int  Agencia::setIdAgencia(int nuevoID) {
+void  Agencia::setIdAgencia(int nuevoID) {
     _idAgencia = nuevoID;
 }
 
-char Agencia::setNombreAgencia(char *nuevoNombre) {
+void Agencia::setNombreAgencia(char *nuevoNombre) {
     strcpy( _nombreAgencia , nuevoNombre );
 }
 
-int  Agencia::setDisponibilidadMensual(int nuevoCupo) {
+void  Agencia::setDisponibilidadMensual(int nuevoCupo) {
     _disponibilidadMensual = nuevoCupo;
 }
 
-float Agencia::setGastosLocales(float nuevoGasto) {
+void Agencia::setGastosLocales(float nuevoGasto) {
     _gastosLocales = nuevoGasto;
 }
 
-bool Agencia::setActivo(bool nuevoEstado) {
+void Agencia::setActivo(bool nuevoEstado) {
     _activo = nuevoEstado;
 }
 

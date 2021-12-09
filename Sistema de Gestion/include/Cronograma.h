@@ -48,7 +48,7 @@ class Cronograma {
         int getIdGiro(){return _idGiro;}
         int getIdRegion() {return _idRegion;}
         void cargar();
-        bool cargar(int, int, int, int, char*);
+        void cargar(int, int, int, int, char*);
         void mostrar(int&);
         void mostrar();
         bool leerDeDisco(int);
