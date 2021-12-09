@@ -47,24 +47,32 @@ void CargarDatos(int categoria){
                break;
             case 5 :
                 system("cls");
-                cout << endl << "1- IMPORTAR 2- CARGA MANUAL ";
+                cout << endl << "0- IMPORTAR 1- CARGA MANUAL ";
                 cin >> tipoCarga;
                 if (tipoCarga){
-                    importarBaseCalculo();
+                    bas.cargar();
+                    cout << system("pause");
+                    system("cls");
                 }
                 else{
-                    bas.cargar();
+                    importarBaseCalculo();
+                    cout << system("pause");
+                    system("cls");
                 }
                break;
             case 6:
                 system("cls");
-                cout << endl << "1- IMPORTAR 2- CARGA MANUAL ";
+                cout << endl << "0- IMPORTAR 1- CARGA MANUAL ";
                 cin >> tipoCarga;
                 if (tipoCarga){
-                    importarCronograma();
+                    cron.cargar();
+                    cout << system("pause");
+                    system("cls");
                 }
                 else{
-                cron.cargar();
+                    importarCronograma();
+                    cout << system("pause");
+                    system("cls");
                 }
                 break;
             case 0 : DataEntry(categoria);

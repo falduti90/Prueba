@@ -7,6 +7,7 @@ using namespace std;
 #include "Terminal.h"
 #include "Agencia.h"
 #include "Buque.h"
+#include "Usuario.h"
 #include <ctime>
 
 
@@ -14,7 +15,6 @@ using namespace std;
 
 bool validaNroSemana( int ns ){
     while ( ns < 0 || ns > 53){
-        cout << endl << "NUMERO DE SEMANA INVALIDO." << endl << endl;
         return false;
     }
     return true;
@@ -60,7 +60,6 @@ bool validaIdTerminal( int idTerm ){
 
 bool validaDiaSemana( int ds ){
     while ( ds < 0 || ds > 6){
-        cout << endl << "NUMERO DE SEMANA INVALIDO." << endl << endl;
         return false;
     }
     return true;
@@ -69,7 +68,6 @@ bool validaDiaSemana( int ds ){
 
 bool validaHora( int hr ){
     while ( hr < 0 || hr > 23){
-        cout << endl << "HORA INVALIDA." << endl << endl;
         return false;
     }
     return true;
@@ -162,4 +160,25 @@ bool validaMayorCero( int num ){
         return false;
     }
     return true;
+}
+
+bool validaUsuario(char* us){
+    Usuario reg;
+    int pos = 0;
+
+    while (reg.leerDeDisco(pos++)){
+        if ( strcasecmp(reg.getUsuario(), us) == 0) return true;
+    }
+
+    return false;
+}
+
+bool validaIdBaseCalculo( Cronograma crono){
+    BaseCalculo reg;
+    int pos = 0;
+
+    while(reg.leerDeDisco(pos++)){
+       if (crono == reg.getIdBaseCalculo()) return true;
+    }
+    return false;
 }

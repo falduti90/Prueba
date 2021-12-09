@@ -248,10 +248,10 @@ bool primerRegistroMes(int idAg , int anio , int mes){
     int pos = 0;
 
     while( reg.leerDeDisco(pos++)){
-            if (reg.getIdAgencia() == idAg && reg.getAnioCarga() == anio && reg.getMesCarga() == mes) return false;
+            if (reg.getIdAgencia() == idAg && reg.getAnioCarga() == anio && reg.getMesCarga() == mes) return true;
     }
 
-    return true;
+    return false;
 }
 
 

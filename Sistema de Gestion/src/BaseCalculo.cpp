@@ -149,20 +149,28 @@ void BaseCalculo::cargar(){
         cin >> _diaCTF;
     } while ( !validaDiaSemana ( _diaCTF));
 
-    do{
+    cout << "HORA CUT OFF FISICO: ";
+    cin >> _horaCTF;
+    while ( !validaHora ( _horaCTF)){
+        cout << "HORA INVALIDA ";
         cout << "HORA CUT OFF FISICO: ";
         cin >> _horaCTF;
-    } while ( !validaHora ( _horaCTF));
+    }
+
 
     do{
         cout << "DIA CUT OFF DOCUMENTAL: ";
         cin >> _diaCTD;
     } while ( !validaDiaSemana ( _diaCTD));
 
-    do{
-        cout << "HORA CUT OFF DOCUMENTAL: ";
+
+    cout << "HORA CUT OFF DOCUMENTAL: ";
+    cin >> _horaCTD;
+        while ( !validaHora ( _horaCTD)){
+        cout << "HORA INVALIDA ";
+        cout << "HORA CUT OFF FISICO: ";
         cin >> _horaCTD;
-    } while ( !validaHora ( _horaCTD));
+    }
 
     do{
         cout << "ETD (CUANTOS SE ADICIONAN A LA ETA): ";

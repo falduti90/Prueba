@@ -26,14 +26,11 @@
 using namespace std;
 
 
-//void Listado(int buque, int numsemana , int idagencia , int idterminal);
-//void pedirOpcionesDeFiltrado();
 
 int main(){
 setlocale(LC_ALL, "Spanish");
 
-MenuPrincipal();
-
+    MenuPrincipal();
 
     return 0;
 }

@@ -123,10 +123,14 @@ void Cronograma::cargar(){
     int giro, diaETA , calculoETD , diaCTF , horaCTF , diaCTD , horaCTD , calculoRecepcionCnt;
     diaETA = calculoETD = diaCTF = diaCTD = calculoRecepcionCnt = 0;
 
-    do{
+    system("cls");
+    cout << "INGRESE NUMERO DE SEMANA: ";
+    cin >> _numSemana;
+    while ( !validaNroSemana ( _numSemana)){
         cout << "INGRESE NUMERO DE SEMANA: ";
         cin >> _numSemana;
-    } while ( !validaNroSemana ( _numSemana));
+        cout << endl << "NUMERO DE SEMANA INVALIDO." << endl << endl;
+    }
 
     cout << "INGRESE ID AGENCIA: ";
     cin >> _idAgencia;
@@ -159,24 +163,31 @@ void Cronograma::cargar(){
     setIdCronograma(_idAgencia , _idRegion , giro);
 
     Cronograma c(_idAgencia , _idRegion , giro);
-    BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &horaCTF , &diaCTD , &horaCTD , &calculoRecepcionCnt);
 
-    _fechaETA            = Calendario(_numSemana , diaETA);
-    _fechaETD            = _fechaETA+=calculoETD;
-    _fechaRecepcionCnt   = _fechaETA-=calculoRecepcionCnt;
-    _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
-    _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
-    if ( _fechacutoffFisico >= _fechaETA ){
-        _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF); //Siempre tiene q ser anterior a la ETA y
+    if (validaIdBaseCalculo(c)){
+
+        BuscarFechas(c , &diaETA , &calculoETD , &diaCTF , &horaCTF , &diaCTD , &horaCTD , &calculoRecepcionCnt);
+
+        _fechaETA            = Calendario(_numSemana , diaETA);
+        _fechaETD            = _fechaETA+=calculoETD;
+        _fechaRecepcionCnt   = _fechaETA-=calculoRecepcionCnt;
+        _fechacutoffFisico   = Calendario(_numSemana , diaCTF);
+        _fechacutoffDoc      = Calendario(_numSemana , diaCTD);
+        if ( _fechacutoffFisico >= _fechaETA ){
+            _fechacutoffFisico   = Calendario(_numSemana-1 , diaCTF); //Siempre tiene q ser anterior a la ETA y
+        }
+        if ( _fechacutoffDoc >= _fechaETA || _fechacutoffDoc > _fechacutoffFisico ){  //Siempre tiene q ser anterior a la ETA y anterior o igual cut off físico
+        _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
+        }
+        _horaCTF             = horaCTF;
+        _horaCTD             = horaCTD;
+        //grabarEnDisco();
     }
-    if ( _fechacutoffDoc >= _fechaETA || _fechacutoffDoc > _fechacutoffFisico ){  //Siempre tiene q ser anterior a la ETA y anterior o igual cut off físico
-    _fechacutoffDoc      = Calendario(_numSemana-1 , diaCTD);
+    else {
+        cout << endl << "COMBINACION DE AGENCIA/REGION/TERMINAL NO HALLADA EN BASE DE CALCULO." << endl << endl;
     }
-    _horaCTF             = horaCTF;
-    _horaCTD             = horaCTD;
-
-
-
+    system("pause");
+    system("cls");
 }
 
 void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCTF , int *horaCTF , int *diaCTD , int *horaCTD , int *calculoRecepcionCnt){
@@ -196,7 +207,6 @@ void BuscarFechas( Cronograma crono , int *diaETA , int *calculoETD , int *diaCT
        }
     }
 
-    cout << endl << "COMBINACION DE AGENCIA/REGION/TERMINAL NO HALLADA EN BASE DE CALCULO." << endl << endl;
 }
 
 

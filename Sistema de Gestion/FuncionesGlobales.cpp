@@ -133,7 +133,12 @@ void CrearUsuario(){
         cout << "\t\t\t\t\t\t***TITULO***" << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\t\t - USUARIO  : ";
+        rlutil::setColor(rlutil::WHITE);
         cin.getline(usuario,30);
+        while(validaUsuario(usuario)){
+          cout << "\t\t\t\t\t - YA EXISTE ESE USUARIO. FAVOR INGRESAR OTRO  : ";
+          cin.getline(usuario,30);
+        }
         obj.setUsuario(usuario);
         cout << endl << endl;
         cout << "\t\t\t\t\t - PASSWORD : ";
@@ -172,10 +177,9 @@ bool pedirContrasenia(){
     cout << "\t\t\t\t\tINGRESE USUARIO DE ADMINISTRADOR" << endl << endl;
     cin.ignore();
     cout << "\t\t\t\t\tUSUARIO    : ";
-    rlutil::setColor(rlutil::LIGHTBLUE);
+    rlutil::setColor(rlutil::WHITE);
     cin.getline(usuario, 30);
     cout << endl;
-    rlutil::setColor(rlutil::WHITE);
     cout << "\t\t\t\t\tCONTRASENIA: ";
     rlutil::setColor(rlutil::LIGHTBLUE);
     cin.getline(contrasenia, 30);
@@ -393,8 +397,8 @@ void Admin(int categoria){
 
 bool importarCronograma(){
     int lineaImp = 0;
-   ifstream archivo(NOMBRE_ARCHIVO);
-        string linea;
+    ifstream archivo("importadorCronograma.csv");
+    string linea;
 
         char delimitador = ';';
         getline(archivo, linea);
@@ -421,23 +425,23 @@ bool importarCronograma(){
 
                 Cronograma reg;
                 reg.cargar(idAgencia, idRegion, idBuque, numSemana, numViaje);
-                reg.grabarEnDisco();
+                //reg.grabarEnDisco();
                 lineaImp ++;
+                reg.mostrar();
 
 
-                //c.mostrar();
             }
             else{
                 lineaImp++;
-                cout << endl << "Error en la linea" << lineaImp << ". No se importo la informacion de la misma";
-                return false;
+                cout << endl << "Error en la linea " << lineaImp << ". No se importo la informacion de la misma";
             }
 
             cout << endl;
 
 
 	}
-
+    cout << endl;
+    cout << "IMPORTACION FINALIZADA" << endl;
 	return true;
 
 }
@@ -449,7 +453,7 @@ int buscarPosicionPorUsuario(char *usuario){
     int pos = 0;
 
     while(u.leerDeDisco(pos)){
-        if(strcmp(usuario,u.getUsuario())== 0){
+        if(strcasecmp(usuario,u.getUsuario())== 0){
             return pos;
         }
         pos++;
@@ -509,10 +513,10 @@ void pedirOpcionesDeFiltrado(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         while(reg.leerDeDisco(pos++)){
             if(pos < 10){
-             cout << "\t\t\t\t\t" << pos << ".  " << reg.getnombreBuque() << endl;
+             cout << "\t\t\t\t\t" << reg.getIdBuque() << ".  " << reg.getnombreBuque() << endl;
             }
             else{
-             cout << "\t\t\t\t\t" << pos << ". " << reg.getnombreBuque() << endl;
+             cout << "\t\t\t\t\t" << reg.getIdBuque() << ". " << reg.getnombreBuque() << endl;
             }
         }
         rlutil::locate(60,8);
@@ -544,10 +548,10 @@ void pedirOpcionesDeFiltrado(){
         cout << "\t\t\t\t*******************************************" << endl << endl;
         while(ag.leerDeDisco(pos++)){
             if(pos < 10){
-             cout << "\t\t\t\t\t" << pos << ".  " << ag.getNombreAgencia() << endl;
+             cout << "\t\t\t\t\t" << ag.getIdAgencia() << ".  " << ag.getNombreAgencia() << endl;
             }
             else{
-             cout << "\t\t\t\t\t" << pos << ". " << ag.getNombreAgencia() << endl;
+             cout << "\t\t\t\t\t" << ag.getIdAgencia() << ". " << ag.getNombreAgencia() << endl;
             }
         }
         rlutil::locate(60,8);
@@ -563,14 +567,14 @@ void pedirOpcionesDeFiltrado(){
         Terminal term;
         pos = 0;
         cout << endl << endl;
-        cout << "\t\t\t\t\tSELECCIONE TERMINAL: " << endl << endl;
+        cout << "\t\t\t\t\t SELECCIONE TERMINAL: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         while(term.leerDeDisco(pos++)){
             if(pos < 10){
-             cout << "\t\t\t\t\t" << pos << ".  " << term.getNombreTerminal() << endl;
+             cout << "\t\t\t\t\t" << term.getIdTerminal() << ".  " << term.getNombreTerminal() << endl;
             }
             else{
-             cout << "\t\t\t\t\t" << pos << ". " << term.getNombreTerminal() << endl;
+             cout << "\t\t\t\t\t" << term.getIdTerminal() << ". " << term.getNombreTerminal() << endl;
             }
         }
         rlutil::locate(60,8);
@@ -582,14 +586,14 @@ void pedirOpcionesDeFiltrado(){
         cout << "\t\t\t\t\tSELECCIONE FILTROS: " << endl << endl;
         cout << "\t\t\t\t*******************************************" << endl << endl;
         cout << "\t\t\t\tDESEA ORDENAR POR ETA?:  1-SI   0-NO" << endl << endl;
-        rlutil::locate(62,8);
+        rlutil::locate(60,8);
         cin >> op;
         system("cls");
         if (op){
             cout << "\t\t\t\t\t" << "SELECCIONE FILTROS: " << endl << endl;
             cout << "\t\t\t\t*******************************************" << endl << endl;
             cout << "\t\t\t\t\t" << "1- ASCENDENTE  0- DESCENDENTE" << endl << endl;
-            rlutil::locate(62,8);
+            rlutil::locate(60,8);
             cin >> orden;
         }
 
@@ -621,7 +625,7 @@ void Listado(int buque, int numsemana , int idagencia , int idterminal, bool ord
         bool v1 = (buque == -1) || (buque == vecList[i].getIdBuque());
         bool v2 = (numsemana == -1) || (numsemana == vecList[i].getNumSemana());
         bool v3 = (idagencia == -1 )|| (idagencia == vecList[i].getIdAgencia());
-        bool v4 = (idterminal == -1) || (idterminal == vecList[i].getIdGiro());
+        bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(vecList[i].getIdBuque()));
 
         if (v1 && v2 && v3 && v4 ){
             vecList[i].mostrar();
@@ -682,11 +686,11 @@ bool exportarBaseDeCalculo(){
         string regionStr = converToString(region,100);
         string terminalStr = converToString(term, 100);
 
-        myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << agenciaStr << ',' << regionStr << ',' << terminalStr << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
-        //myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ';' << agenciaStr << ';' << regionStr << ';' << terminalStr << ';' << diaSemanaStr(reg.getDiaETA(), 1) << ';' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ';' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ';' << reg.getCalculoETD() <<  ';' << reg.getCalculoRecepcionCnt() <<  ';' << endl;
+        //myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ',' << agenciaStr << ',' << regionStr << ',' << terminalStr << ',' << diaSemanaStr(reg.getDiaETA(), 1) << ',' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ',' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ',' << reg.getCalculoETD() <<  ',' << reg.getCalculoRecepcionCnt() <<  ',' << endl;
+        myFile << reg.getIdBaseCalculo()[0] << ' ' << reg.getIdBaseCalculo()[1] << ' ' << reg.getIdBaseCalculo()[2] << ';' << agenciaStr << ';' << regionStr << ';' << terminalStr << ';' << diaSemanaStr(reg.getDiaETA(), 1) << ';' << diaSemanaStr(reg.getDiaCTF(), 1) << ' ' << reg.getHoraCTF() << "hs" << ';' << diaSemanaStr(reg.getDiaCTD(), 1) << ' ' << reg.getHoraCTD() << "hs" <<  ';' << reg.getCalculoETD() <<  ';' << reg.getCalculoRecepcionCnt() <<  ';' << endl;
     }
 
-    cout << endl << "Listado exportado correctamente";
+    cout << endl << "Listado 'listadoBaseDeCalculo.CVS' exportado correctamente" << endl;
     system("pause");
     system("cls");
 
@@ -696,12 +700,11 @@ bool exportarBaseDeCalculo(){
 
 }
 bool importarBaseCalculo(){
-
-
+    int lineaImp = 0;
     ifstream archivo("importadorBaseCalculo.csv");
     string linea;
 
-        char delimitador = ','; //Cambiar a ;
+        char delimitador = ';'; //Cambiar a ,
         getline(archivo, linea);
 
         while(getline(archivo, linea)){
@@ -720,7 +723,6 @@ bool importarBaseCalculo(){
 
 
             int idAgencia,  idRegion, idTerminall, diaETA, diaCTF, horCTF, diaCTD, horCTD, masETD, menosCNT ;
-            //char numViaje[11];
             istringstream(idDeAgencia) >> idAgencia;
             istringstream(idDeRegion) >> idRegion;
             istringstream(idDeTerminal) >> idTerminall;
@@ -731,12 +733,12 @@ bool importarBaseCalculo(){
             istringstream(horaDeCTD) >> horCTD;
             istringstream(masDeETD) >> masETD;
             istringstream(menosDeCNT) >> menosCNT;
-            //strcpy(numViaje, numeroDeViaje.c_str());
 
 
             BaseCalculo reg;
+            Cronograma c (idAgencia , idRegion , idTerminall);
 
-            if (validaIdAgencia (idAgencia) && validaIdRegion (idRegion) && validaIdTerminal (idTerminall) && validaDiaSemana ( diaETA) && validaDiaSemana (diaCTF) && validaHora (horCTF) && validaDiaSemana (diaCTD) && validaHora (horCTD) && validaPositivo (masETD) && validaPositivo (menosCNT)){
+            if (validaIdBaseCalculo(c) && validaIdAgencia (idAgencia) && validaIdRegion (idRegion) && validaIdTerminal (idTerminall) && validaDiaSemana ( diaETA) && validaDiaSemana (diaCTF) && validaHora (horCTF) && validaDiaSemana (diaCTD) && validaHora (horCTD) && validaPositivo (masETD) && validaPositivo (menosCNT)){
 
                 reg.setidAgencia(idAgencia);
                 reg.setidRegion(idRegion);
@@ -750,24 +752,23 @@ bool importarBaseCalculo(){
                 reg.setCalculoRecepcionCnt(menosCNT);
                 reg.setIdBaseCalculo( idAgencia , idRegion , idTerminall );
                 reg.setActivo (true);
-                //reg.mostrar();
-                reg.grabarEnDisco();
+                reg.mostrar();
+               // reg.grabarEnDisco();
+               lineaImp++;
 
             }
             else{
-                cout << endl << "Importacion finalizada con errores";
-                return false;
+                lineaImp++;
+                cout << endl << "Error en la linea " << lineaImp << ". No se importo la informacion de la misma";
             }
 
             cout << endl;
 
 
 	}
-
+    cout << endl;
+    cout << "IMPORTACION FINALIZADA" << endl;
 	return true;
-
-
-
 }
 
 void ExportarCronograma (int buque, int numsemana , int idagencia , int idterminal, Cronograma *vecList,int tam){
@@ -779,62 +780,13 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
     //myFile << "WEEK" << ',' << "AGENCIA"<< ',' << "REGION" << ',' << "BUQUE" << ',' << "GIRO" << ','  << "VIAJE" << ','  << "ETA" << ',' << "ETD" << ','  << "CUT OFF DOC" << ','  << "CUT OFF FISICO" << ',' << "INICIO DE RECEPCION" << ','  << endl;
     myFile << "WEEK" << ';' << "AGENCIA"<< ';' << "REGION" << ';' << "BUQUE" << ';' << "GIRO" << ';'  << "VIAJE" << ';'  << "ETA" << ';' << "ETD" << ';'  << "CUT OFF DOC" << ';'  << "CUT OFF FISICO" << ';' << "INICIO DE RECEPCION" << ';'  << endl;
 
-//    FILE *p;
-//    Cronograma reg;
-//    p = fopen("Cronograma.dat","rb");
-//    if(p == NULL){
-//        cout<< "\t\t\t\tNO SE PUDO ABRIR EL ARCHIVO.";
-//    return ;
-//    }
-//
-//    while(fread(&reg,sizeof(Cronograma),1,p)==1){
-//
-//        bool v1 = (buque == -1) || (buque == reg.getIdBuque());
-//        //cout << endl << "Esto devuelve buque: " << v1;
-//        bool v2 = (numsemana == -1) || (numsemana == reg.getNumSemana());
-//        //cout << endl << "Esto devuelve semana: " << v2;
-//        bool v3 = (idagencia == -1 )|| (idagencia == reg.getIdAgencia());
-//        //cout << endl << "Esto devuelve agencia: " << v3;
-//        bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(reg.getIdBuque()));
-//       // cout << endl << "Esto devuelve terminal: " << v4;
-//
-//        if (v1 && v2 && v3 && v4 ){
-//
-//                char viaje[11]{}, agencia[100]{} , region[100]{} , buque[100]{} , term[100]{};
-//                strcpy(viaje,reg.getViaje());
-//                strcpy(agencia , BuscarAgencia(reg.getIdAgencia(),1));
-//                strcpy(region , BuscarRegion(reg.getIdRegion(),1));
-//                strcpy(buque , BuscarBuque(reg.getIdBuque(),1));
-//                strcpy(term , BuscarTerminal(reg.getIdBuque(),1));
-//
-//                string numViaje = converToString(viaje, 11);
-//                string agenciaStr = converToString(agencia, 100);
-//                string regionStr = converToString(region,100);
-//                string buqueStr = converToString(buque, 100);
-//                string terminalStr = converToString(term, 100);
-//
-//
-//
-//                //myFile << reg.getNumSemana() << ',' << reg.getIdAgencia() << ',' << reg.getIdRegion() << ','  << reg.getIdBuque() << ',' << reg.getIdGiro() << ',' << numViaje << ',' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ','  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ','  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ',' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ',' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ','  << endl;
-//                myFile << reg.getNumSemana() << ';' << agenciaStr << ';' << regionStr << ';'  << buqueStr << ';' << terminalStr << ';' << numViaje << ';' << reg.getFechaETA().getDia() << '/' << reg.getFechaETA().getMes() << '/' << reg.getFechaETA().getAnio() << ';'  << reg.getFechaETD().getDia() << '/' << reg.getFechaETD().getMes() << '/' << reg.getFechaETD().getAnio() << ';'  << reg.getFechaCutoffFisico().getDia() << '/' << reg.getFechaCutoffFisico().getMes() << '/' << reg.getFechaCutoffFisico().getAnio()  << ';' <<  reg.getFechaCutoffDoc().getDia() << '/' << reg.getFechaCutoffDoc().getMes() << '/' << reg.getFechaCutoffDoc().getAnio() << ';' <<  reg.getFechaRecepcionCnt().getDia() << '/' << reg.getFechaRecepcionCnt().getMes() << '/' << reg.getFechaRecepcionCnt().getAnio() << ';'  << endl;
-//
-//            }
-//
-//            cout << endl << endl;
-//        }
-//
-
         for (int i=0; i<tam; i++){
 
 
             bool v1 = (buque == -1) || (buque == vecList[i].getIdBuque());
-            //cout << endl << "Esto devuelve buque: " << v1;
             bool v2 = (numsemana == -1) || (numsemana == vecList[i].getNumSemana());
-            //cout << endl << "Esto devuelve semana: " << v2;
             bool v3 = (idagencia == -1 )|| (idagencia == vecList[i].getIdAgencia());
-            //cout << endl << "Esto devuelve agencia: " << v3;
             bool v4 = (idterminal == -1) || (idterminal == BuscarIdTerminal(vecList[i].getIdBuque()));
-           // cout << endl << "Esto devuelve terminal: " << v4;
 
 
             if (v1 && v2 && v3 && v4 ){
@@ -860,10 +812,11 @@ void ExportarCronograma (int buque, int numsemana , int idagencia , int idtermin
 
         }
 
+    cout << endl << "Listado 'listadoCronograma.CVS' exportado correctamente" << endl;
+    system("pause");
+    system("cls");
 
-//    fclose(p);
-//    cout << endl << endl;
-//    system("pause");
+
 }
 
 
