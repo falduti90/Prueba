@@ -69,5 +69,8 @@ int BuscarIdAgencia(int);
 bool buscarEnArchivo(int);
 bool buscarAnio( int);
 
+void  ListadoEstadistica();
 void  resumenAnual();
 void  resumenMensual();
+void  resumenxAgencia();
+

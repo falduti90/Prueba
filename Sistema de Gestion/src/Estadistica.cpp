@@ -24,12 +24,69 @@ Estadistica::Estadistica(){
     _activo = true;
 }
 
+void  Estadistica::setMesCarga(int m){
+    _mesCarga = m;
+}
+
+void  Estadistica::setAnioCarga(int a){
+    _anioCarga = a;
+}
+
+void  Estadistica::setIdAgencia(int idAg){
+    _idAgencia = idAg;
+}
+
+void  Estadistica::setIdBuque(int idB){
+    _idBuque = idB;
+}
+
+void  Estadistica::setIdRegion(int idR){
+    _idRegion = idR;
+}
+
+void  Estadistica::setIdTerminal(int idT){
+    _idTerminal = idT;
+}
+
+void  Estadistica::setCantContenedores(int cant){
+    _cantContenedores = cant;
+}
+
+void  Estadistica::setCostoAgencia(int costAg){
+    _costoAgencia = costAg;
+}
+
+void  Estadistica::setCostoTerminal(int costTerm){
+    _costoTotalTerminal = costTerm;
+}
+
+void  Estadistica::setCostoTotalAgencia(int ctAg){
+    _costoTotalAgencia = ctAg;
+}
+
+void  Estadistica::setCostoTotalTerminal(int ctTerm){
+    _costoTotalTerminal = ctTerm;
+}
+
+void  Estadistica::setActivo(bool act){
+    _activo = act;
+}
+
+
 int Estadistica::getMesCarga(){
     return _mesCarga;
 }
 
 int Estadistica::getAnioCarga(){
     return _anioCarga;
+}
+
+int Estadistica::getIdBuque(){
+    return _idBuque;
+}
+
+int Estadistica::getIdRegion(){
+    return _idRegion;
 }
 
 int Estadistica::getIdAgencia(){
@@ -54,6 +111,10 @@ float Estadistica::getCostoTotalAgencia(){
 
 float Estadistica::getCostoTotalTerminal(){
     return _costoTotalTerminal;
+}
+
+bool Estadistica::getActivo(){
+    return _activo;
 }
 
 void  Estadistica::cargar(){
@@ -125,22 +186,22 @@ void  Estadistica::cargar(){
 }
 
 void  Estadistica::mostrar(){
-        cout << "ANIO                          : " << _anioCarga << endl;
-        cout << "MES                           : " << _mesCarga << endl;
-        cout << "AGENCIA                       : ";
+        cout << "\t\t\t\t" << "ANIO                          : " << _anioCarga << endl;
+        cout << "\t\t\t\t" << "MES                           : " << _mesCarga << endl;
+        cout << "\t\t\t\t" << "AGENCIA                       : ";
         BuscarAgencia(_idAgencia);
         cout << endl;
-        cout << "REGION                        : ";
+        cout << "\t\t\t\t" << "REGION                        : ";
         BuscarRegion(_idRegion);
         cout << endl;
-        cout << "BUQUE, TERMINAL               : ";
+        cout << "\t\t\t\t" << "BUQUE, TERMINAL               : ";
         BuscarBuque(_idBuque);
         cout << endl;
-        cout << "CANT CONTENEDORES             : " <<  _cantContenedores << endl;
-        cout << "COSTO UNITARIO AGENCIA        : USD " <<  _costoAgencia << endl;
-        cout << "COSTO UNITARIO TERMINAL       : USD " <<  _costoTerminal << endl;
-        cout << "COSTO TOTAL AGENCIA           : USD " <<  _costoTotalAgencia << endl;
-        cout << "COSTO TOTAL TERMINAL          : USD " <<  _costoTotalTerminal << endl << endl;
+        cout << "\t\t\t\t" << "CANT CONTENEDORES             : " <<  _cantContenedores << endl;
+        cout << "\t\t\t\t" << "COSTO UNITARIO AGENCIA        : USD " <<  _costoAgencia << endl;
+        cout << "\t\t\t\t" << "COSTO UNITARIO TERMINAL       : USD " <<  _costoTerminal << endl;
+        cout << "\t\t\t\t" << "COSTO TOTAL AGENCIA           : USD " <<  _costoTotalAgencia << endl;
+        cout << "\t\t\t\t" << "COSTO TOTAL TERMINAL          : USD " <<  _costoTotalTerminal << endl << endl;
 }
 
 bool Estadistica::leerDeDisco(int pos){
@@ -331,27 +392,27 @@ void  resumenAnual(){
     for ( j = 0 ; j < cant ; j++){
         int idAg = BuscarIdAgencia(j);
             if ( buscarEnArchivo(idAg)){
-                cout << "AGENCIA:  ";
+                cout << endl << "------------------------------- " << endl;
+                cout << "AGENCIA    :  ";
                 BuscarAgencia(idAg);
-                cout << endl;
+                cout << endl << "------------------------------- " << endl;
 
                 for ( i = 0 ; i < 12 ; i++){
                     int mes = i + 1;
-                    cout << "MES / ANIO: ";
-                    printf("%2d",mes);
-                    cout << "/" << anio << endl;
-                    cout << "----------------------- ";
                     cantTotalContenedores = cuentaContenedores(idAg , anio , mes);  // = Espacio utilizado
-                    if (cantTotalContenedores == 0) cout << " - SIN CARGA - " << endl;
-                    else {
-                        cout << endl;
+                    if (cantTotalContenedores != 0){
+                        cout << endl << "MES / ANIO : ";
+                        printf("%2d",mes);
+                        cout << "/" << anio << endl;
+                        cout << "----------------------- " << endl;
                         costoTotalAgencia     = sumaTotalAgencia(idAg , anio , mes );
                         costoTotalTerminal    = sumaTotalTerminal(idAg, anio , mes );
                         espacioDisponible     = consultaEspacioInicial(idAg) - cantTotalContenedores;
                         cout << "ESPACIO UTILIZADO    : "     <<  cantTotalContenedores << endl;
                         cout << "ESPACIO DISPONIBLE   : "     <<  espacioDisponible << endl;
                         cout << "COSTO TOTAL AGENCIA  : USD " <<  costoTotalAgencia << endl;
-                        cout << "COSTO TOTAL TERMINAL : USD " <<  costoTotalTerminal << endl << endl;
+                        cout << "COSTO TOTAL TERMINAL : USD " <<  costoTotalTerminal << endl;
+                        cout << "COSTO TOTAL          : USD " <<  costoTotalTerminal+costoTotalAgencia << endl << endl;
                     }
                 }
         }
@@ -383,17 +444,12 @@ void  resumenMensual(){
     for ( j = 0 ; j < cant ; j++){
         int idAg = BuscarIdAgencia(j);
             if ( buscarEnArchivo(idAg)){
-                cout << "AGENCIA:  ";
-                BuscarAgencia(idAg);
-                cout << endl;
-
-                cout << "MES / ANIO: ";
-                printf("%2d",mes);
-                cout << "/" << anio << endl;
-                cout << "----------------------- ";
                 cantTotalContenedores = cuentaContenedores(idAg , anio , mes);  // = Espacio utilizado
-                if (cantTotalContenedores == 0) cout << " - SIN CARGA - " << endl;
-                else {
+                if (cantTotalContenedores != 0) {
+                    cout << endl << "------------------------------- " << endl;
+                    cout << "AGENCIA    :  ";
+                    BuscarAgencia(idAg);
+                    cout << endl << "------------------------------- " << endl;
                     cout << endl;
                     costoTotalAgencia     = sumaTotalAgencia(idAg , anio , mes );
                     costoTotalTerminal    = sumaTotalTerminal(idAg, anio , mes );
@@ -401,8 +457,86 @@ void  resumenMensual(){
                     cout << "ESPACIO UTILIZADO    : "     <<  cantTotalContenedores << endl;
                     cout << "ESPACIO DISPONIBLE   : "     <<  espacioDisponible << endl;
                     cout << "COSTO TOTAL AGENCIA  : USD " <<  costoTotalAgencia << endl;
-                    cout << "COSTO TOTAL TERMINAL : USD " <<  costoTotalTerminal << endl << endl;
+                    cout << "COSTO TOTAL TERMINAL : USD " <<  costoTotalTerminal << endl;
+                    cout << "COSTO TOTAL          : USD " <<  costoTotalTerminal+costoTotalAgencia << endl << endl;
                 }
         }
     }
+}
+
+
+void  resumenxAgencia(){
+    int idAg , anio;
+    cout << "INGRESE ANIO Y ID DE AGENCIA A CONSULTAR. " << endl;
+    do{
+    cout << "ANIO: ";
+    cin  >> anio;
+    if (!buscarAnio(anio)) cout << endl << "NO HAY REGISTROS DEL ANIO " << anio << endl;
+    } while ( !buscarAnio(anio));
+
+    cout << "ID AGENCIA: ";
+    cin >> idAg;
+    while (!validaIdAgencia ( idAg)){
+            cout << endl << "NO SE EXISTE AGENCIA CON ESE ID." << endl << endl;
+            cout << "INGRESE ID AGENCIA: ";
+            cin >> idAg;
+        }
+
+    cout << endl;
+    if ( buscarEnArchivo(idAg)){
+        cout << endl << "------------------------------- " << endl;
+        cout << "AGENCIA    :  ";
+        BuscarAgencia(idAg);
+        cout << endl << "------------------------------- " << endl;
+
+        int i , mes ;
+        int cantTotalContenedores = 0 , espacioDisponible = 0;
+        float costoTotalAgencia = 0 , costoTotalTerminal = 0;
+
+        for ( i = 0 ; i < 12 ; i++){
+            int mes = i + 1;
+
+            cantTotalContenedores = cuentaContenedores(idAg , anio , mes);
+            if (cantTotalContenedores != 0) {
+                    cout << endl << "MES / ANIO : ";
+                    printf("%2d",mes);
+                    cout << "/" << anio << endl;
+                    cout << "----------------------- " << endl;
+                    cout << endl;
+                    costoTotalAgencia     = sumaTotalAgencia(idAg , anio , mes );
+                    costoTotalTerminal    = sumaTotalTerminal(idAg, anio , mes );
+                    espacioDisponible     = consultaEspacioInicial(idAg) - cantTotalContenedores;
+                    cout << "ESPACIO UTILIZADO    : "     <<  cantTotalContenedores << endl;
+                    cout << "ESPACIO DISPONIBLE   : "     <<  espacioDisponible << endl;
+                    cout << "COSTO TOTAL AGENCIA  : USD " <<  costoTotalAgencia << endl;
+                    cout << "COSTO TOTAL TERMINAL : USD " <<  costoTotalTerminal << endl;
+                    cout << "COSTO TOTAL          : USD " <<  costoTotalTerminal+costoTotalAgencia << endl << endl;
+
+            }
+        }
+    }
+    else {
+        cout << endl << "NO HAY ESTADISTICAS PARA ESE ID." << endl << endl;
+    }
+}
+
+void  ListadoEstadistica(){
+    FILE *p;
+    Estadistica reg;
+    p = fopen("Estadistica.dat","rb");
+    if( p == NULL ){
+        cout << "No se pudo abrir el archivo";
+    return ;
+    }
+    cout << "\t\t\t\t\t\t\tLISTADO DE ESTADISTICA: " << endl << endl;
+    cout << "\t\t\t\t\t*******************************************" << endl << endl;
+    while ( fread( &reg , sizeof(Estadistica) , 1 , p ) == 1 ){
+        reg.mostrar();
+        cout << "\t\t\t\t\t*******************************************" << endl;
+    }
+    cout << endl << endl;
+    cout << "\t\t\t\t\t" << system("pause");
+    system("cls");
+    fclose(p);
+
 }

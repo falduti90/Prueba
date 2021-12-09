@@ -41,12 +41,7 @@ int main(){
 
     //importar();
 
-    resumenAnual();
-    cout << endl;
-    resumenMensual();
-
-
-
+ListadoEstadistica();
     //MenuPrincipal();
 
     //ListarPorBuque();

@@ -292,7 +292,7 @@ bool importarCronograma(){
    ifstream archivo(NOMBRE_ARCHIVO);
         string linea;
        // size_t posicion;
-        char delimitador = ',';
+        char delimitador = ';';
         getline(archivo, linea);
 
         while(getline(archivo, linea)){
